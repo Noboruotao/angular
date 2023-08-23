@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import {
   faBars,
@@ -6,7 +7,9 @@ import {
   faComment,
   faBell,
   faThLarge,
+  faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -19,4 +22,19 @@ export class HeaderComponent {
   faComment = faComment;
   faBell = faBell;
   faThLarge = faThLarge;
+  faRightFromBracket = faRightFromBracket;
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  logout() {
+    this.authService.logout().subscribe({
+      next: (response) => {
+        console.log(response);
+        this.router.navigate([`login`]);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 }

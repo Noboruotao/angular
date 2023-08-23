@@ -26,7 +26,8 @@ export class AuthService {
   }
 
   public get userValue() {
-    return this.userSubject.value;
+    return this.userSubject
+    ;
   }
 
   login(formData: FormData) {
