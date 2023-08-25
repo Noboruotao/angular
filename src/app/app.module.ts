@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
+import { MensagemComponent } from './components/layout/mensagem/mensagem.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
     HeaderComponent,
     NavbarComponent,
     PreloaderComponent,
+    MensagemComponent,
   ],
   imports: [
     BrowserModule,

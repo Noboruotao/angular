@@ -18,7 +18,6 @@ export class AuthGuardService {
     if (!user) {
       localStorage.removeItem('user');
       this.router.navigate(['/login']);
-      console.log(false);
       return false;
     }
     return this.authService.validateToken().pipe(
@@ -26,8 +25,6 @@ export class AuthGuardService {
       catchError(() => {
         localStorage.removeItem('user');
         this.router.navigate(['/login']);
-        console.log(false);
-
         return of(false);
       })
     );

@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { User } from 'src/app/interfaces/user/user';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { PessoaService } from 'src/app/services/pessoaService/pessoa.service';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,8 @@ import { PessoaService } from 'src/app/services/pessoaService/pessoa.service';
 export class NavbarComponent implements OnInit {
   user!: User;
   userFoto!: any;
+
+  faHome = faHome;
 
   constructor(
     private pessoaService: PessoaService,

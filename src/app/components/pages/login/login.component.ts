@@ -2,7 +2,11 @@ import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+
 import { AuthService } from 'src/app/services/authService/auth.service';
+import { MensagemService } from 'src/app/services/mensagem/mensagem.service';
+
 import { Login } from 'src/app/interfaces/login/login';
 
 @Component({
@@ -16,12 +20,19 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  senhaIcon = faEye;
+  senhaType = 'password';
+
+  constructor(
+    private authService: AuthService,
+    private mensagemService: MensagemService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
       email: new FormControl(
-        this.loginData ? this.loginData.email : 'nrosa@maldonado.net.br',
+        this.loginData ? this.loginData.email : 'ovaldez@terra.com.br',
         [Validators.required]
       ),
       senha: new FormControl(
@@ -29,6 +40,11 @@ export class LoginComponent implements OnInit {
         [Validators.required]
       ),
     });
+  }
+
+  hideShowPassword() {
+    this.senhaType = this.senhaType === 'text' ? 'password' : 'text';
+    this.senhaIcon = this.senhaIcon === faEye ? faEyeSlash : faEye;
   }
 
   email() {
@@ -54,6 +70,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate([`home`]);
       },
       error: (error) => {
+        this.mensagemService.add(error);
         console.log(error);
       },
     });
