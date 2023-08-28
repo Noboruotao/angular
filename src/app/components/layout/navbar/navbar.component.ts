@@ -11,7 +11,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  user!: User;
+  user: any;
   userFoto!: any;
 
   faHome = faHome;
@@ -23,15 +23,8 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.validateToken().subscribe({
-      next: (response) => {
-        this.user = response.data.user;
-        this.getFoto();
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.user = this.authService.userData;
+    this.getFoto();
   }
 
   get userData() {
@@ -39,7 +32,7 @@ export class NavbarComponent implements OnInit {
   }
 
   getFoto() {
-    this.pessoaService.getFotoPessoa(this.userData.id).subscribe(
+    this.pessoaService.getFotoPessoa(this.user.id).subscribe(
       (resFoto) => {
         this.userFoto = this.domSanitizer.bypassSecurityTrustUrl(
           URL.createObjectURL(resFoto)

@@ -11,6 +11,11 @@ import { map } from 'rxjs/operators';
 export class AuthService {
   private userSubject: BehaviorSubject<any>;
   public user: Observable<any>;
+
+  public userData!: object;
+  public roles!: object;
+  public permissions!: object;
+
   storage!: Storage;
 
   private baseApiUrl = environment.baseApiUrl;
@@ -26,8 +31,7 @@ export class AuthService {
   }
 
   public get userValue() {
-    return this.userSubject
-    ;
+    return this.userSubject;
   }
 
   login(formData: FormData) {
@@ -49,10 +53,16 @@ export class AuthService {
 
   validateToken() {
     return this.httpClient.post<any>(this.apiUrl + '/check', 'body').pipe(
-      map(
-        (res: any) => res,
-        (error: any) => error
-      )
+      map((response) => {
+        if (!response.success) {
+          return response;
+        }
+        this.userData = response.data;
+        this.roles = response.roles;
+        this.permissions = response.permissions;
+
+        return response;
+      })
     );
   }
 
