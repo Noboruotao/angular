@@ -67,11 +67,16 @@ export class AuthService {
   }
 
   logout() {
-    this.userSubject.next(false);
-    return this.httpClient.post<any>(this.apiUrl + '/logout', 'body').pipe(
+    return this.httpClient.post<any>(`${this.apiUrl}/logout`, {}).pipe(
       map(
-        (res: any) => res,
-        (error: any) => error
+        (res: any) => {
+          localStorage.removeItem('user');
+          this.userSubject.next(false);
+          return res;
+        },
+        (error: any) => {
+          console.log(error);
+        }
       )
     );
   }

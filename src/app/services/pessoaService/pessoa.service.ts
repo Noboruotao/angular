@@ -9,6 +9,8 @@ export class PessoaService {
   private baseApiUrl = environment.baseApiUrl;
   private apiUrl = `${this.baseApiUrl}api`;
 
+  public pessoaFoto: any;
+
   constructor(private httpClient: HttpClient) {}
 
   getFotoPessoa(id: number) {

@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = new FormGroup({
       email: new FormControl(
-        this.loginData ? this.loginData.email : 'ovaldez@terra.com.br',
+        this.loginData ? this.loginData.email : 'erico@matias.com',
         [Validators.required]
       ),
       senha: new FormControl(
@@ -66,7 +66,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(formData).subscribe({
       next: (response) => {
-        console.log(response);
         this.router.navigate([`home`]);
       },
       error: (error) => {

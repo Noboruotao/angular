@@ -3,7 +3,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { User } from 'src/app/interfaces/user/user';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { PessoaService } from 'src/app/services/pessoaService/pessoa.service';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHome,
+  faBookOpen,
+  faAngleRight,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +19,8 @@ export class NavbarComponent implements OnInit {
   userFoto!: any;
 
   faHome = faHome;
+  faBookOpen = faBookOpen;
+  faAngleRight = faAngleRight;
 
   constructor(
     private pessoaService: PessoaService,
@@ -32,15 +38,20 @@ export class NavbarComponent implements OnInit {
   }
 
   getFoto() {
-    this.pessoaService.getFotoPessoa(this.user.id).subscribe(
-      (resFoto) => {
-        this.userFoto = this.domSanitizer.bypassSecurityTrustUrl(
-          URL.createObjectURL(resFoto)
-        );
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    if (this.pessoaService.pessoaFoto) {
+      this.userFoto = this.pessoaService.pessoaFoto;
+    } else {
+      this.pessoaService.getFotoPessoa(this.user.id).subscribe(
+        (resFoto) => {
+          this.userFoto = this.domSanitizer.bypassSecurityTrustUrl(
+            URL.createObjectURL(resFoto)
+          );
+          this.pessoaService.pessoaFoto = this.userFoto;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
   }
 }

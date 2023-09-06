@@ -19,7 +19,11 @@
             <h4>Login</h4>
           </div>
           <div class="card-body">
-            <form (ngSubmit)="login()" [formGroup]="loginForm" #formDir="ngForm">
+            <form
+              (ngSubmit)="login()"
+              [formGroup]="loginForm"
+              #formDir="ngForm"
+            >
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input
@@ -31,13 +35,20 @@
                   formControlName="email"
                   required
                 />
-                <div *ngIf="loginForm.controls['email'].invalid && formDir.submitted" class="validation-error">
-                  <p *ngIf="loginForm.controls['email'].errors?.['required']">EMAIL REQUIRED!!!</p>
+                <div
+                  *ngIf="
+                    loginForm.controls['email'].invalid && formDir.submitted
+                  "
+                  class="validation-error"
+                >
+                  <p *ngIf="loginForm.controls['email'].errors?.['required']">
+                    EMAIL REQUIRED!!!
+                  </p>
                 </div>
               </div>
               <div class="mb-3">
                 <label for="senha" class="form-label">Senha</label>
-                <div class="input-group"> <!-- Wrap the input and icon in an input-group -->
+                <div class="input-group">
                   <input
                     [type]="senhaType"
                     class="form-control"
@@ -53,14 +64,20 @@
                     (click)="hideShowPassword()"
                   ></fa-icon>
                 </div>
-            
-                <div *ngIf="loginForm.controls['senha'].invalid && formDir.submitted" class="validation-error">
-                  <p *ngIf="loginForm.controls['senha'].errors?.['required']">SENHA REQUIRED!!!</p>
+
+                <div
+                  *ngIf="
+                    loginForm.controls['senha'].invalid && formDir.submitted
+                  "
+                  class="validation-error"
+                >
+                  <p *ngIf="loginForm.controls['senha'].errors?.['required']">
+                    SENHA REQUIRED!!!
+                  </p>
                 </div>
               </div>
               <button type="submit" class="btn btn-primary">Login</button>
             </form>
-            
           </div>
         </div>
         <!-- /.Card -->

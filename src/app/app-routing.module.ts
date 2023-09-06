@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/pages/login/login.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { AuthGuardService } from './services/authGuard/auth-guard.service';
+import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/acervo-list.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,11 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
+  {
+    path: 'biblioteca/acervoList',
+    component: AcervoListComponent,
+    canActivate: [AuthGuardService],
+  },
 ];
 
 @NgModule({

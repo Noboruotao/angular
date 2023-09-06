@@ -15,6 +15,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
 import { MensagemComponent } from './components/layout/mensagem/mensagem.component';
+import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/acervo-list.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MensagemComponent } from './components/layout/mensagem/mensagem.compone
     NavbarComponent,
     PreloaderComponent,
     MensagemComponent,
+    AcervoListComponent,
   ],
   imports: [
     BrowserModule,
