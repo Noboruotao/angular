@@ -14,8 +14,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
-import { MensagemComponent } from './components/layout/mensagem/mensagem.component';
 import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/acervo-list.component';
+
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,6 @@ import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/a
     HeaderComponent,
     NavbarComponent,
     PreloaderComponent,
-    MensagemComponent,
     AcervoListComponent,
   ],
   imports: [
@@ -37,6 +38,8 @@ import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/a
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatDialogModule,
   ],
   providers: [
     {

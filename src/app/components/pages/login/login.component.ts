@@ -5,10 +5,11 @@ import { Router } from '@angular/router';
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
-import { MensagemService } from 'src/app/services/mensagem/mensagem.service';
 
 import { Login } from 'src/app/interfaces/login/login';
 
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,8 +26,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private mensagemService: MensagemService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -66,12 +67,23 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(formData).subscribe({
       next: (response) => {
-        this.router.navigate([`home`]);
+        if (response['success']) {
+          this.router.navigate([`home`]);
+        } else {
+          this.dialog.open(LoginFailDialog);
+        }
       },
       error: (error) => {
-        this.mensagemService.add(error);
         console.log(error);
       },
     });
   }
 }
+
+@Component({
+  selector: 'dialog-elements-example-dialog',
+  templateUrl: './dialog-data-example-dialog.html',
+  standalone: true,
+  imports: [MatDialogModule, MatButtonModule],
+})
+export class LoginFailDialog {}
