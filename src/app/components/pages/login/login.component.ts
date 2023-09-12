@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
 
 @Component({
   selector: 'dialog-elements-example-dialog',
-  templateUrl: './dialog-data-example-dialog.html',
+  templateUrl: './login-fail-dialog.html',
   standalone: true,
   imports: [MatDialogModule, MatButtonModule],
 })

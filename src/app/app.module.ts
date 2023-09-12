@@ -16,8 +16,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
 import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/acervo-list.component';
 
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { AcervoComponent } from './components/pages/biblioteca/acervo/acervo/acervo.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
     NavbarComponent,
     PreloaderComponent,
     AcervoListComponent,
+    AcervoComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
+    MatTableModule
   ],
   providers: [
     {

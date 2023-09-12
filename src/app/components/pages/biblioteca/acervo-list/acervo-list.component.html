@@ -1,6 +1,33 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
 <div class="content-wrapper">
-  <p>acervo lista works!</p>
+  <div class="search-container">
+    <form>
+      <fa-icon [icon]="faSearch"></fa-icon>
+      <input type="text" placeholder="Pesquisa..." (input)="search($event)" />
+    </form>
+  </div>
+
+  <div class="acervos" *ngIf="acervoList.length > 0; else noAcervo">
+    <div class="acervo-container">
+      <div class="acervo card" *ngFor="let acervo of acervoList">
+        <img
+          src="{{ bibliotecaUrl }}/getCapa/{{ acervo.capa }}"
+          alt="Not Found"
+        />
+        <a
+          class="acervo-link"
+          routerLink="/biblioteca/acervo/{{ acervo.id }}"
+          title="{{ acervo.titulo }}"
+          >{{ acervo.titulo }}</a
+        >
+        <p>{{ acervo.autor.nome }}</p>
+      </div>
+    </div>
+  </div>
+  <ng-template #noAcervo>
+    <h1>ACERVO NÃO ENCONTRADO</h1>
+  </ng-template>
 </div>
+
 <app-footer></app-footer>

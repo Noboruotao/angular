@@ -1,0 +1,23 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="content-wrapper">
+  <div class="acervo" *ngIf="acervo">
+    <h1>{{ acervo.titulo }}</h1>
+
+    <img
+      class="acervo-img"
+      src="{{ bibliotecaUrl }}/getCapa/{{ acervo.capa }}"
+      alt="Not Found"
+    />
+    <p>Autor: {{ acervo.autor.nome }}</p>
+    <p>Editora: {{ acervo.editora.nome }}</p>
+    <p>Idioma: {{ acervo.idioma.idioma }}</p>
+    <p>Tipo: {{ acervo.tipo.tipo }}</p>
+    <p>Categoria: {{ acervo.categoria.categoria }}</p>
+    <p>Resumo: {{ acervo.resumo }}</p>
+    <p>Situação: {{ acervo.situacao.situacao }}</p>
+    <p>Estado: {{ acervo.estado.estado }}</p>
+  </div>
+</div>
+
+<app-footer></app-footer>

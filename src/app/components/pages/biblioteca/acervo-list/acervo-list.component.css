@@ -1,0 +1,60 @@
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 2em;
+}
+
+.acervo-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 80%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.acervo {
+    width: 32%;
+    margin-bottom: 1em;
+    text-align: center;
+    padding: 1em;
+}
+
+.acervo img {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.acervo h3,
+.acervo p {
+    margin-bottom: 1em;
+}
+
+.acervo-link {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.search-container {
+    margin-bottom: 2em;
+    width: 100%;
+}
+
+.search-container form {
+    width: 30%;
+    position: relative;
+}
+
+.search-container fa-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.search-container input {
+    padding: .5em;
+    width: 100%;
+    text-align: center;
+}
