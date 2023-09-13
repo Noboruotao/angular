@@ -29,6 +29,7 @@
         class="nav nav-pills nav-sidebar flex-column"
         data-widget="treeview"
         role="menu"
+        data-accordion="false"
       >
         <li class="nav-item">
           <a routerLink="/home" class="nav-link" [routerLinkActive]="'active'">
@@ -37,40 +38,47 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          *ngIf="
+            checkPermission([
+              'acervo.create',
+              'acervo.read',
+              'acervo.update',
+              'acervo.delete',
+              'acervo.*'
+            ])
+          "
+        >
           <a
-            routerLink="/biblioteca/acervo/list"
+            id="layoutOptionsLink"
             class="nav-link"
-            [routerLinkActive]="'active'"
+            (click)="toggleBibliotecaTreeView()"
           >
-            <fa-icon class="navbar_icon" [icon]="faHome"></fa-icon>
-            Acervo Lista
-          </a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            data-toggle="navbarDropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
-            Biblioteca
-            <fa-icon class="navbar_icon" [icon]="faAngleRight"></fa-icon>
+            <p>
+              <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
+              Biblioteca
+              <fa-icon class="navbar_icon" [icon]="faAngleRight"></fa-icon>
+            </p>
           </a>
           <ul
-            class="dropdown-menu dropdown-menu-right"
-            aria-labelledby="navbarDropdown"
+            class="nav nav-biblioteca-treeview active"
+            [ngClass]="{
+              active: isBibliotecaTreeViewOpen
+            }"
           >
-            <li> Acervo Lista</li>
-            <li>b</li>
-            <li>c</li>
+            <li class="nav-item">
+              <a
+                routerLink="/biblioteca/acervo/list"
+                class="nav-link"
+                [routerLinkActive]="'active'"
+              >
+                <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
+                Acervos
+              </a>
+            </li>
           </ul>
         </li>
-
-
-        
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

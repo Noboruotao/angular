@@ -20,7 +20,6 @@ export class BibliotecaService {
     search?: string,
     id?: number
   ) {
-    console.log(search);
     let params = new HttpParams()
       .set('id', id ? id.toString() : '')
       .set('search', search || '')
@@ -47,4 +46,5 @@ export class BibliotecaService {
   getAcervo(id: number) {
     return this.httpClient.get(`${this.apiUrl}/getAcervo/${id}`);
   }
+
 }

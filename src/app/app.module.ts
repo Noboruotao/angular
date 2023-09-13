@@ -20,6 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { AcervoComponent } from './components/pages/biblioteca/acervo/acervo/acervo.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { AcervoComponent } from './components/pages/biblioteca/acervo/acervo/ace
     ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     {

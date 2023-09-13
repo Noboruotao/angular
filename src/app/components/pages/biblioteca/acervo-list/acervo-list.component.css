@@ -1,3 +1,4 @@
+/* Default styles for larger screens */
 .content-wrapper {
     display: flex;
     align-items: center;
@@ -8,43 +9,61 @@
 .acervo-container {
     display: flex;
     flex-wrap: wrap;
-    max-width: 80%;
+    max-width: 100%;
     margin: 0 auto;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .acervo {
-    width: 32%;
+    display: flex;
     margin-bottom: 1em;
     text-align: center;
+    margin: 5px;
     padding: 1em;
+    min-width: 20%;
+    max-width: 15%;
+    box-sizing: border-box;
 }
 
 .acervo img {
     width: 100%;
-    margin-bottom: 1em;
+    max-width: 100%;
+    max-height: 200px;
+    height: auto;
+    cursor: pointer;
 }
 
-.acervo h3,
-.acervo p {
-    margin-bottom: 1em;
+.acervo-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
 }
 
+.autor-nome,
 .acervo-link {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
+    max-width: 100%;
+    /* Ensure text doesn't overflow */
 }
 
 .search-container {
     margin-bottom: 2em;
     width: 100%;
+    display: flex;
+    /* Use flexbox to align items horizontally */
+    justify-content: flex-end;
+    /* Move the form to the right */
 }
 
 .search-container form {
     width: 30%;
     position: relative;
+    margin-right: 2em;
 }
 
 .search-container fa-icon {
@@ -57,4 +76,27 @@
     padding: .5em;
     width: 100%;
     text-align: center;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .acervo-container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 80%;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    .acervo {
+        min-width: 10%;
+        max-width: 60%;
+    }
+
+    .search-container form {
+        width: 100%;
+        /* Make the search form full-width on smaller screens */
+        margin-right: 0;
+        /* Remove right margin */
+    }
 }
