@@ -6,9 +6,17 @@
 
 .nav-biblioteca-treeview.active {
     display: block;
+    opacity: 1;
+    max-height: 1000px;
+    transition: display 0.3s ease, opacity 0.3s ease, max-height 0.3s ease;
 }
 
-.nav-biblioteca-treeview.active {
+.nav-curso-treeview {
+    display: none;
+    transition: display 0.3s ease;
+}
+
+.nav-curso-treeview.active {
     display: block;
     opacity: 1;
     max-height: 1000px;

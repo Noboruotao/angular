@@ -18,10 +18,16 @@ import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/a
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table';
 import { AcervoComponent } from './components/pages/biblioteca/acervo/acervo/acervo.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ListCursoComponent } from './components/pages/curso/list-curso/list-curso.component';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { CustomMatPaginatorIntl } from './helper/custom-mat-paginator-intl';
 
 @NgModule({
   declarations: [
@@ -34,6 +40,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     PreloaderComponent,
     AcervoListComponent,
     AcervoComponent,
+    ListCursoComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +55,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatTableModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [
     {
@@ -55,6 +65,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
       useClass: JwtInterceptor,
       multi: true,
     },
+    { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl },
   ],
   bootstrap: [AppComponent],
 })

@@ -80,4 +80,25 @@ export class AuthService {
       )
     );
   }
+
+
+  checkPermission(permissions: String[]) {
+    for (var permission of permissions) {
+      if (
+        Object.values(this.permissions).indexOf(permission) > -1
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  checkRoles(roles: String[]) {
+    for (var role of roles) {
+      if (Object.values(this.roles).indexOf(role) > -1) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

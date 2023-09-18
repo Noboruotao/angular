@@ -5,24 +5,33 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { AuthGuardService } from './services/authGuard/auth-guard.service';
 import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/acervo-list.component';
 import { AcervoComponent } from './components/pages/biblioteca/acervo/acervo/acervo.component';
+import { ListCursoComponent } from './components/pages/curso/list-curso/list-curso.component';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
-  {
-    path: 'biblioteca/acervo/list',
-    component: AcervoListComponent,
     canActivate: [AuthGuardService],
-  },
-  {
-    path: 'biblioteca/acervo/:id',
-    component: AcervoComponent,
-    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      { path: 'home', component: HomeComponent },
+      {
+        path: 'biblioteca/acervo/list',
+        component: AcervoListComponent,
+      },
+      {
+        path: 'biblioteca/acervo/:id',
+        component: AcervoComponent,
+      },
+      {
+        path: 'curso/list',
+        component: ListCursoComponent,
+      },
+    ],
   },
 ];
 

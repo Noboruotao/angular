@@ -10,6 +10,9 @@ import {
   faHome,
   faBookOpen,
   faAngleRight,
+  faAngleDown,
+  faUser,
+  faGraduationCap,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -24,14 +27,19 @@ export class NavbarComponent implements OnInit {
   faHome = faHome;
   faBookOpen = faBookOpen;
   faAngleRight = faAngleRight;
+  faAngleDown = faAngleDown;
+  faUser = faUser;
+  faGraduationCap = faGraduationCap;
 
   openUrl: string = '';
 
   isBibliotecaTreeViewOpen = false;
+  isAlunoTreeViewOpen = false;
+  isCursoTreeViewOpen = false;
 
   constructor(
     private pessoaService: PessoaService,
-    private authService: AuthService,
+    protected authService: AuthService,
     private domSanitizer: DomSanitizer,
     private route: ActivatedRoute
   ) {}
@@ -43,6 +51,8 @@ export class NavbarComponent implements OnInit {
       if (segments.length >= 1) {
         this.openUrl = segments[0].path;
 
+        this.isAlunoTreeViewOpen = this.openUrl == 'aluno';
+        this.isCursoTreeViewOpen = this.openUrl == 'curso';
         this.isBibliotecaTreeViewOpen = this.openUrl == 'biblioteca';
       }
     });
@@ -52,27 +62,7 @@ export class NavbarComponent implements OnInit {
     return this.user;
   }
 
-  checkPermission(permissions: String[]) {
-    for (var permission of permissions) {
-      if (
-        Object.values(this.authService.permissions).indexOf(permission) > -1
-      ) {
-        return true;
-      }
-    }
-    return false;
-  }
 
-  checkRoles(roles: String[]) {
-    for (var role of roles) {
-      if (
-        Object.values(Object.values(this.authService.roles).indexOf(role) > -1)
-      ) {
-        return true;
-      }
-    }
-    return false;
-  }
 
   getFoto() {
     if (this.pessoaService.pessoaFoto) {
@@ -94,5 +84,13 @@ export class NavbarComponent implements OnInit {
 
   toggleBibliotecaTreeView() {
     this.isBibliotecaTreeViewOpen = !this.isBibliotecaTreeViewOpen;
+  }
+
+  toggleAlunoTreeView() {
+    this.isAlunoTreeViewOpen = !this.isAlunoTreeViewOpen;
+  }
+
+  toggleCursoTreeView() {
+    this.isCursoTreeViewOpen = !this.isCursoTreeViewOpen;
   }
 }

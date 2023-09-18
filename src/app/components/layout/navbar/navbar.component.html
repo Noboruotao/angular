@@ -38,10 +38,61 @@
           </a>
         </li>
 
+        <li class="nav-item" *ngIf="authService.checkRoles(['Aluno'])">
+          <a
+            id="layoutOptionsLink"
+            class="nav-link"
+            (click)="toggleAlunoTreeView()"
+          >
+            <p>
+              <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
+              Aluno
+              <fa-icon
+                class="navbar_icon float-right"
+                [icon]="!isAlunoTreeViewOpen ? faAngleRight : faAngleDown"
+              ></fa-icon>
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="authService.checkPermission(['curso.read'])">
+          <a
+            id="layoutOptionsLink"
+            class="nav-link"
+            (click)="toggleCursoTreeView()"
+          >
+            <p>
+              <fa-icon class="navbar_icon" [icon]="faGraduationCap"></fa-icon>
+              Curso
+              <fa-icon
+                class="navbar_icon float-right"
+                [icon]="!isCursoTreeViewOpen ? faAngleRight : faAngleDown"
+              ></fa-icon>
+            </p>
+          </a>
+          <ul
+            class="nav nav-curso-treeview active"
+            [ngClass]="{
+              active: isCursoTreeViewOpen
+            }"
+          >
+            <li class="nav-item">
+              <a
+                routerLink="/curso/list"
+                class="nav-link"
+                [routerLinkActive]="'active'"
+              >
+                <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
+                Lista
+              </a>
+            </li>
+          </ul>
+        </li>
+
         <li
           class="nav-item"
           *ngIf="
-            checkPermission([
+          authService.checkPermission([
               'acervo.create',
               'acervo.read',
               'acervo.update',
@@ -58,7 +109,10 @@
             <p>
               <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
               Biblioteca
-              <fa-icon class="navbar_icon" [icon]="faAngleRight"></fa-icon>
+              <fa-icon
+                class="navbar_icon float-right"
+                [icon]="!isBibliotecaTreeViewOpen ? faAngleRight : faAngleDown"
+              ></fa-icon>
             </p>
           </a>
           <ul
