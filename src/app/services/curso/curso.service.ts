@@ -26,4 +26,8 @@ export class CursoService {
         })
       );
   }
+
+  getCurso(id: number) {
+    return this.httpClient.get(`${this.apiUrl}/getCurso/${id}`);
+  }
 }

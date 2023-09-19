@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
   isBibliotecaTreeViewOpen = false;
   isAlunoTreeViewOpen = false;
   isCursoTreeViewOpen = false;
+  isDisciplinaTreeViewOpen = false;
 
   constructor(
     private pessoaService: PessoaService,
@@ -61,8 +62,6 @@ export class NavbarComponent implements OnInit {
   get userData() {
     return this.user;
   }
-
-
 
   getFoto() {
     if (this.pessoaService.pessoaFoto) {
@@ -92,5 +91,8 @@ export class NavbarComponent implements OnInit {
 
   toggleCursoTreeView() {
     this.isCursoTreeViewOpen = !this.isCursoTreeViewOpen;
+  }
+  toggleDisciplinaTreeView() {
+    this.isDisciplinaTreeViewOpen = !this.isDisciplinaTreeViewOpen;
   }
 }

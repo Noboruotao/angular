@@ -1,0 +1,23 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="content-wrapper">
+  <div class="card" *ngIf="curso; else noCurso">
+    <div class="card-header">
+      <h1>{{ curso.nome }}</h1>
+    </div>
+    <div class="card-body">
+      <div class="curso-detail">
+        <p>{{ curso.descricao }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noCurso>
+  <div class="card">
+    <div class="card-header">CURSO NÃO ENCONTRADO</div>
+    <div class="card-body">
+      <p>O Curso não foi encontrado</p>
+    </div>
+  </div>
+</ng-template>
+<app-footer></app-footer>

@@ -55,7 +55,44 @@
           </a>
         </li>
 
-        <li class="nav-item" *ngIf="authService.checkPermission(['curso.read'])">
+        <li class="nav-item">
+          <a
+            id="layoutOptionsLink"
+            class="nav-link"
+            (click)="toggleDisciplinaTreeView()"
+          >
+            <p>
+              <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
+              Disciplina
+              <fa-icon
+                class="navbar_icon float-right"
+                [icon]="!isDisciplinaTreeViewOpen ? faAngleRight : faAngleDown"
+              ></fa-icon>
+            </p>
+          </a>
+          <ul
+            class="nav nav-curso-treeview active"
+            [ngClass]="{
+              active: isDisciplinaTreeViewOpen
+            }"
+          >
+            <li class="nav-item">
+              <a
+                routerLink="/disciplina/list"
+                class="nav-link"
+                [routerLinkActive]="'active'"
+              >
+                <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
+                Lista
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li
+          class="nav-item"
+          *ngIf="authService.checkPermission(['curso.read'])"
+        >
           <a
             id="layoutOptionsLink"
             class="nav-link"
@@ -92,7 +129,7 @@
         <li
           class="nav-item"
           *ngIf="
-          authService.checkPermission([
+            authService.checkPermission([
               'acervo.create',
               'acervo.read',
               'acervo.update',
