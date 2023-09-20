@@ -26,8 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ListCursoComponent } from './components/pages/curso/list-curso/list-curso.component';
-import {MatSelectModule} from '@angular/material/select';
-
+import { MatSelectModule } from '@angular/material/select';
 
 import { DetalhesCursoComponent } from './components/pages/curso/detalhes-curso/detalhes-curso.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -73,7 +72,7 @@ import { DisciplinaRelatedTableComponent } from './components/pages/disciplina/l
     MatSortModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [
     {

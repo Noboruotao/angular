@@ -80,6 +80,5 @@ export class DisciplinaRelatedTableComponent {
     const target = event.target as HTMLInputElement;
     this.situacao = Number(target.value);
     this.getRelatedDisciplinas();
-    this.searchTerm = 'target.innerHTML';
   }
 }

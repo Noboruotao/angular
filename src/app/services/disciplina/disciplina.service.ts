@@ -38,7 +38,6 @@ export class DisciplinaService {
       .set('pageSize', pageSize.toString())
       .set('page', page.toString())
       .set('situacao', situacao.toString());
-
     return this.httpClient
       .get<any>(this.apiUrl + '/getUserDisciplina', { params: params })
       .pipe(

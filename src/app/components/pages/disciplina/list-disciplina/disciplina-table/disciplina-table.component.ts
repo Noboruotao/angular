@@ -41,7 +41,6 @@ export class DisciplinaTableComponent {
       .subscribe((data: any) => {
         this.disciplinaList = data.data;
         this.totalItems = data.count;
-        console.log(data.data);
       });
   }
 
