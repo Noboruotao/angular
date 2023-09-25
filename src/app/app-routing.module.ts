@@ -8,6 +8,7 @@ import { AcervoComponent } from './components/pages/biblioteca/acervo/acervo.com
 import { ListCursoComponent } from './components/pages/curso/list-curso/list-curso.component';
 import { DetalhesCursoComponent } from './components/pages/curso/detalhes-curso/detalhes-curso.component';
 import { ListDisciplinaComponent } from './components/pages/disciplina/list-disciplina/list-disciplina.component';
+import { DisciplinaDetailComponent } from './components/pages/disciplina/disciplina-detail/disciplina-detail.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -43,6 +44,10 @@ const routes: Routes = [
       {
         path: 'disciplina/list',
         component: ListDisciplinaComponent,
+      },
+      {
+        path: 'disciplina/:id',
+        component: DisciplinaDetailComponent,
       },
     ],
   },

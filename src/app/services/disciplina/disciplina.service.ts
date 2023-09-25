@@ -56,4 +56,14 @@ export class DisciplinaService {
         })
       );
   }
+
+  getDisciplina(id: number) {
+    return this.httpClient
+      .get<any>(this.apiUrl + '/getDisciplinaDetail/' + id)
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
 }

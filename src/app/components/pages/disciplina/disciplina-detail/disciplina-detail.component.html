@@ -1,0 +1,13 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+
+<div class="content-wrapper">
+  <div class="card" *ngIf="disciplina">
+    <div class="card-header">Disciplina: {{ disciplina.nome }}</div>
+    <div class="card-body">
+      <p>Nível Escolar: {{ disciplina.periodo.nivel_escolar.nome }}</p>
+      <p>Periodo: {{ disciplina.periodo.periodo }}</p>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

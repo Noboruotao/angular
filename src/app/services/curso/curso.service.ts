@@ -12,11 +12,19 @@ export class CursoService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getCursos(search: string, limit: number, page: number) {
+  getCursos(
+    search: string,
+    limit: number,
+    page: number,
+    sortColumn: string = 'nome',
+    order: string = 'asc'
+  ) {
     let params = new HttpParams()
       .set('search', search || '')
       .set('limit', limit.toString())
-      .set('page', page.toString());
+      .set('page', page.toString())
+      .set('sortColumn', sortColumn.toString())
+      .set('order', order.toString());
 
     return this.httpClient
       .get<any>(this.apiUrl + '/getCursos', { params: params })

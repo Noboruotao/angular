@@ -17,7 +17,7 @@ import { DisciplinaService } from 'src/app/services/disciplina/disciplina.servic
 export class DisciplinaRelatedTableComponent {
   relatedDisciplinaList: MatTableDataSource<any>;
 
-  displayedColumns: string[] = ['nome', 'carga_horaria'];
+  displayedColumns: string[] = ['nome','periodo', 'carga_horaria'];
 
   searchTerm: string = '';
 
