@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from 'src/app/services/authService/auth.service';
 import { DisciplinaService } from 'src/app/services/disciplina/disciplina.service';
 
 @Component({
@@ -13,10 +12,10 @@ export class DisciplinaDetailComponent implements OnInit {
 
   classes: any;
   notas: any;
+  nota_final: Number;
 
   constructor(
     private disciplinaService: DisciplinaService,
-    private authService: AuthService,
     private route: ActivatedRoute
   ) {}
 
@@ -24,7 +23,6 @@ export class DisciplinaDetailComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.disciplinaService.getDisciplina(id).subscribe((data: any) => {
       this.disciplina = data.data;
-      console.log(this.disciplina);
     });
   }
 }

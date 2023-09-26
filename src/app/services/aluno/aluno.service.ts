@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../authService/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,14 @@ export class AlunoService {
   private baseApiUrl = environment.baseApiUrl;
   private apiUrl = `${this.baseApiUrl}api/aluno`;
 
-  constructor(private httpClient: HttpClient) {}
+  user: any;
+
+  constructor(
+    private httpClient: HttpClient,
+    private authService: AuthService
+  ) {
+    this.user = this.authService.userData;
+  }
 
   getCursosSugeridos(search: string, limit: number, page: number) {
     let params = new HttpParams()
@@ -20,6 +28,22 @@ export class AlunoService {
 
     return this.httpClient
       .get<any>(this.apiUrl + '/getCursosSugeridos', { params: params })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
+  getDisciplinaNota(disciplina_id: number, todos: boolean = false) {
+    let params = new HttpParams()
+      .set('todas_notas', todos)
+      .set('disciplina_id', disciplina_id);
+
+    return this.httpClient
+      .get<any>(this.apiUrl + '/getDisciplinaNotas/' + this.user.id, {
+        params: params,
+      })
       .pipe(
         map((response) => {
           return response;

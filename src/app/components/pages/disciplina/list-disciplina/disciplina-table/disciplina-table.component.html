@@ -19,7 +19,13 @@
       <table mat-table [dataSource]="disciplinaList" matSort>
         <ng-container matColumnDef="nome">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
-          <td mat-cell *matCellDef="let row">{{ row.nome }}</td>
+          <td
+            mat-cell
+            *matCellDef="let row"
+            [routerLink]="'/disciplina/' + row.id"
+          >
+            {{ row.nome }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="periodo">
@@ -41,8 +47,8 @@
 
         <!-- Row shown when there is no matching data. -->
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">
-            Não existe valor que corresponde à "{{ input.value }}"
+          <td class="mat-cell text-center" colspan="4">
+            <h4>Não existe valor que corresponde à "{{ input.value }}"</h4>
           </td>
         </tr>
       </table>

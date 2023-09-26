@@ -66,4 +66,12 @@ export class DisciplinaService {
         })
       );
   }
+
+  getAlunoNotas(id: number) {
+    return this.httpClient.get<any>(this.apiUrl + '/getNotas/' + id).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
 }

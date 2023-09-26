@@ -37,6 +37,8 @@ import { CursosSugeridosTableComponent } from './components/pages/curso/list-cur
 import { DisciplinaTableComponent } from './components/pages/disciplina/list-disciplina/disciplina-table/disciplina-table.component';
 import { DisciplinaRelatedTableComponent } from './components/pages/disciplina/list-disciplina/disciplina-related-table/disciplina-related-table.component';
 import { DisciplinaDetailComponent } from './components/pages/disciplina/disciplina-detail/disciplina-detail.component';
+import { NotasTableComponent } from './components/pages/disciplina/disciplina-detail/notas-table/notas-table.component';
+import { ClassesTableComponent } from './components/pages/disciplina/disciplina-detail/classes-table/classes-table.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { DisciplinaDetailComponent } from './components/pages/disciplina/discipl
     DisciplinaTableComponent,
     DisciplinaRelatedTableComponent,
     DisciplinaDetailComponent,
+    NotasTableComponent,
+    ClassesTableComponent,
   ],
   imports: [
     BrowserModule,
