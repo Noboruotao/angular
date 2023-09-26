@@ -33,12 +33,12 @@ import { DetalhesCursoComponent } from './components/pages/curso/detalhes-curso/
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomMatPaginatorIntl } from './helper/custom-mat-paginator-intl';
 import { ListDisciplinaComponent } from './components/pages/disciplina/list-disciplina/list-disciplina.component';
-import { CursosTableComponent } from './components/pages/curso/list-curso/cursos-table/cursos-table.component';
-import { CursosSugeridosTableComponent } from './components/pages/curso/list-curso/cursos-sugeridos-table/cursos-sugeridos-table.component';
-import { DisciplinaTableComponent } from './components/pages/disciplina/list-disciplina/disciplina-table/disciplina-table.component';
+import { CursosTableComponent } from './components/pages/curso/cursos-table/cursos-table.component';
+import { CursosSugeridosTableComponent } from './components/pages/curso/cursos-sugeridos-table/cursos-sugeridos-table.component';
+import { DisciplinaTableComponent } from './components/pages/disciplina/disciplina-table/disciplina-table.component';
 import { DisciplinaRelatedTableComponent } from './components/pages/disciplina/list-disciplina/disciplina-related-table/disciplina-related-table.component';
 import { DisciplinaDetailComponent } from './components/pages/disciplina/disciplina-detail/disciplina-detail.component';
-import { NotasTableComponent } from './components/pages/disciplina/disciplina-detail/notas-table/notas-table.component';
+import { NotasTableComponent } from './components/pages/disciplina/notas-table/notas-table.component';
 import { ClasseListComponent } from './components/pages/classe/classe-list/classe-list.component';
 import { ClasseTableComponent } from './components/pages/classe/classe-table/classe-table.component';
 
