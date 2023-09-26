@@ -20,7 +20,6 @@ export class NotasTableComponent {
     public authService: AuthService,
     private route: ActivatedRoute
   ) {
-    console.log(this.authService.userData);
     const disciplina_id = Number(this.route.snapshot.paramMap.get('id'));
     if (this.authService.checkRoles(['Aluno'])) {
       this.alunoService

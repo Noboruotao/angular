@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
   isBibliotecaTreeViewOpen = false;
   isAlunoTreeViewOpen = false;
   isCursoTreeViewOpen = false;
+  isClasseTreeViewOpen = false;
   isDisciplinaTreeViewOpen = false;
 
   constructor(
@@ -55,6 +56,8 @@ export class NavbarComponent implements OnInit {
         this.isAlunoTreeViewOpen = this.openUrl == 'aluno';
         this.isCursoTreeViewOpen = this.openUrl == 'curso';
         this.isBibliotecaTreeViewOpen = this.openUrl == 'biblioteca';
+        this.isClasseTreeViewOpen = this.openUrl == 'classe';
+        this.isDisciplinaTreeViewOpen = this.openUrl == 'disciplina';
       }
     });
   }
@@ -94,5 +97,8 @@ export class NavbarComponent implements OnInit {
   }
   toggleDisciplinaTreeView() {
     this.isDisciplinaTreeViewOpen = !this.isDisciplinaTreeViewOpen;
+  }
+  toggleClasseTreeView() {
+    this.isClasseTreeViewOpen = !this.isClasseTreeViewOpen;
   }
 }

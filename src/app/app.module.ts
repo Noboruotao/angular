@@ -27,6 +27,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ListCursoComponent } from './components/pages/curso/list-curso/list-curso.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 import { DetalhesCursoComponent } from './components/pages/curso/detalhes-curso/detalhes-curso.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -38,7 +39,8 @@ import { DisciplinaTableComponent } from './components/pages/disciplina/list-dis
 import { DisciplinaRelatedTableComponent } from './components/pages/disciplina/list-disciplina/disciplina-related-table/disciplina-related-table.component';
 import { DisciplinaDetailComponent } from './components/pages/disciplina/disciplina-detail/disciplina-detail.component';
 import { NotasTableComponent } from './components/pages/disciplina/disciplina-detail/notas-table/notas-table.component';
-import { ClassesTableComponent } from './components/pages/disciplina/disciplina-detail/classes-table/classes-table.component';
+import { ClasseListComponent } from './components/pages/classe/classe-list/classe-list.component';
+import { ClasseTableComponent } from './components/pages/classe/classe-table/classe-table.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { ClassesTableComponent } from './components/pages/disciplina/disciplina-
     DisciplinaRelatedTableComponent,
     DisciplinaDetailComponent,
     NotasTableComponent,
-    ClassesTableComponent,
+    ClasseListComponent,
+    ClasseTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +82,7 @@ import { ClassesTableComponent } from './components/pages/disciplina/disciplina-
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatIconModule,
   ],
   providers: [
     {

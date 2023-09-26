@@ -59,6 +59,40 @@
           <a
             id="layoutOptionsLink"
             class="nav-link"
+            (click)="toggleClasseTreeView()"
+          >
+            <p>
+              <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
+              Classe
+              <fa-icon
+                class="navbar_icon float-right"
+                [icon]="!isClasseTreeViewOpen ? faAngleRight : faAngleDown"
+              ></fa-icon>
+            </p>
+          </a>
+          <ul
+            class="nav nav-curso-treeview active"
+            [ngClass]="{
+              active: isClasseTreeViewOpen
+            }"
+          >
+            <li class="nav-item">
+              <a
+                routerLink="/classe/list"
+                class="nav-link"
+                [routerLinkActive]="'active'"
+              >
+                <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
+                Lista
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a
+            id="layoutOptionsLink"
+            class="nav-link"
             (click)="toggleDisciplinaTreeView()"
           >
             <p>
