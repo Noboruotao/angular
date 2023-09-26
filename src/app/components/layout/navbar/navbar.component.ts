@@ -13,6 +13,7 @@ import {
   faAngleDown,
   faUser,
   faGraduationCap,
+  faUserGroup,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -30,6 +31,7 @@ export class NavbarComponent implements OnInit {
   faAngleDown = faAngleDown;
   faUser = faUser;
   faGraduationCap = faGraduationCap;
+  faUserGroup = faUserGroup;
 
   openUrl: string = '';
 

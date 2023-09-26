@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header">Detalhes da Classe</div>
+  <div class="card-body">
+    <p>
+      Disciplina: <strong>{{ classe.disciplina.nome }}</strong>
+    </p>
+    <p>Professor: {{ classe.professor.pessoa.nome }}</p>
+    <p>Ano: {{ classe.ano }}</p>
+    <app-notas-table></app-notas-table>
+  </div>
+</div>

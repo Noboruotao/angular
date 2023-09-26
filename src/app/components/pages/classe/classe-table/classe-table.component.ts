@@ -32,7 +32,7 @@ export class ClasseTableComponent {
     this.classeService
       .getClasses(this.ativo, this.currentPage, this.pageSize)
       .subscribe((data: any) => {
-        this.classes = data.data;
+        this.classes = new MatTableDataSource(data.data);
         this.totalItems = data.count;
       });
   }
@@ -43,11 +43,10 @@ export class ClasseTableComponent {
     this.getClasses();
   }
 
-  ngAfterViewInit() {
-    this.classes.paginator = this.paginator;
-    this.classes.sort = this.sort;
-
-  }
+  // ngAfterViewInit() {
+  //   this.classes.paginator = this.paginator;
+  //   this.classes.sort = this.sort;
+  // }
 
   enableAtivo() {
     this.ativo = this.ativo == 1 ? 0 : 1;

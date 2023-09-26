@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
 import { environment } from 'src/environments/environment';
 
@@ -14,7 +14,6 @@ export class AcervoComponent implements OnInit {
   acervo: any;
   constructor(
     private bibliotecaService: BibliotecaService,
-    private router: Router,
     private route: ActivatedRoute
   ) {}
 

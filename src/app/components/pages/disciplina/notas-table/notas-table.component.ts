@@ -11,7 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class NotasTableComponent {
   notas: MatTableDataSource<any>;
-  nota_final: any;
+  nota_final: any | null = null;
 
   displayedColumns: string[] = ['tipo', 'nota'];
 
@@ -20,10 +20,21 @@ export class NotasTableComponent {
     public authService: AuthService,
     private route: ActivatedRoute
   ) {
-    const disciplina_id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const currentURL = window.location.href;
+    const segments = currentURL.split('/');
+    let urlSegment: string;
+    if (segments.length >= 2) {
+      urlSegment = segments[segments.length - 2];
+    } else {
+      urlSegment = '';
+    }
+
+    let disciplina_id = urlSegment == 'disciplina' ? id : '';
+    let classe_id = urlSegment == 'classe' ? id : '';
     if (this.authService.checkRoles(['Aluno'])) {
       this.alunoService
-        .getDisciplinaNota(disciplina_id)
+        .getNota(classe_id, disciplina_id)
         .subscribe((data: any) => {
           this.notas = new MatTableDataSource(data.data);
           this.nota_final = data.nota_final;

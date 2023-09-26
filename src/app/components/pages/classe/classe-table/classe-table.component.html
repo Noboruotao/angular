@@ -18,16 +18,15 @@
 
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="classes" matSort>
-
         <ng-container matColumnDef="nome">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
           <td mat-cell *matCellDef="let row" [routerLink]="'/classe/' + row.id">
-            {{ row.disciplina.nome }}
+            {{ row.disciplina ? row.disciplina.nome : "Ensino Infantil" }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="ano">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ano</th>
           <td mat-cell *matCellDef="let row">{{ row.ano }}</td>
         </ng-container>
 

@@ -1,0 +1,14 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+
+<div class="content-wrapper">
+  <div class="forProfessor" *ngIf="authService.checkRoles(['Professor'])">
+    <app-classe-aluno-table></app-classe-aluno-table>
+  </div>
+
+  <div class="forAluno" *ngIf="authService.checkRoles(['Aluno'])">
+    <app-classe-detail-aluno></app-classe-detail-aluno>
+  </div>
+</div>
+
+<app-footer></app-footer>

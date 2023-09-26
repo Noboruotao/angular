@@ -35,13 +35,13 @@ export class AlunoService {
       );
   }
 
-  getDisciplinaNota(disciplina_id: number, todos: boolean = false) {
+  getNota(classe_id: any, disciplina_id: any, todos: boolean = false) {
     let params = new HttpParams()
       .set('todas_notas', todos)
-      .set('disciplina_id', disciplina_id);
-
+      .set('disciplina_id', disciplina_id)
+      .set('classe_id', classe_id);
     return this.httpClient
-      .get<any>(this.apiUrl + '/getDisciplinaNotas/' + this.user.id, {
+      .get<any>(this.apiUrl + '/getNotas/' + this.user.id, {
         params: params,
       })
       .pipe(

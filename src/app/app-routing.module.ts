@@ -10,6 +10,7 @@ import { DetalhesCursoComponent } from './components/pages/curso/detalhes-curso/
 import { ListDisciplinaComponent } from './components/pages/disciplina/list-disciplina/list-disciplina.component';
 import { DisciplinaDetailComponent } from './components/pages/disciplina/disciplina-detail/disciplina-detail.component';
 import { ClasseListComponent } from './components/pages/classe/classe-list/classe-list.component';
+import { ClasseDetailComponent } from './components/pages/classe/classe-detail/classe-detail.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -53,6 +54,10 @@ const routes: Routes = [
       {
         path: 'classe/list',
         component: ClasseListComponent,
+      },
+      {
+        path: 'classe/:id',
+        component: ClasseDetailComponent,
       },
     ],
   },

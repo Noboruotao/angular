@@ -36,11 +36,14 @@ import { ListDisciplinaComponent } from './components/pages/disciplina/list-disc
 import { CursosTableComponent } from './components/pages/curso/cursos-table/cursos-table.component';
 import { CursosSugeridosTableComponent } from './components/pages/curso/cursos-sugeridos-table/cursos-sugeridos-table.component';
 import { DisciplinaTableComponent } from './components/pages/disciplina/disciplina-table/disciplina-table.component';
-import { DisciplinaRelatedTableComponent } from './components/pages/disciplina/list-disciplina/disciplina-related-table/disciplina-related-table.component';
+import { DisciplinaRelatedTableComponent } from './components/pages/disciplina/disciplina-related-table/disciplina-related-table.component';
 import { DisciplinaDetailComponent } from './components/pages/disciplina/disciplina-detail/disciplina-detail.component';
 import { NotasTableComponent } from './components/pages/disciplina/notas-table/notas-table.component';
 import { ClasseListComponent } from './components/pages/classe/classe-list/classe-list.component';
 import { ClasseTableComponent } from './components/pages/classe/classe-table/classe-table.component';
+import { ClasseAlunoTableComponent } from './components/pages/classe/classe-aluno-table/classe-aluno-table.component';
+import { ClasseDetailComponent } from './components/pages/classe/classe-detail/classe-detail.component';
+import { ClasseDetailAlunoComponent } from './components/pages/classe/classe-detail-aluno/classe-detail-aluno.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,9 @@ import { ClasseTableComponent } from './components/pages/classe/classe-table/cla
     NotasTableComponent,
     ClasseListComponent,
     ClasseTableComponent,
+    ClasseAlunoTableComponent,
+    ClasseDetailComponent,
+    ClasseDetailAlunoComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,7 +96,10 @@ import { ClasseTableComponent } from './components/pages/classe/classe-table/cla
       useClass: JwtInterceptor,
       multi: true,
     },
-    { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl },
+    {
+      provide: MatPaginatorIntl,
+      useClass: CustomMatPaginatorIntl,
+    },
   ],
   bootstrap: [AppComponent],
 })

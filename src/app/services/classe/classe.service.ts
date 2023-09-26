@@ -28,4 +28,24 @@ export class ClasseService {
         })
       );
   }
+
+  getAlunos(classe_id: number) {
+    return this.httpClient
+      .get<any>(`${this.apiUrl}/getAlunos/${classe_id}`)
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
+  getClasseDetail(id: number) {
+    return this.httpClient
+      .get<any>(`${this.apiUrl}/getClasseDetail/${id}`)
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
 }
