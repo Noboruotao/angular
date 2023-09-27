@@ -18,7 +18,6 @@ export class ClasseDetailAlunoComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.classeService.getClasseDetail(id).subscribe((data: any) => {
       this.classe = data.data;
-      console.log(this.classe);
     });
 
   }

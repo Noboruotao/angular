@@ -1,0 +1,41 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="content-wrapper">
+  <div class="card" *ngIf="pessoa">
+    <div class="card-header">
+      <h4>{{ pessoa.nome }}</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-md-5">
+          <img [src]="pessoaFoto" alt="foto" id="pessoaFoto" />
+        </div>
+        <div class="col-12 col-sm-7">
+          <div
+            class="pessoal-info"
+            *ngIf="authService.checkPermission(['pessoa.read','pessoa.*'])"
+          >
+            <p>Email: {{ pessoa.email }}</p>
+            <p>CPF: {{ pessoa.cpf }}</p>
+            <p>RG: {{ pessoa.rg }}</p>
+            <p>Telefone 1: {{ pessoa.telefone_1 }}</p>
+            <p>Telefone 2: {{ pessoa.telefone_2 }}</p>
+          </div>
+          <div class="aluno" *ngIf="pessoa.aluno">
+            <p>Período: {{ pessoa.aluno.periodo.periodo }}</p>
+            <p>Situação: {{ pessoa.aluno.situacao.situacao }}</p>
+          </div>
+
+          <div class="professor" *ngIf="pessoa.professor">
+            <p>
+              Experiência Profissional:
+              {{ pessoa.professor.experiencia_profissional }}
+            </p>
+          </div>
+          <p>Data de Nascimento: {{ pessoa.data_nascimento }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

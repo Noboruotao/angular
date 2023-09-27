@@ -14,14 +14,16 @@ import { ClasseService } from 'src/app/services/classe/classe.service';
 })
 export class ClasseAlunoTableComponent {
   alunos: MatTableDataSource<any>;
-  displayedColumns: string[] = ['nome'];
+  displayedColumns: string[] = ['nome', 'makeNota'];
+
+  classe_id: number;
 
   constructor(
     private classeService: ClasseService,
     private route: ActivatedRoute
   ) {
-    const classe_id = Number(this.route.snapshot.paramMap.get('id'));
-    this.classeService.getAlunos(classe_id).subscribe((data: any) => {
+    this.classe_id = Number(this.route.snapshot.paramMap.get('id'));
+    this.classeService.getAlunos(this.classe_id).subscribe((data: any) => {
       this.alunos = new MatTableDataSource<any>(data.data);
     });
   }

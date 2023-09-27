@@ -1,0 +1,40 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+
+<div class="content-wrapper">
+  <div class="card" *ngIf="aluno && classe">
+    <div class="card-header">
+      {{ aluno.nome }} - {{ classe.disciplina.nome }}
+    </div>
+    <div class="card-body">
+      <form action="" method="post">
+        <mat-form-field>
+          <mat-label>Nota</mat-label>
+          <input
+            name="nota"
+            type="number"
+            matInput
+            value="5"
+            max="10"
+            min="0"
+            (input)="restrictInputToNumbers($event)"
+            [(ngModel)]="nota"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Tipo de Avaliação</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let tipo of tiposAvaliacao" [value]="tipo.id">
+              {{ tipo.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-fab color="warn" (click)="salvarNota()">SALVAR</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

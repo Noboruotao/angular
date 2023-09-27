@@ -44,6 +44,8 @@ import { ClasseTableComponent } from './components/pages/classe/classe-table/cla
 import { ClasseAlunoTableComponent } from './components/pages/classe/classe-aluno-table/classe-aluno-table.component';
 import { ClasseDetailComponent } from './components/pages/classe/classe-detail/classe-detail.component';
 import { ClasseDetailAlunoComponent } from './components/pages/classe/classe-detail-aluno/classe-detail-aluno.component';
+import { PessoaDetailComponent } from './components/pages/pessoa/pessoa-detail/pessoa-detail/pessoa-detail.component';
+import { MakeNotaComponent } from './components/pages/classe/make-nota/make-nota/make-nota.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { ClasseDetailAlunoComponent } from './components/pages/classe/classe-det
     ClasseAlunoTableComponent,
     ClasseDetailComponent,
     ClasseDetailAlunoComponent,
+    PessoaDetailComponent,
+    MakeNotaComponent,
   ],
   imports: [
     BrowserModule,

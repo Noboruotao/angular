@@ -72,6 +72,8 @@ export class AuthService {
         (res: any) => {
           localStorage.removeItem('user');
           this.userSubject.next(false);
+          this.roles = [];
+          this.permissions = [];
           return res;
         },
         (error: any) => {
@@ -81,12 +83,9 @@ export class AuthService {
     );
   }
 
-
   checkPermission(permissions: String[]) {
     for (var permission of permissions) {
-      if (
-        Object.values(this.permissions).indexOf(permission) > -1
-      ) {
+      if (Object.values(this.permissions).indexOf(permission) > -1) {
         return true;
       }
     }
