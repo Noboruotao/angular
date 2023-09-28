@@ -22,6 +22,16 @@
                 Nova Nota
               </a>
             </button>
+
+            <button mat-raised-button color="warn">
+              <a
+                [routerLink]="'/classe/notaFinal'"
+                [queryParams]="{ aluno_id: row.id, classe_id: classe_id }"
+                style="color: white"
+              >
+                Dar Nota Final
+              </a>
+            </button>
           </td>
         </ng-container>
 

@@ -1,15 +1,12 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
-
 import { AuthService } from 'src/app/services/authService/auth.service';
-
 import { Login } from 'src/app/interfaces/login/login';
-
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,12 +20,17 @@ export class LoginComponent implements OnInit {
 
   senhaIcon = faEye;
   senhaType = 'password';
+  hide = true;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     public dialog: MatDialog
-  ) {}
+  ) {
+    if (this.authService.userToken) {
+      this.router.navigate([`home`]);
+    }
+  }
 
   ngOnInit() {
     this.loginForm = new FormGroup({

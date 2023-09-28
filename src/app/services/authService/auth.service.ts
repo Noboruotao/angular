@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { PessoaService } from '../pessoaService/pessoa.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,10 @@ export class AuthService {
   private baseApiUrl = environment.baseApiUrl;
   private apiUrl = `${this.baseApiUrl}api`;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private pessoaService: PessoaService,
+    private httpClient: HttpClient
+  ) {
     const storedUser = localStorage.getItem('user');
     const decodedUser = storedUser ? jwtDecode(storedUser) : null;
 
@@ -32,6 +36,10 @@ export class AuthService {
 
   public get userValue() {
     return this.userSubject;
+  }
+
+  public get userToken() {
+    return localStorage.getItem('user');
   }
 
   login(formData: FormData) {
@@ -72,8 +80,10 @@ export class AuthService {
         (res: any) => {
           localStorage.removeItem('user');
           this.userSubject.next(false);
+          this.userData = [];
           this.roles = [];
           this.permissions = [];
+          this.pessoaService.pessoaFoto = null;
           return res;
         },
         (error: any) => {

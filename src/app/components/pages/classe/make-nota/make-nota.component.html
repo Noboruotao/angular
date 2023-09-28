@@ -7,16 +7,14 @@
       {{ aluno.nome }} - {{ classe.disciplina.nome }}
     </div>
     <div class="card-body">
-      <form action="" method="post">
+      <form [formGroup]="notaForm" #formDir="ngForm">
         <mat-form-field>
           <mat-label>Nota</mat-label>
           <input
-            name="nota"
-            type="number"
+            formControlName="nota"
             matInput
             value="5"
-            max="10"
-            min="0"
+            required
             (input)="restrictInputToNumbers($event)"
             [(ngModel)]="nota"
           />
@@ -24,7 +22,7 @@
 
         <mat-form-field>
           <mat-label>Tipo de Avaliação</mat-label>
-          <mat-select>
+          <mat-select formControlName="tipo_avaliacao_id">
             <mat-option *ngFor="let tipo of tiposAvaliacao" [value]="tipo.id">
               {{ tipo.nome }}
             </mat-option>

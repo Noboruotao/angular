@@ -16,3 +16,7 @@ td,
 th {
     width: 25%;
 }
+
+button {
+    margin: 0px 5px
+}

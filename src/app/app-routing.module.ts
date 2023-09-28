@@ -13,6 +13,7 @@ import { ClasseListComponent } from './components/pages/classe/classe-list/class
 import { ClasseDetailComponent } from './components/pages/classe/classe-detail/classe-detail.component';
 import { PessoaDetailComponent } from './components/pages/pessoa/pessoa-detail/pessoa-detail/pessoa-detail.component';
 import { MakeNotaComponent } from './components/pages/classe/make-nota/make-nota/make-nota.component';
+import { MakeNotaFinalComponent } from './components/pages/classe/make-nota-final/make-nota-final/make-nota-final.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -60,6 +61,10 @@ const routes: Routes = [
       {
         path: 'classe/nota',
         component: MakeNotaComponent,
+      },
+      {
+        path: 'classe/notaFinal',
+        component: MakeNotaFinalComponent,
       },
       {
         path: 'classe/:id',
