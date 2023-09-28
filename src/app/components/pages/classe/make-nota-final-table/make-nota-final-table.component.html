@@ -1,4 +1,86 @@
-<div class="card">
-  <div class="card-header">Nota Final</div>
-  <div class="card-body"></div>
-</div>
+<table mat-table [dataSource]="notas" class="mat-elevation-z8" *ngIf="notas">
+  <!-- tipo Column -->
+  <ng-container matColumnDef="tipo">
+    <th mat-header-cell *matHeaderCellDef>Tipo da Avaliação</th>
+    <td mat-cell *matCellDef="let notas">{{ notas.tipo.nome }}</td>
+    <td mat-footer-cell *matFooterCellDef>
+      <strong>Nota Final</strong>
+    </td>
+  </ng-container>
+
+  <!-- Ativo column -->
+  <ng-container matColumnDef="ativo">
+    <th mat-header-cell *matHeaderCellDef>Ativo</th>
+    <td mat-cell *matCellDef="let notas">
+      <input
+        type="checkbox"
+        name="ativo"
+        id="ativo"
+        [(ngModel)]="notas.ativo"
+        (change)="calculateNotaFinal()"
+      />
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <!-- Peso Column   -->
+  <ng-container matColumnDef="peso">
+    <th mat-header-cell *matHeaderCellDef>Peso (Média Ponderada)</th>
+
+    <td mat-cell *matCellDef="let notas">
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          type="number"
+          name="peso"
+          id="peso"
+          min="0"
+          [(ngModel)]="notas.peso"
+          (change)="calculateNotaFinal()"
+        />
+      </mat-form-field>
+
+      <!-- <input
+        type="number"
+        name="peso"
+        id="peso"
+        min="0"
+        [(ngModel)]="notas.peso"
+        (change)="calculateNotaFinal()"
+      /> -->
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <!-- nota Column -->
+  <ng-container matColumnDef="nota">
+    <th mat-header-cell *matHeaderCellDef>Nota</th>
+    <td
+      mat-cell
+      *matCellDef="let notas"
+      [style.color]="notas.nota < 5 ? 'red' : 'green'"
+    >
+      {{ notas.nota | number : "1.2-2" }}
+    </td>
+    <td
+      mat-footer-cell
+      *matFooterCellDef
+      [style.color]="nota_final < 5 ? 'red' : 'green'"
+    >
+      <strong>{{ (nota_final | number : "1.2-2") ?? "VALOR INVÁLIDO" }}</strong>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  <!-- <ng-container *ngIf="nota_final !== null"> -->
+  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  <!-- </ng-container> -->
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4" style="text-align: center">
+      NÃO TEM NOTAS REGISTRADOS
+    </td>
+  </tr>
+</table>

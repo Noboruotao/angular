@@ -11,9 +11,9 @@ import { ListDisciplinaComponent } from './components/pages/disciplina/list-disc
 import { DisciplinaDetailComponent } from './components/pages/disciplina/disciplina-detail/disciplina-detail.component';
 import { ClasseListComponent } from './components/pages/classe/classe-list/classe-list.component';
 import { ClasseDetailComponent } from './components/pages/classe/classe-detail/classe-detail.component';
-import { PessoaDetailComponent } from './components/pages/pessoa/pessoa-detail/pessoa-detail/pessoa-detail.component';
-import { MakeNotaComponent } from './components/pages/classe/make-nota/make-nota/make-nota.component';
-import { MakeNotaFinalComponent } from './components/pages/classe/make-nota-final/make-nota-final/make-nota-final.component';
+import { PessoaDetailComponent } from './components/pages/pessoa/pessoa-detail/pessoa-detail.component';
+import { MakeNotaComponent } from './components/pages/classe/make-nota/make-nota.component';
+import { MakeNotaFinalComponent } from './components/pages/classe/make-nota-final/make-nota-final.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

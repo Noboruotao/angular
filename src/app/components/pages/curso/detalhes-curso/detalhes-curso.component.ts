@@ -16,7 +16,6 @@ export class DetalhesCursoComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.curso = this.cursoService.getCurso(id).subscribe((data: any) => {
-      console.log(data);
       this.curso = data.data;
     });
   }

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Location } from '@angular/common';
 import { ClasseService } from 'src/app/services/classe/classe.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
 import { PessoaService } from 'src/app/services/pessoaService/pessoa.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProfessorService } from 'src/app/services/professor/professor.service';
@@ -28,7 +28,8 @@ export class MakeNotaComponent {
     private pessoaService: PessoaService,
     private classeService: ClasseService,
     private professorService: ProfessorService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.route.queryParams.subscribe((params) => {
       this.aluno_id = +params['aluno_id'];
@@ -83,7 +84,6 @@ export class MakeNotaComponent {
         let integerPart = inputValue.slice(0, 1);
         let decimalPart = inputValue.slice(1);
         inputValue = integerPart + '.' + decimalPart;
-        console.log(inputValue, integerPart, decimalPart);
       }
     }
     input.value = inputValue;
@@ -100,12 +100,9 @@ export class MakeNotaComponent {
     formData.append('aluno_id', this.aluno.id);
     formData.append('classe_id', this.classe.id);
 
-    console.log(this.aluno.id);
-    console.log(formData);
-
     this.professorService.attributeNota(formData).subscribe({
       next: (response) => {
-        console.log(response);
+        this.location.back();
       },
       error: (error) => {
         console.log(error);

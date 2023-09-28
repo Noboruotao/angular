@@ -2,7 +2,7 @@
   mat-table
   [dataSource]="notas"
   class="mat-elevation-z8"
-  *ngIf="authService.checkRoles(['Aluno'])"
+  *ngIf="authService.checkRoles(['Aluno']) && notas"
 >
   <!-- Item Column -->
   <ng-container matColumnDef="tipo">
