@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Confirmação do Cadastro de Nota Final</h1>
+<div mat-dialog-content>
+  <p>
+    Têm certeza que deseja confirmar
+    <strong [style.color]="notaFinal>=5?'green':'red'">{{notaFinal}}</strong>
+    como <strong>Nota Final</strong> de <strong>{{aluno}}</strong> em
+    <strong>{{disciplina}}</strong>?
+  </p>
+
+  <section>
+    <mat-checkbox (change)="isDisabled=!isDisabled">CONFIRMAR</mat-checkbox>
+  </section>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    mat-dialog-close
+    [disabled]="isDisabled"
+    (click)="salvarNotaFinal()"
+  >
+    Salvar
+  </button>
+  <button mat-button mat-dialog-close>Fechar</button>
+</div>

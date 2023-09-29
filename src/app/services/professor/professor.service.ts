@@ -23,4 +23,8 @@ export class ProfessorService {
   attributeNota(formData: FormData) {
     return this.httpClient.post(this.apiUrl + '/attributeNota', formData);
   }
+
+  attributeNotaFinal(formData: FormData) {
+    return this.httpClient.post<any>(this.apiUrl + '/makeNotaFinal', formData);
+  }
 }

@@ -111,7 +111,7 @@ export class MakeNotaComponent {
     formData.append('aluno_id', this.aluno.id);
     formData.append('classe_id', this.classe.id);
 
-    this.dialog.open(LoginFailDialog, {
+    this.dialog.open(ConfirmNotaDialog, {
       data: {
         formData: formData,
         alunoNome: this.aluno.nome,
@@ -131,7 +131,7 @@ export class MakeNotaComponent {
   standalone: true,
   imports: [MatDialogModule, MatButtonModule, MatCheckboxModule],
 })
-export class LoginFailDialog {
+export class ConfirmNotaDialog {
   isDisabled = true;
 
   constructor(

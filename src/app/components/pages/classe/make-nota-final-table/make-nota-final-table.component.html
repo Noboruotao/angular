@@ -45,15 +45,6 @@
           (change)="calculateNotaFinal()"
         />
       </mat-form-field>
-
-      <!-- <input
-        type="number"
-        name="peso"
-        id="peso"
-        min="0"
-        [(ngModel)]="notas.peso"
-        (change)="calculateNotaFinal()"
-      /> -->
     </td>
     <td mat-footer-cell *matFooterCellDef></td>
   </ng-container>
@@ -88,3 +79,13 @@
     </td>
   </tr>
 </table>
+
+<button
+  mat-raised-button
+  class="align-right"
+  color="warn"
+  (click)="salvarNota()"
+  [disabled]="isDisabled"
+>
+  Cadastrar Nota Final
+</button>
