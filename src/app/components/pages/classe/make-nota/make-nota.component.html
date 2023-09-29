@@ -7,13 +7,15 @@
       {{ aluno.nome }} - {{ classe.disciplina.nome }}
     </div>
     <div class="card-body">
-      <form [formGroup]="notaForm" #formDir="ngForm">
+      <form [formGroup]="notaForm" #formDir="ngForm" (ngSubmit)="salvarNota()">
         <mat-form-field>
           <mat-label>Nota</mat-label>
           <input
             formControlName="nota"
             matInput
-            value="5"
+            type="number"
+            max="10"
+            step="0.5"
             required
             (input)="restrictInputToNumbers($event)"
             [(ngModel)]="nota"
@@ -29,7 +31,7 @@
           </mat-select>
         </mat-form-field>
 
-        <button mat-fab color="warn" (click)="salvarNota()">SALVAR</button>
+        <button mat-fab color="warn" type="submit">SALVAR</button>
       </form>
     </div>
   </div>

@@ -28,6 +28,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ListCursoComponent } from './components/pages/curso/list-curso/list-curso.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { DetalhesCursoComponent } from './components/pages/curso/detalhes-curso/detalhes-curso.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -97,6 +98,7 @@ import { MakeNotaFinalTableComponent } from './components/pages/classe/make-nota
     MatFormFieldModule,
     MatSelectModule,
     MatIconModule,
+    MatCheckboxModule,
   ],
   providers: [
     {

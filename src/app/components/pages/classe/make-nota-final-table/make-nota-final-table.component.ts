@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { ActivatedRoute } from '@angular/router';
-
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({

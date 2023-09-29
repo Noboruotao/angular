@@ -1,10 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { ClasseService } from 'src/app/services/classe/classe.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PessoaService } from 'src/app/services/pessoaService/pessoa.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProfessorService } from 'src/app/services/professor/professor.service';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogModule,
+} from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-make-nota',
@@ -29,7 +37,7 @@ export class MakeNotaComponent {
     private classeService: ClasseService,
     private professorService: ProfessorService,
     private route: ActivatedRoute,
-    private location: Location
+    public dialog: MatDialog
   ) {
     this.route.queryParams.subscribe((params) => {
       this.aluno_id = +params['aluno_id'];
@@ -39,8 +47,8 @@ export class MakeNotaComponent {
     this.notaForm = new FormGroup({
       nota: new FormControl('', [Validators.required]),
       tipo_avaliacao_id: new FormControl('', [Validators.required]),
-      aluno_id: new FormControl('', [Validators.required]),
-      classe_id: new FormControl('', [Validators.required]),
+      aluno_id: new FormControl(''),
+      classe_id: new FormControl(''),
     });
 
     this.getClasse();
@@ -91,6 +99,9 @@ export class MakeNotaComponent {
   }
 
   salvarNota() {
+    if (this.notaForm.invalid) {
+      return;
+    }
     const formData = new FormData();
     formData.append('nota', this.nota);
     formData.append(
@@ -100,7 +111,54 @@ export class MakeNotaComponent {
     formData.append('aluno_id', this.aluno.id);
     formData.append('classe_id', this.classe.id);
 
-    this.professorService.attributeNota(formData).subscribe({
+    this.dialog.open(LoginFailDialog, {
+      data: {
+        formData: formData,
+        alunoNome: this.aluno.nome,
+        disciplina: this.classe.disciplina.nome,
+        tipoAvaliacao: this.tiposAvaliacao.find(
+          (item: any) =>
+            item.id === this.notaForm.get('tipo_avaliacao_id')!.value
+        ).nome,
+      },
+    });
+  }
+}
+
+@Component({
+  selector: 'confirm-make-nota-modal',
+  templateUrl: './confirm-nota-modal.html',
+  standalone: true,
+  imports: [MatDialogModule, MatButtonModule, MatCheckboxModule],
+})
+export class LoginFailDialog {
+  isDisabled = true;
+
+  constructor(
+    private professorService: ProfessorService,
+    private location: Location,
+    public dialogRef: MatDialogRef<any>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+
+  get nota() {
+    return this.data.formData.get('nota');
+  }
+  get alunoNome() {
+    return this.data.alunoNome;
+  }
+  get tipoAvaliacaoId() {
+    return this.data.formData.get('tipo_avaliacao_id');
+  }
+  get tipoAvaliacao() {
+    return this.data.tipoAvaliacao;
+  }
+  get disciplina() {
+    return this.data.disciplina;
+  }
+
+  salvarNota() {
+    this.professorService.attributeNota(this.data.formData).subscribe({
       next: (response) => {
         this.location.back();
       },
@@ -108,5 +166,9 @@ export class MakeNotaComponent {
         console.log(error);
       },
     });
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

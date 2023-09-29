@@ -1,7 +1,5 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 
@@ -17,6 +15,7 @@ export class ClasseAlunoTableComponent {
   displayedColumns: string[] = ['nome', 'makeNota'];
 
   classe_id: number;
+  classe: any;
 
   constructor(
     private classeService: ClasseService,
@@ -26,5 +25,11 @@ export class ClasseAlunoTableComponent {
     this.classeService.getAlunos(this.classe_id).subscribe((data: any) => {
       this.alunos = new MatTableDataSource<any>(data.data);
     });
+
+    this.classeService
+      .getClasseDetail(this.classe_id)
+      .subscribe((data: any) => {
+        this.classe = data.data;
+      });
   }
 }
