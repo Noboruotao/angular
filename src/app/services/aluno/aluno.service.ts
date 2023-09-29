@@ -16,9 +16,7 @@ export class AlunoService {
   constructor(
     private httpClient: HttpClient,
     private authService: AuthService
-  ) {
-    this.user = this.authService.userData;
-  }
+  ) {}
 
   getCursosSugeridos(search: string, limit: number, page: number) {
     let params = new HttpParams()
@@ -39,8 +37,12 @@ export class AlunoService {
     classe_id: any,
     disciplina_id: any,
     todos: boolean = false,
-    aluno_id: any = this.user.id
+    aluno_id: any = 0
   ) {
+    if (aluno_id == 0) {
+      this.user = this.authService.userData;
+      aluno_id = this.user.id;
+    }
     let params = new HttpParams()
       .set('todas_notas', todos)
       .set('disciplina_id', disciplina_id)

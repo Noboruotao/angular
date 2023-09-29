@@ -31,7 +31,9 @@ export class CursosSugeridosTableComponent {
   ) {
     this.sugeridos = new MatTableDataSource<any>([]);
 
-    this.getSugeridos();
+    if (authService.checkRoles(['Aluno'])) {
+      this.getSugeridos();
+    }
   }
 
   getSugeridos() {

@@ -26,7 +26,7 @@
     <td
       mat-footer-cell
       *matFooterCellDef
-      [style.color]="nota_final < 5 ? 'red' : 'green'"
+      [style.color]="nota_final ? (nota_final < 5 ? 'red' : 'green') : 'orange'"
     >
       <strong>{{ (nota_final | number : "1.2-2") ?? "Não Concluido" }}</strong>
     </td>

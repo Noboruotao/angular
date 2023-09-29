@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = new FormGroup({
       email: new FormControl(
-        this.loginData ? this.loginData.email : 'roberto.molina@ig.com.br',
+        this.loginData ? this.loginData.email : 'serna.willian@gmail.com',
         [Validators.required]
       ),
       senha: new FormControl(

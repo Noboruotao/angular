@@ -94,6 +94,11 @@ export class MakeNotaFinalTableComponent {
     this.isDisabled = false;
   }
 
+  arredondarNota() {
+    const rounded = Math.round(this.nota_final * 2) / 2;
+    this.nota_final = rounded;
+  }
+
   salvarNota() {
     this.dialog.open(ConfirmNotaFinalDialog, {
       data: {

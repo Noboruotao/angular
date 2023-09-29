@@ -62,4 +62,8 @@ export class CursosTableComponent {
     this.currentPage = 0;
     this.getCursos();
   }
+  
+  sortData($event) {
+    console.log('test');
+  }
 }
