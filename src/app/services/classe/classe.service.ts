@@ -12,11 +12,19 @@ export class ClasseService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getClasses(ativo: number, page: number, pageSize: number) {
+  getClasses(
+    ativo: number,
+    page: number,
+    pageSize: number,
+    sortColumn: string,
+    sortOrder: string
+  ) {
     let params = new HttpParams()
       .set('ativo', ativo)
       .set('page', page)
-      .set('pageSize', pageSize);
+      .set('pageSize', pageSize)
+      .set('sortColumn', sortColumn)
+      .set('sortOrder', sortOrder);
 
     return this.httpClient
       .get<any>(this.apiUrl + '/getClasses', {

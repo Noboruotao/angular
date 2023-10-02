@@ -6,7 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { AlunoService } from 'src/app/services/aluno/aluno.service';
-import { CursoService } from 'src/app/services/curso/curso.service';
+import { Sort } from '@angular/material/sort';
+
 @Component({
   selector: 'app-cursos-sugeridos-table',
   templateUrl: './cursos-sugeridos-table.component.html',
@@ -21,6 +22,8 @@ export class CursosSugeridosTableComponent {
   pageSize = 5;
   totalItems = 0;
   currentPage = 0;
+  sortColumn: string = 'nome';
+  sortOrder: string = 'asc';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -38,7 +41,13 @@ export class CursosSugeridosTableComponent {
 
   getSugeridos() {
     this.alunoService
-      .getCursosSugeridos(this.searchTerm, this.pageSize, this.currentPage)
+      .getCursosSugeridos(
+        this.searchTerm,
+        this.pageSize,
+        this.currentPage,
+        this.sortColumn,
+        this.sortOrder
+      )
       .subscribe((data: any) => {
         this.sugeridos = new MatTableDataSource(data.data);
         this.totalItems = data.count;
@@ -51,9 +60,10 @@ export class CursosSugeridosTableComponent {
     this.getSugeridos();
   }
 
-  ngAfterViewInit() {
-    this.sugeridos.paginator = this.paginator;
-    this.sugeridos.sort = this.sort;
+  sortData(sort: Sort) {
+    this.sortColumn = sort.active;
+    this.sortOrder = sort.direction == 'desc' ? 'desc' : 'asc';
+    this.getSugeridos();
   }
 
   search(event: Event) {

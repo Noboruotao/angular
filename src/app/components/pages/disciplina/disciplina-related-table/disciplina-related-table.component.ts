@@ -1,10 +1,11 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { Sort } from '@angular/material/sort';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { DisciplinaService } from 'src/app/services/disciplina/disciplina.service';
@@ -17,31 +18,42 @@ import { DisciplinaService } from 'src/app/services/disciplina/disciplina.servic
 export class DisciplinaRelatedTableComponent {
   relatedDisciplinaList: MatTableDataSource<any>;
 
-  displayedColumns: string[] = ['nome','periodo', 'carga_horaria'];
+  displayedColumns: string[] = ['nome', 'periodo.periodo', 'carga_horaria'];
 
   searchTerm: string = '';
 
   pageSize = 10;
   totalItems = 0;
   currentPage = 0;
-  situacao = 5;
+  situacao = 1;
+
+  sortColumn: string = 'nome';
+  sortOrder: string = 'asc';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   situacoes = new FormControl();
-  situacoesList: any[] = [];
+  situacoesList: any[] = [
+    { id: 1, nome: 'Ativo' },
+    { id: 0, nome: 'Desativo' },
+  ];
 
   constructor(
     private disciplinaService: DisciplinaService,
     public authService: AuthService
   ) {
     this.relatedDisciplinaList = new MatTableDataSource<any>([]);
-    this.getRelatedDisciplinas();
 
-    this.disciplinaService.getDisciplinaSituacoes().subscribe((data: any) => {
-      this.situacoesList = data.data;
-    });
+    if (this.authService.checkRoles(['Aluno'])) {
+      this.disciplinaService.getDisciplinaSituacoes().subscribe((data: any) => {
+        this.situacoesList = data.data;
+        this.situacao = 5;
+        this.getRelatedDisciplinas();
+      });
+    } else {
+      this.getRelatedDisciplinas();
+    }
   }
 
   getRelatedDisciplinas() {
@@ -50,10 +62,12 @@ export class DisciplinaRelatedTableComponent {
         this.searchTerm,
         this.currentPage,
         this.pageSize,
-        this.situacao
+        this.situacao,
+        this.sortColumn,
+        this.sortOrder
       )
       .subscribe((data: any) => {
-        this.relatedDisciplinaList = data.data;
+        this.relatedDisciplinaList = new MatTableDataSource<any>(data.data);
         this.totalItems = data.count;
       });
   }
@@ -79,6 +93,12 @@ export class DisciplinaRelatedTableComponent {
   onSelectChange(event: Event) {
     const target = event.target as HTMLInputElement;
     this.situacao = Number(target.value);
+    this.getRelatedDisciplinas();
+  }
+
+  sortData(sort: Sort) {
+    this.sortColumn = sort.active;
+    this.sortOrder = sort.direction == 'desc' ? 'desc' : 'asc';
     this.getRelatedDisciplinas();
   }
 }

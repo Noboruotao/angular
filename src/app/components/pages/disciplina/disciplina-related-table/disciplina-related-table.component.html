@@ -1,6 +1,6 @@
 <div class="card" *ngIf="authService.checkRoles(['Aluno', 'Professor'])">
   <div class="card-header">
-    <strong>Lista de Disciplinas</strong>
+    <strong>Lista de suas Disciplinas</strong>
   </div>
 
   <div class="card-body">
@@ -15,8 +15,12 @@
       />
     </mat-form-field>
 
-    <mat-form-field *ngIf="authService.checkRoles(['Aluno'])">
-      <mat-label>Situação da Disciplina</mat-label>
+    <mat-form-field>
+      <mat-label
+        >Situação d{{
+          authService.checkRoles(["Aluno"]) ? "a Disciplinas" : "e Classes"
+        }}</mat-label
+      >
       <select
         matNativeControl
         [(ngModel)]="situacao"
@@ -30,7 +34,12 @@
     </mat-form-field>
 
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="relatedDisciplinaList" matSort>
+      <table
+        mat-table
+        [dataSource]="relatedDisciplinaList"
+        matSort
+        (matSortChange)="sortData($event)"
+      >
         <ng-container matColumnDef="nome">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
           <td mat-cell *matCellDef="let row">
@@ -38,8 +47,8 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="periodo">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Periodo</th>
+        <ng-container matColumnDef="periodo.periodo">
+          <th mat-header-cell *matHeaderCellDef>Periodo</th>
           <td mat-cell *matCellDef="let row">{{ row.periodo.periodo }}</td>
         </ng-container>
 

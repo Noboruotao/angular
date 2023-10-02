@@ -1,8 +1,9 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Sort } from '@angular/material/sort';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { DisciplinaService } from 'src/app/services/disciplina/disciplina.service';
@@ -15,14 +16,16 @@ import { DisciplinaService } from 'src/app/services/disciplina/disciplina.servic
 export class DisciplinaTableComponent {
   disciplinaList: MatTableDataSource<any>;
 
-  displayedColumns: string[] = ['nome', 'periodo', 'carga_horaria'];
+  displayedColumns: string[] = ['nome', 'periodo.periodo', 'carga_horaria'];
 
   searchTerm: string = '';
-  searchTermRelated: string = '';
 
   pageSize = 10;
   totalItems = 0;
   currentPage = 0;
+
+  sortColumn: string = '';
+  sortOrder: string = 'desc';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -37,9 +40,15 @@ export class DisciplinaTableComponent {
 
   getDisciplinas() {
     this.disciplinaService
-      .getDisciplinas(this.searchTerm, this.currentPage, this.pageSize)
+      .getDisciplinas(
+        this.searchTerm,
+        this.currentPage,
+        this.pageSize,
+        this.sortColumn,
+        this.sortOrder
+      )
       .subscribe((data: any) => {
-        this.disciplinaList = data.data;
+        this.disciplinaList = new MatTableDataSource<any>(data.data);
         this.totalItems = data.count;
       });
   }
@@ -50,15 +59,16 @@ export class DisciplinaTableComponent {
     this.getDisciplinas();
   }
 
-  ngAfterViewInit() {
-    this.disciplinaList.paginator = this.paginator;
-    this.disciplinaList.sort = this.sort;
-  }
-
   search(event: Event) {
     const target = event.target as HTMLInputElement;
     this.searchTerm = target.value;
     this.currentPage = 0;
+    this.getDisciplinas();
+  }
+
+  sortData(sort: Sort) {
+    this.sortColumn = sort.active;
+    this.sortOrder = sort.direction == 'desc' ? 'desc' : 'asc';
     this.getDisciplinas();
   }
 }

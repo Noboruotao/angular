@@ -3,9 +3,9 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Sort } from '@angular/material/sort';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
-import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { CursoService } from 'src/app/services/curso/curso.service';
 
 @Component({
@@ -24,6 +24,9 @@ export class CursosTableComponent {
   totalItems = 0;
   currentPage = 0;
 
+  sortColumn: string = 'nome';
+  sortOrder: string = 'asc';
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -32,13 +35,18 @@ export class CursosTableComponent {
     private cursoService: CursoService
   ) {
     this.cursos = new MatTableDataSource<any>([]);
-
     this.getCursos();
   }
 
   getCursos() {
     this.cursoService
-      .getCursos(this.searchTerm, this.pageSize, this.currentPage)
+      .getCursos(
+        this.searchTerm,
+        this.pageSize,
+        this.currentPage,
+        this.sortColumn,
+        this.sortOrder
+      )
       .subscribe((data: any) => {
         this.cursos = new MatTableDataSource(data.data);
         this.totalItems = data.count;
@@ -62,8 +70,10 @@ export class CursosTableComponent {
     this.currentPage = 0;
     this.getCursos();
   }
-  
-  sortData($event) {
-    console.log('test');
+
+  sortData(sort: Sort) {
+    this.sortColumn = sort.active;
+    this.sortOrder = sort.direction == 'desc' ? 'desc' : 'asc';
+    this.getCursos();
   }
 }

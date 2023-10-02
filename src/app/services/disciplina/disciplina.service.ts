@@ -12,11 +12,19 @@ export class DisciplinaService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getDisciplinas(search: string, page: number, pageSize: number) {
+  getDisciplinas(
+    search: string,
+    page: number,
+    pageSize: number,
+    sortColumn: string,
+    sortOrder: string
+  ) {
     let params = new HttpParams()
       .set('search', search || '')
       .set('pageSize', pageSize.toString())
-      .set('page', page.toString());
+      .set('page', page.toString())
+      .set('sortColumn', sortColumn.toString())
+      .set('sortOrder', sortOrder.toString());
 
     return this.httpClient
       .get<any>(this.apiUrl + '/listDisciplina', { params: params })
@@ -31,13 +39,18 @@ export class DisciplinaService {
     search: string,
     page: number,
     pageSize: number,
-    situacao: number
+    situacao: number,
+    sortColumn: string,
+    sortOrder: string
   ) {
     let params = new HttpParams()
       .set('search', search || '')
       .set('pageSize', pageSize.toString())
       .set('page', page.toString())
-      .set('situacao', situacao.toString());
+      .set('situacao', situacao.toString())
+      .set('sortColumn', sortColumn.toString())
+      .set('sortOrder', sortOrder.toString());
+
     return this.httpClient
       .get<any>(this.apiUrl + '/getUserDisciplina', { params: params })
       .pipe(

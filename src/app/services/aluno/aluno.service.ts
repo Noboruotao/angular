@@ -18,11 +18,19 @@ export class AlunoService {
     private authService: AuthService
   ) {}
 
-  getCursosSugeridos(search: string, limit: number, page: number) {
+  getCursosSugeridos(
+    search: string,
+    limit: number,
+    page: number,
+    sortColumn: string,
+    sortOrder: string
+  ) {
     let params = new HttpParams()
       .set('search', search || '')
       .set('limit', limit.toString())
-      .set('page', page.toString());
+      .set('page', page.toString())
+      .set('sortColumn', sortColumn.toString())
+      .set('sortOrder', sortOrder.toString());
 
     return this.httpClient
       .get<any>(this.apiUrl + '/getCursosSugeridos', { params: params })
