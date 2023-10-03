@@ -11,7 +11,4 @@ export interface Ugser {
   telefone_1?: string;
   telefone_2?: string;
   foto?: string;
-  created_at?: any;
-  updated_at?: any;
-  deleted_at?: any;
 }

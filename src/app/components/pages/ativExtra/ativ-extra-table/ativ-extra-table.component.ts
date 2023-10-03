@@ -1,27 +1,29 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
-import { AuthService } from 'src/app/services/authService/auth.service';
-import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { Sort } from '@angular/material/sort';
 
+import { AuthService } from 'src/app/services/authService/auth.service';
+import { AtivExtraService } from 'src/app/services/ativExtra/ativ-extra.service';
+
 @Component({
-  selector: 'app-cursos-sugeridos-table',
-  templateUrl: './cursos-sugeridos-table.component.html',
-  styleUrls: ['./cursos-sugeridos-table.component.css'],
+  selector: 'app-ativ-extra-table',
+  templateUrl: './ativ-extra-table.component.html',
+  styleUrls: ['./ativ-extra-table.component.css'],
 })
-export class CursosSugeridosTableComponent {
-  sugeridos: MatTableDataSource<any>;
-  displayedColumns: string[] = ['nome', 'descricao'];
+export class AtivExtraTableComponent {
+  ativExtras: MatTableDataSource<any>;
+
+  displayedColumns: string[] = ['nome', 'descricao', 'tipo'];
 
   searchTerm: string = '';
 
   pageSize = 5;
   totalItems = 0;
   currentPage = 0;
+
   sortColumn: string = 'nome';
   sortOrder: string = 'asc';
 
@@ -30,18 +32,15 @@ export class CursosSugeridosTableComponent {
 
   constructor(
     protected authService: AuthService,
-    private alunoService: AlunoService
+    private ativExtraService: AtivExtraService
   ) {
-    this.sugeridos = new MatTableDataSource<any>([]);
-
-    if (authService.checkRoles(['Aluno'])) {
-      this.getSugeridos();
-    }
+    this.ativExtras = new MatTableDataSource<any>([]);
+    this.getAtivExtras();
   }
 
-  getSugeridos() {
-    this.alunoService
-      .getCursosSugeridos(
+  getAtivExtras() {
+    this.ativExtraService
+      .getAtivExtras(
         this.searchTerm,
         this.pageSize,
         this.currentPage,
@@ -49,7 +48,7 @@ export class CursosSugeridosTableComponent {
         this.sortOrder
       )
       .subscribe((data: any) => {
-        this.sugeridos = new MatTableDataSource(data.data);
+        this.ativExtras = new MatTableDataSource(data.data);
         this.totalItems = data.count;
       });
   }
@@ -57,19 +56,24 @@ export class CursosSugeridosTableComponent {
   onPageChange(event: PageEvent) {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.getSugeridos();
+    this.getAtivExtras();
   }
 
-  sortData(sort: Sort) {
-    this.sortColumn = sort.active;
-    this.sortOrder = sort.direction == 'desc' ? 'desc' : 'asc';
-    this.getSugeridos();
+  ngAfterViewInit() {
+    this.ativExtras.paginator = this.paginator;
+    this.ativExtras.sort = this.sort;
   }
 
   search(event: Event) {
     const target = event.target as HTMLInputElement;
     this.searchTerm = target.value;
     this.currentPage = 0;
-    this.getSugeridos();
+    this.getAtivExtras();
+  }
+
+  sortData(sort: Sort) {
+    this.sortColumn = sort.active;
+    this.sortOrder = sort.direction == 'desc' ? 'desc' : 'asc';
+    this.getAtivExtras();
   }
 }

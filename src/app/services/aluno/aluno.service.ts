@@ -40,6 +40,28 @@ export class AlunoService {
         })
       );
   }
+  getAtivExtraSugeridos(
+    search: string,
+    limit: number,
+    page: number,
+    sortColumn: string,
+    sortOrder: string
+  ) {
+    let params = new HttpParams()
+      .set('search', search || '')
+      .set('limit', limit.toString())
+      .set('page', page.toString())
+      .set('sortColumn', sortColumn.toString())
+      .set('sortOrder', sortOrder.toString());
+
+    return this.httpClient
+      .get<any>(this.apiUrl + '/getAtivExtraSugeridos', { params: params })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
 
   getNota(
     classe_id: any,

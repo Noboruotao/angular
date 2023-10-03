@@ -9,13 +9,13 @@ import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { Sort } from '@angular/material/sort';
 
 @Component({
-  selector: 'app-cursos-sugeridos-table',
-  templateUrl: './cursos-sugeridos-table.component.html',
-  styleUrls: ['./cursos-sugeridos-table.component.css'],
+  selector: 'app-ativ-extra-sugeridos-table',
+  templateUrl: './ativ-extra-sugeridos-table.component.html',
+  styleUrls: ['./ativ-extra-sugeridos-table.component.css'],
 })
-export class CursosSugeridosTableComponent {
+export class AtivExtraSugeridosTableComponent {
   sugeridos: MatTableDataSource<any>;
-  displayedColumns: string[] = ['nome', 'descricao'];
+  displayedColumns: string[] = ['nome', 'descricao', 'tipo'];
 
   searchTerm: string = '';
 
@@ -41,7 +41,7 @@ export class CursosSugeridosTableComponent {
 
   getSugeridos() {
     this.alunoService
-      .getCursosSugeridos(
+      .getAtivExtraSugeridos(
         this.searchTerm,
         this.pageSize,
         this.currentPage,

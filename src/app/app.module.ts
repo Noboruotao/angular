@@ -51,6 +51,9 @@ import { MakeNotaComponent } from './components/pages/classe/make-nota/make-nota
 import { MakeNotaFinalComponent } from './components/pages/classe/make-nota-final/make-nota-final.component';
 import { MakeNotaFinalTableComponent } from './components/pages/classe/make-nota-final-table/make-nota-final-table.component';
 import { AlunoPresencaTableComponent } from './components/pages/classe/aluno-presenca-table/aluno-presenca-table.component';
+import { AtivExtraListComponent } from './components/pages/ativExtra/ativ-extra-list/ativ-extra-list.component';
+import { AtivExtraTableComponent } from './components/pages/ativExtra/ativ-extra-table/ativ-extra-table.component';
+import { AtivExtraSugeridosTableComponent } from './components/pages/ativExtra/ativ-extra-sugeridos-table/ativ-extra-sugeridos-table.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +85,9 @@ import { AlunoPresencaTableComponent } from './components/pages/classe/aluno-pre
     MakeNotaFinalComponent,
     MakeNotaFinalTableComponent,
     AlunoPresencaTableComponent,
+    AtivExtraListComponent,
+    AtivExtraTableComponent,
+    AtivExtraSugeridosTableComponent,
   ],
   imports: [
     BrowserModule,
