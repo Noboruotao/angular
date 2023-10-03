@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/authService/auth.service';
-import { PessoaService } from 'src/app/services/pessoaService/pessoa.service';
+import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
 
@@ -9,7 +9,7 @@ import { DatePipe } from '@angular/common';
   selector: 'app-pessoa-detail',
   templateUrl: './pessoa-detail.component.html',
   styleUrls: ['./pessoa-detail.component.css'],
-  providers: [DatePipe]
+  providers: [DatePipe],
 })
 export class PessoaDetailComponent {
   pessoa: any;
@@ -30,7 +30,7 @@ export class PessoaDetailComponent {
         this.pessoa.data_nascimento,
         'dd/MM/yyyy'
       );
-      console.log(this.pessoa);
+      console.log(this.authService.userData.id);
     });
     this.getFoto(id);
   }

@@ -46,5 +46,4 @@ export class BibliotecaService {
   getAcervo(id: number) {
     return this.httpClient.get(`${this.apiUrl}/getAcervo/${id}`);
   }
-
 }

@@ -4,7 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { PessoaService } from '../pessoaService/pessoa.service';
+import { PessoaService } from '../pessoa/pessoa.service';
+import { Pessoa } from 'src/app/interfaces/Pessoa/pessoa';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class AuthService {
   private userSubject: BehaviorSubject<any>;
   public user: Observable<any>;
 
-  public userData!: object;
+  public userData!: Pessoa;
   public roles!: object;
   public permissions!: object;
 
@@ -80,7 +81,7 @@ export class AuthService {
         (res: any) => {
           localStorage.removeItem('user');
           this.userSubject.next(false);
-          this.userData = [];
+          // this.userData = User();
           this.roles = [];
           this.permissions = [];
           this.pessoaService.pessoaFoto = null;

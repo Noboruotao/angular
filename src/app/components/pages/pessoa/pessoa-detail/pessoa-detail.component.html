@@ -13,7 +13,10 @@
         <div class="col-12 col-sm-7">
           <div
             class="pessoal-info"
-            *ngIf="authService.checkPermission(['pessoa.read','pessoa.*'])"
+            *ngIf="
+              authService.checkPermission(['pessoa.read', 'pessoa.*']) ||
+              authService.userData.id == pessoa.id
+            "
           >
             <p>Email: {{ pessoa.email }}</p>
             <p>CPF: {{ pessoa.cpf }}</p>

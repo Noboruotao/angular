@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { environment } from 'src/environments/environment';
-import { MatPaginatorIntl } from '@angular/material/paginator';
-import { CustomMatPaginatorIntl } from 'src/app/helper/custom-mat-paginator-intl';
+// import { MatPaginatorIntl } from '@angular/material/paginator';
+// import { CustomMatPaginatorIntl } from 'src/app/helper/custom-mat-paginator-intl';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
@@ -30,7 +31,10 @@ export class AcervoListComponent implements OnInit {
   baseUrl = environment.baseApiUrl;
   bibliotecaUrl = `${this.baseUrl}api/biblioteca`;
 
-  constructor(private bibliotecaService: BibliotecaService) {}
+  constructor(
+    public bibliotecaService: BibliotecaService,
+    private domSanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
     this.getAcervos();
@@ -67,6 +71,14 @@ export class AcervoListComponent implements OnInit {
       top: 0,
       left: 0,
       behavior: 'smooth',
+    });
+  }
+
+  getCapa(capa: string) {
+    this.bibliotecaService.getCapa(capa).subscribe((data: any) => {
+      return this.domSanitizer.bypassSecurityTrustUrl(
+        URL.createObjectURL(data)
+      );
     });
   }
 }

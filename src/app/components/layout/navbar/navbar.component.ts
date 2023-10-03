@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { User } from 'src/app/interfaces/user/user';
 import { AuthService } from 'src/app/services/authService/auth.service';
-import { PessoaService } from 'src/app/services/pessoaService/pessoa.service';
+import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 import 'bootstrap';
 import { ActivatedRoute } from '@angular/router';
 

@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
+import { MatTabsModule } from '@angular/material/tabs';
 import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/acervo-list.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -49,6 +50,7 @@ import { PessoaDetailComponent } from './components/pages/pessoa/pessoa-detail/p
 import { MakeNotaComponent } from './components/pages/classe/make-nota/make-nota.component';
 import { MakeNotaFinalComponent } from './components/pages/classe/make-nota-final/make-nota-final.component';
 import { MakeNotaFinalTableComponent } from './components/pages/classe/make-nota-final-table/make-nota-final-table.component';
+import { AlunoPresencaTableComponent } from './components/pages/classe/aluno-presenca-table/aluno-presenca-table.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,7 @@ import { MakeNotaFinalTableComponent } from './components/pages/classe/make-nota
     MakeNotaComponent,
     MakeNotaFinalComponent,
     MakeNotaFinalTableComponent,
+    AlunoPresencaTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,6 +102,7 @@ import { MakeNotaFinalTableComponent } from './components/pages/classe/make-nota
     MatSelectModule,
     MatIconModule,
     MatCheckboxModule,
+    MatTabsModule,
   ],
   providers: [
     {

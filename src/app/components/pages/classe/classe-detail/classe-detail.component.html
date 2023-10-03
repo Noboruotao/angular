@@ -3,7 +3,22 @@
 
 <div class="content-wrapper">
   <div class="forProfessor" *ngIf="authService.checkRoles(['Professor'])">
-    <app-classe-aluno-table></app-classe-aluno-table>
+    <mat-tab-group>
+      <mat-tab label="PRESENÇA">
+        <app-aluno-presenca-table
+          [classe]="classe"
+          [alunos]="alunos"
+          [classe_id]="classe_id"
+        ></app-aluno-presenca-table>
+      </mat-tab>
+      <mat-tab label="NOTA">
+        <app-classe-aluno-table
+          [classe]="classe"
+          [alunos]="alunos"
+          [classe_id]="classe_id"
+        ></app-classe-aluno-table>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 
   <div class="forAluno" *ngIf="authService.checkRoles(['Aluno'])">

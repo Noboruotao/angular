@@ -3,7 +3,7 @@ import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClasseService } from 'src/app/services/classe/classe.service';
-import { PessoaService } from 'src/app/services/pessoaService/pessoa.service';
+import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 import { ProfessorService } from 'src/app/services/professor/professor.service';
 import { Location } from '@angular/common';
 

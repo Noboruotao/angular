@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { ClasseService } from 'src/app/services/classe/classe.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { PessoaService } from 'src/app/services/pessoaService/pessoa.service';
+import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProfessorService } from 'src/app/services/professor/professor.service';
 import {
