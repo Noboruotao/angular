@@ -69,14 +69,10 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(formData).subscribe({
       next: (response) => {
-        if (response['success']) {
-          this.router.navigate([`home`]);
-        } else {
-          this.dialog.open(LoginFailDialog);
-        }
+        this.router.navigate([`home`]);
       },
       error: (error) => {
-        console.log(error);
+        this.dialog.open(LoginFailDialog);
       },
     });
   }

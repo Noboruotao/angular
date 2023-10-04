@@ -9,11 +9,25 @@ import { Sort } from '@angular/material/sort';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { DisciplinaService } from 'src/app/services/disciplina/disciplina.service';
-
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 @Component({
   selector: 'app-disciplina-related-table',
   templateUrl: './disciplina-related-table.component.html',
   styleUrls: ['./disciplina-related-table.component.css'],
+
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({ opacity: 0 })),
+      state('*', style({ opacity: 1 })),
+      transition('void <=> *', animate(300)),
+    ]),
+  ],
 })
 export class DisciplinaRelatedTableComponent {
   relatedDisciplinaList: MatTableDataSource<any>;
@@ -26,6 +40,8 @@ export class DisciplinaRelatedTableComponent {
   totalItems = 0;
   currentPage = 0;
   situacao = 1;
+
+  showCardBody: boolean = true;
 
   sortColumn: string = 'nome';
   sortOrder: string = 'asc';

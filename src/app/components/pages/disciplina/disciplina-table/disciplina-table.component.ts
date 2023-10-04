@@ -7,11 +7,24 @@ import { Sort } from '@angular/material/sort';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { DisciplinaService } from 'src/app/services/disciplina/disciplina.service';
-
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 @Component({
   selector: 'app-disciplina-table',
   templateUrl: './disciplina-table.component.html',
   styleUrls: ['./disciplina-table.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({ opacity: 0 })),
+      state('*', style({ opacity: 1 })),
+      transition('void <=> *', animate(300)),
+    ]),
+  ],
 })
 export class DisciplinaTableComponent {
   disciplinaList: MatTableDataSource<any>;
@@ -23,6 +36,8 @@ export class DisciplinaTableComponent {
   pageSize = 10;
   totalItems = 0;
   currentPage = 0;
+
+  showCardBody: boolean = true;
 
   sortColumn: string = '';
   sortOrder: string = 'desc';

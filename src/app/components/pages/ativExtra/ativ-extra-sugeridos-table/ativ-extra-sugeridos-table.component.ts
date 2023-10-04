@@ -7,17 +7,31 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { Sort } from '@angular/material/sort';
-
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 @Component({
   selector: 'app-ativ-extra-sugeridos-table',
   templateUrl: './ativ-extra-sugeridos-table.component.html',
   styleUrls: ['./ativ-extra-sugeridos-table.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({ opacity: 0 })),
+      state('*', style({ opacity: 1 })),
+      transition('void <=> *', animate(300)),
+    ]),
+  ],
 })
 export class AtivExtraSugeridosTableComponent {
   sugeridos: MatTableDataSource<any>;
   displayedColumns: string[] = ['nome', 'descricao', 'tipo'];
 
-  showTable = false;
+  showcard = false;
+  showCardBody: boolean = true;
   searchTerm: string = '';
 
   pageSize = 5;
@@ -55,7 +69,7 @@ export class AtivExtraSugeridosTableComponent {
       .subscribe((data: any) => {
         this.sugeridos = new MatTableDataSource(data.data);
         this.totalItems = data.count;
-        this.showTable =
+        this.showcard =
           this.searchTerm == '' && this.totalItems == 0 ? false : true;
       });
   }

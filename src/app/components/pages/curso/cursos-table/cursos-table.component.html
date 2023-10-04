@@ -1,9 +1,18 @@
 <div class="card">
   <div class="card-header">
-    <strong>Cursos</strong>
+    <div class="row">
+      <div class="col-6">
+        <strong>Cursos</strong>
+      </div>
+      <div class="col-6 text-end">
+        <a (click)="showCardBody = !showCardBody">
+          {{ showCardBody ? "Esconder" : "Mostrar" }}
+        </a>
+      </div>
+    </div>
   </div>
 
-  <div class="card-body">
+  <div class="card-body" *ngIf="showCardBody" [@fadeInOut]>
     <mat-form-field>
       <mat-label>Procurar</mat-label>
       <input
@@ -45,7 +54,8 @@
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell" colspan="2">
             <h4 style="text-align: center; padding: 1em">
-              Não existe valor que corresponde à "{{ input.value }}"
+              Não Encontramos Nenhum Curso
+
             </h4>
           </td>
         </tr>

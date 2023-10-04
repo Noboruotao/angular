@@ -1,9 +1,18 @@
 <div class="card">
   <div class="card-header">
-    <strong>Lista de Todas Disciplinas</strong>
+    <div class="row">
+      <div class="col-6">
+        <strong>Lista das Disciplinas</strong>
+      </div>
+      <div class="col-6 text-end">
+        <a (click)="showCardBody = !showCardBody">
+          {{ showCardBody ? "Esconder" : "Mostrar" }}
+        </a>
+      </div>
+    </div>
   </div>
 
-  <div class="card-body">
+  <div class="card-body" *ngIf="showCardBody" [@fadeInOut]>
     <mat-form-field>
       <mat-label>Procurar</mat-label>
       <input
@@ -50,10 +59,9 @@
           [routerLink]="'/disciplina/' + row.id"
         ></tr>
 
-        <!-- Row shown when there is no matching data. -->
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell text-center" colspan="4">
-            <h4>Não existe valor que corresponde à "{{ input.value }}"</h4>
+            <h4>Não Encontramos Nenhuma Disciplina</h4>
           </td>
         </tr>
       </table>

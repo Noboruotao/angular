@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -7,11 +7,24 @@ import { Sort } from '@angular/material/sort';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { CursoService } from 'src/app/services/curso/curso.service';
-
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 @Component({
   selector: 'app-cursos-table',
   templateUrl: './cursos-table.component.html',
   styleUrls: ['./cursos-table.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({ opacity: 0 })),
+      state('*', style({ opacity: 1 })),
+      transition('void <=> *', animate(300)),
+    ]),
+  ],
 })
 export class CursosTableComponent {
   cursos: MatTableDataSource<any>;
@@ -23,6 +36,8 @@ export class CursosTableComponent {
   pageSize = 5;
   totalItems = 0;
   currentPage = 0;
+
+  showCardBody: boolean = true;
 
   sortColumn: string = 'nome';
   sortOrder: string = 'asc';

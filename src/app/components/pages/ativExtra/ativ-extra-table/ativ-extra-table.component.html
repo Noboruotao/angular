@@ -1,9 +1,18 @@
 <div class="card">
   <div class="card-header">
-    <strong>Atividades Extracurriculares</strong>
+    <div class="row">
+      <div class="col-6">
+        <strong>Atividades Extracurriculares</strong>
+      </div>
+      <div class="col-6 text-end">
+        <a (click)="showCardBody = !showCardBody">
+          {{ showCardBody ? "Esconder" : "Mostrar" }}
+        </a>
+      </div>
+    </div>
   </div>
 
-  <div class="card-body">
+  <div class="card-body" *ngIf="showCardBody" [@fadeInOut]>
     <div class="row">
       <div class="col-6">
         <mat-form-field>

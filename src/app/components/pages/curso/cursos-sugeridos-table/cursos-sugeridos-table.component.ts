@@ -7,11 +7,24 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { Sort } from '@angular/material/sort';
-
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 @Component({
   selector: 'app-cursos-sugeridos-table',
   templateUrl: './cursos-sugeridos-table.component.html',
   styleUrls: ['./cursos-sugeridos-table.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({ opacity: 0 })),
+      state('*', style({ opacity: 1 })),
+      transition('void <=> *', animate(300)),
+    ]),
+  ],
 })
 export class CursosSugeridosTableComponent {
   sugeridos: MatTableDataSource<any>;
@@ -19,6 +32,7 @@ export class CursosSugeridosTableComponent {
 
   searchTerm: string = '';
   showTable: boolean = false;
+  showCardBody: boolean = true;
 
   pageSize = 5;
   totalItems = 0;

@@ -10,6 +10,8 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { PreloaderComponent } from './components/layout/preloader/preloader.component';
+
+import { AuthInterceptor } from './interceptors/Auth/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -121,6 +123,11 @@ import { AtivExtraDetailComponent } from './components/pages/ativExtra/ativ-extr
       useClass: JwtInterceptor,
       multi: true,
     },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true,
+    // },
     {
       provide: MatPaginatorIntl,
       useClass: CustomMatPaginatorIntl,

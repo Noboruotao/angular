@@ -1,9 +1,18 @@
 <div class="card" *ngIf="authService.checkRoles(['Aluno', 'Professor'])">
   <div class="card-header">
-    <strong>Lista de suas Disciplinas</strong>
+    <div class="row">
+      <div class="col-6">
+        <strong>Lista de suas Disciplinas</strong>
+      </div>
+      <div class="col-6 text-end">
+        <a (click)="showCardBody = !showCardBody">
+          {{ showCardBody ? "Esconder" : "Mostrar" }}
+        </a>
+      </div>
+    </div>
   </div>
 
-  <div class="card-body">
+  <div class="card-body" *ngIf="showCardBody" [@fadeInOut]>
     <mat-form-field>
       <mat-label>Procurar</mat-label>
       <input
@@ -68,7 +77,7 @@
 
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell text-center" colspan="4">
-            Não existe valor que corresponde à "{{ input.value }}"
+            Não Encontramos Nenhuma Disciplina
           </td>
         </tr>
       </table>
