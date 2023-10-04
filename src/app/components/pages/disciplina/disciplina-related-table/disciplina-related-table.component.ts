@@ -49,6 +49,8 @@ export class DisciplinaRelatedTableComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  showCard: boolean = false;
+
   situacoes = new FormControl();
   situacoesList: any[] = [
     { id: 1, nome: 'Ativo' },
@@ -85,6 +87,7 @@ export class DisciplinaRelatedTableComponent {
       .subscribe((data: any) => {
         this.relatedDisciplinaList = new MatTableDataSource<any>(data.data);
         this.totalItems = data.count;
+        this.showCard = true;
       });
   }
 

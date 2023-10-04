@@ -38,6 +38,7 @@ export class AtivExtraTableComponent {
   currentPage = 0;
   tipo: string = '';
   showCardBody: boolean = true;
+  showCard: boolean = false;
 
   sortColumn: string = 'nome';
   sortOrder: string = 'asc';
@@ -67,6 +68,7 @@ export class AtivExtraTableComponent {
       .subscribe((data: any) => {
         this.ativExtras = new MatTableDataSource(data.data);
         this.totalItems = data.count;
+        this.showCard = true;
       });
   }
 

@@ -36,7 +36,7 @@ export class DisciplinaTableComponent {
   pageSize = 10;
   totalItems = 0;
   currentPage = 0;
-
+  showCard: boolean = false;
   showCardBody: boolean = true;
 
   sortColumn: string = '';
@@ -65,6 +65,7 @@ export class DisciplinaTableComponent {
       .subscribe((data: any) => {
         this.disciplinaList = new MatTableDataSource<any>(data.data);
         this.totalItems = data.count;
+        this.showCard = true;
       });
   }
 

@@ -1,4 +1,7 @@
-<div class="card" *ngIf="authService.checkRoles(['Aluno', 'Professor'])">
+<div
+  class="card"
+  *ngIf="authService.checkRoles(['Aluno', 'Professor']) && showCard"
+>
   <div class="card-header">
     <div class="row">
       <div class="col-6">
@@ -87,6 +90,7 @@
         [pageIndex]="currentPage"
         (page)="onPageChange($event)"
         showFirstLastButtons
+        [pageSizeOptions]="[5, 10, 50, 100]"
         aria-label="Select page of sugeridos"
       ></mat-paginator>
     </div>

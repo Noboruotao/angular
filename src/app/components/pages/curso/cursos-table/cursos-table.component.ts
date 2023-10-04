@@ -38,6 +38,7 @@ export class CursosTableComponent {
   currentPage = 0;
 
   showCardBody: boolean = true;
+  showCard: boolean = false;
 
   sortColumn: string = 'nome';
   sortOrder: string = 'asc';
@@ -65,6 +66,7 @@ export class CursosTableComponent {
       .subscribe((data: any) => {
         this.cursos = new MatTableDataSource(data.data);
         this.totalItems = data.count;
+        this.showCard = true;
       });
   }
 
