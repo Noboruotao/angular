@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -23,12 +23,14 @@ export class AtivExtraTableComponent {
   pageSize = 5;
   totalItems = 0;
   currentPage = 0;
+  tipo: string = '';
 
   sortColumn: string = 'nome';
   sortOrder: string = 'asc';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @Input() tipos: any;
 
   constructor(
     protected authService: AuthService,
@@ -45,7 +47,8 @@ export class AtivExtraTableComponent {
         this.pageSize,
         this.currentPage,
         this.sortColumn,
-        this.sortOrder
+        this.sortOrder,
+        this.tipo
       )
       .subscribe((data: any) => {
         this.ativExtras = new MatTableDataSource(data.data);
@@ -74,6 +77,13 @@ export class AtivExtraTableComponent {
   sortData(sort: Sort) {
     this.sortColumn = sort.active;
     this.sortOrder = sort.direction == 'desc' ? 'desc' : 'asc';
+    this.getAtivExtras();
+  }
+
+  onSelectChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.tipo = target.value;
+    this.currentPage = 0;
     this.getAtivExtras();
   }
 }

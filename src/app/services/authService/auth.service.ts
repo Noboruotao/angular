@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { PessoaService } from '../pessoa/pessoa.service';
 import { Pessoa } from 'src/app/interfaces/Pessoa/pessoa';
+import { Check } from 'src/app/interfaces/login/login';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +16,8 @@ export class AuthService {
   public user: Observable<any>;
 
   public userData!: Pessoa;
-  public roles!: object;
-  public permissions!: object;
+  public roles!: any;
+  public permissions!: any;
 
   storage!: Storage;
 
@@ -61,7 +62,7 @@ export class AuthService {
   }
 
   validateToken() {
-    return this.httpClient.post<any>(this.apiUrl + '/check', 'body').pipe(
+    return this.httpClient.post<Check>(this.apiUrl + '/check', 'body').pipe(
       map((response) => {
         if (!response.success) {
           return response;

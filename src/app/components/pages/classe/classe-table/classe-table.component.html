@@ -1,21 +1,18 @@
 <div class="card">
   <div class="card-header">
-    <strong>Classes</strong>
+    <div class="row">
+      <div class="col-6">
+        <strong>Classes</strong>
+      </div>
+      <div class="col-6 text-end">
+        <mat-slide-toggle [(ngModel)]="checked" (change)="onSlideChange()"
+          >Ativo</mat-slide-toggle
+        >
+      </div>
+    </div>
   </div>
 
   <div class="card-body">
-    <div class="button-container">
-      <button
-        mat-fab
-        [color]="ativo === 1 ? 'primary' : ''"
-        (click)="enableAtivo()"
-        aria-label="Ativo"
-        title="Ativo"
-      >
-        <mat-icon>bookmark</mat-icon>
-      </button>
-    </div>
-
     <div class="mat-elevation-z8">
       <table
         mat-table

@@ -20,6 +20,7 @@ import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/a
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { AcervoComponent } from './components/pages/biblioteca/acervo/acervo.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -30,7 +31,7 @@ import { ListCursoComponent } from './components/pages/curso/list-curso/list-cur
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { DetalhesCursoComponent } from './components/pages/curso/detalhes-curso/detalhes-curso.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomMatPaginatorIntl } from './helper/custom-mat-paginator-intl';
@@ -54,6 +55,7 @@ import { AlunoPresencaTableComponent } from './components/pages/classe/aluno-pre
 import { AtivExtraListComponent } from './components/pages/ativExtra/ativ-extra-list/ativ-extra-list.component';
 import { AtivExtraTableComponent } from './components/pages/ativExtra/ativ-extra-table/ativ-extra-table.component';
 import { AtivExtraSugeridosTableComponent } from './components/pages/ativExtra/ativ-extra-sugeridos-table/ativ-extra-sugeridos-table.component';
+import { AtivExtraDetailComponent } from './components/pages/ativExtra/ativ-extra-detail/ativ-extra-detail.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,7 @@ import { AtivExtraSugeridosTableComponent } from './components/pages/ativExtra/a
     AtivExtraListComponent,
     AtivExtraTableComponent,
     AtivExtraSugeridosTableComponent,
+    AtivExtraDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,6 +112,8 @@ import { AtivExtraSugeridosTableComponent } from './components/pages/ativExtra/a
     MatIconModule,
     MatCheckboxModule,
     MatTabsModule,
+    MatTooltipModule,
+    MatSlideToggleModule,
   ],
   providers: [
     {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { AlunoClasse } from 'src/app/interfaces/alunoClasse/aluno-classe';
 
 import { ClasseService } from 'src/app/services/classe/classe.service';
 @Component({
@@ -10,7 +11,7 @@ import { ClasseService } from 'src/app/services/classe/classe.service';
   styleUrls: ['./classe-detail.component.css'],
 })
 export class ClasseDetailComponent {
-  alunos: MatTableDataSource<any>;
+  alunos: MatTableDataSource<AlunoClasse>;
   classe_id: number;
   classe: any;
 

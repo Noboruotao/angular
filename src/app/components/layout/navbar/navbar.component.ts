@@ -3,7 +3,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 import 'bootstrap';
-import { ActivatedRoute } from '@angular/router';
 
 import {
   faHome,
@@ -13,6 +12,7 @@ import {
   faUser,
   faGraduationCap,
   faUserGroup,
+  faBaseball,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -31,36 +31,17 @@ export class NavbarComponent implements OnInit {
   faUser = faUser;
   faGraduationCap = faGraduationCap;
   faUserGroup = faUserGroup;
-
-  openUrl: string = '';
-
-  isBibliotecaTreeViewOpen = false;
-  isAlunoTreeViewOpen = false;
-  isCursoTreeViewOpen = false;
-  isClasseTreeViewOpen = false;
-  isDisciplinaTreeViewOpen = false;
+  faBaseball = faBaseball;
 
   constructor(
     private pessoaService: PessoaService,
     protected authService: AuthService,
-    private domSanitizer: DomSanitizer,
-    private route: ActivatedRoute
+    private domSanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
     this.user = this.authService.userData;
     this.getFoto();
-    this.route.url.subscribe((segments) => {
-      if (segments.length >= 1) {
-        this.openUrl = segments[0].path;
-
-        this.isAlunoTreeViewOpen = this.openUrl == 'aluno';
-        this.isCursoTreeViewOpen = this.openUrl == 'curso';
-        this.isBibliotecaTreeViewOpen = this.openUrl == 'biblioteca';
-        this.isClasseTreeViewOpen = this.openUrl == 'classe';
-        this.isDisciplinaTreeViewOpen = this.openUrl == 'disciplina';
-      }
-    });
   }
 
   get userData() {
@@ -83,23 +64,5 @@ export class NavbarComponent implements OnInit {
         }
       );
     }
-  }
-
-  toggleBibliotecaTreeView() {
-    this.isBibliotecaTreeViewOpen = !this.isBibliotecaTreeViewOpen;
-  }
-
-  toggleAlunoTreeView() {
-    this.isAlunoTreeViewOpen = !this.isAlunoTreeViewOpen;
-  }
-
-  toggleCursoTreeView() {
-    this.isCursoTreeViewOpen = !this.isCursoTreeViewOpen;
-  }
-  toggleDisciplinaTreeView() {
-    this.isDisciplinaTreeViewOpen = !this.isDisciplinaTreeViewOpen;
-  }
-  toggleClasseTreeView() {
-    this.isClasseTreeViewOpen = !this.isClasseTreeViewOpen;
   }
 }

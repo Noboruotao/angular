@@ -17,22 +17,41 @@ export class AtivExtraService {
     limit: number,
     page: number,
     sortColumn: string = 'nome',
-    order: string = 'asc'
+    order: string = 'asc',
+    tipo: string = ''
   ) {
-
     let params = new HttpParams()
       .set('search', search || '')
       .set('limit', limit.toString())
       .set('page', page.toString())
       .set('sortColumn', sortColumn.toString())
-      .set('order', order.toString());
+      .set('order', order.toString())
+      .set('tipo', tipo.toString());
 
     return this.httpClient
-      .get<any>(this.apiUrl + '/getAtivExtra', { params: params })
+      .get<any>(this.apiUrl + '/getAtivExtras', { params: params })
       .pipe(
         map((response) => {
           return response;
         })
       );
+  }
+
+  getAtivExtraDetail(id: number) {
+    return this.httpClient
+      .get<any>(this.apiUrl + '/getAtivExtraDetail/' + id)
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
+  getAtivExtraTipo() {
+    return this.httpClient.get<any>(this.apiUrl + '/getAtivExtraTipo').pipe(
+      map((response) => {
+        return response.data;
+      })
+    );
   }
 }

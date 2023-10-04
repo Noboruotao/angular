@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -17,6 +17,7 @@ export class AtivExtraSugeridosTableComponent {
   sugeridos: MatTableDataSource<any>;
   displayedColumns: string[] = ['nome', 'descricao', 'tipo'];
 
+  showTable = false;
   searchTerm: string = '';
 
   pageSize = 5;
@@ -24,9 +25,11 @@ export class AtivExtraSugeridosTableComponent {
   currentPage = 0;
   sortColumn: string = 'nome';
   sortOrder: string = 'asc';
+  tipo: string = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @Input() tipos: any;
 
   constructor(
     protected authService: AuthService,
@@ -46,11 +49,14 @@ export class AtivExtraSugeridosTableComponent {
         this.pageSize,
         this.currentPage,
         this.sortColumn,
-        this.sortOrder
+        this.sortOrder,
+        this.tipo
       )
       .subscribe((data: any) => {
         this.sugeridos = new MatTableDataSource(data.data);
         this.totalItems = data.count;
+        this.showTable =
+          this.searchTerm == '' && this.totalItems == 0 ? false : true;
       });
   }
 
@@ -69,6 +75,13 @@ export class AtivExtraSugeridosTableComponent {
   search(event: Event) {
     const target = event.target as HTMLInputElement;
     this.searchTerm = target.value;
+    this.currentPage = 0;
+    this.getSugeridos();
+  }
+
+  onSelectChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.tipo = target.value;
     this.currentPage = 0;
     this.getSugeridos();
   }

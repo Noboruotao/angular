@@ -1,20 +1,39 @@
-<div class="sugeridos" *ngIf="totalItems > 0">
+<div class="sugeridos" *ngIf="showTable">
   <div class="card">
     <div class="card-header">
       <strong>Atividades Extracurriculares Sugeridos</strong>
     </div>
 
     <div class="card-body">
-      <mat-form-field>
-        <mat-label>Procurar</mat-label>
-        <input
-          matInput
-          (keyup)="search($event)"
-          placeholder="Ex. Engenharia de Computação"
-          #input
-          style="padding-top: 12px"
-        />
-      </mat-form-field>
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Procurar</mat-label>
+            <input
+              matInput
+              (keyup)="search($event)"
+              placeholder="Ex. Engenharia de Computação"
+              #input
+              style="padding-top: 12px"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field>
+            <mat-label>Tipo</mat-label>
+            <select
+              matNativeControl
+              [(ngModel)]="tipo"
+              (change)="onSelectChange($event)"
+              style="padding-top: 12px"
+            >
+              <option *ngFor="let tipo of tipos" [value]="tipo.id">
+                {{ tipo.nome }}
+              </option>
+            </select>
+          </mat-form-field>
+        </div>
+      </div>
 
       <div class="mat-elevation-z8">
         <table
@@ -39,13 +58,17 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            [routerLink]="'/ativExtra/' + row.id"
+          ></tr>
 
           <!-- Row shown when there is no matching data. -->
           <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" colspan="4">
               <h4 style="text-align: center; padding: 1em">
-                Não existe valor que corresponde à "{{ input.value }}"
+                Não Encontramos Nenhuma Atividade
               </h4>
             </td>
           </tr>

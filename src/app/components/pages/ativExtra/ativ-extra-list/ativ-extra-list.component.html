@@ -1,8 +1,10 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
 <div class="content-wrapper">
-  <app-ativ-extra-sugeridos-table></app-ativ-extra-sugeridos-table>
-  <app-ativ-extra-table></app-ativ-extra-table>
+  <app-ativ-extra-sugeridos-table
+    [tipos]="tipos"
+  ></app-ativ-extra-sugeridos-table>
+  <app-ativ-extra-table [tipos]="tipos"></app-ativ-extra-table>
 </div>
 
 <app-footer></app-footer>

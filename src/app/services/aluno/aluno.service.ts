@@ -45,14 +45,16 @@ export class AlunoService {
     limit: number,
     page: number,
     sortColumn: string,
-    sortOrder: string
+    sortOrder: string,
+    tipo: string = ''
   ) {
     let params = new HttpParams()
       .set('search', search || '')
       .set('limit', limit.toString())
       .set('page', page.toString())
       .set('sortColumn', sortColumn.toString())
-      .set('sortOrder', sortOrder.toString());
+      .set('sortOrder', sortOrder.toString())
+      .set('tipo', tipo.toString());
 
     return this.httpClient
       .get<any>(this.apiUrl + '/getAtivExtraSugeridos', { params: params })

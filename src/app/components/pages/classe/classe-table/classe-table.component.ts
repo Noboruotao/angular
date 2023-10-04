@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -20,9 +20,12 @@ export class ClasseTableComponent {
   pageSize = 5;
   totalItems = 0;
   currentPage = 0;
-  ativo = 1;
   sortColumn: string = 'ano';
   sortOrder: string = 'desc';
+
+  checked: boolean = true;
+
+  ativo = 1;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -60,6 +63,13 @@ export class ClasseTableComponent {
   sortData(sort: Sort) {
     this.sortColumn = sort.active;
     this.sortOrder = sort.direction == 'desc' ? 'desc' : 'asc';
+    this.getClasses();
+  }
+
+  onSlideChange() {
+    this.ativo = this.checked ? 1 : 0;
+    console.log(this.ativo);
+    console.log(this.checked);
     this.getClasses();
   }
 }

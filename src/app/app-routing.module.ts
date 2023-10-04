@@ -15,6 +15,7 @@ import { PessoaDetailComponent } from './components/pages/pessoa/pessoa-detail/p
 import { MakeNotaComponent } from './components/pages/classe/make-nota/make-nota.component';
 import { MakeNotaFinalComponent } from './components/pages/classe/make-nota-final/make-nota-final.component';
 import { AtivExtraListComponent } from './components/pages/ativExtra/ativ-extra-list/ativ-extra-list.component';
+import { AtivExtraDetailComponent } from './components/pages/ativExtra/ativ-extra-detail/ativ-extra-detail.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -78,6 +79,10 @@ const routes: Routes = [
       {
         path: 'ativExtra/list',
         component: AtivExtraListComponent,
+      },
+      {
+        path: 'ativExtra/:id',
+        component: AtivExtraDetailComponent,
       },
     ],
   },

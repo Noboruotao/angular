@@ -1,4 +1,4 @@
-<div class="sugeridos" *ngIf="totalItems > 0">
+<div class="sugeridos" *ngIf="showTable">
   <div class="card">
     <div class="card-header">
       <strong>Cursos Sugeridos</strong>
@@ -40,7 +40,7 @@
           <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" colspan="4">
               <h4 style="text-align: center; padding: 1em">
-                Não existe valor que corresponde à "{{ input.value }}"
+                Não Encontramos Nenhum Curso
               </h4>
             </td>
           </tr>

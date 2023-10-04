@@ -18,6 +18,7 @@ export class CursosSugeridosTableComponent {
   displayedColumns: string[] = ['nome', 'descricao'];
 
   searchTerm: string = '';
+  showTable: boolean = false;
 
   pageSize = 5;
   totalItems = 0;
@@ -51,6 +52,8 @@ export class CursosSugeridosTableComponent {
       .subscribe((data: any) => {
         this.sugeridos = new MatTableDataSource(data.data);
         this.totalItems = data.count;
+        this.showTable =
+          this.searchTerm == '' && this.totalItems == 0 ? false : true;
       });
   }
 
