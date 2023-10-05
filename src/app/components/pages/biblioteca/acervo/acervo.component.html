@@ -6,19 +6,25 @@
       <h1>{{ acervo.titulo }}</h1>
     </div>
     <div class="card-body">
-      <img
-        class="acervo-img"
-        src="{{ bibliotecaUrl }}/getCapa/{{ acervo.capa }}"
-        alt="Not Found"
-      />
-      <p>Autor: {{ acervo.autor.nome }}</p>
-      <p>Editora: {{ acervo.editora.nome }}</p>
-      <p>Idioma: {{ acervo.idioma.idioma }}</p>
-      <p>Tipo: {{ acervo.tipo.tipo }}</p>
-      <p>Categoria: {{ acervo.categoria.categoria }}</p>
-      <p>Resumo: {{ acervo.resumo }}</p>
-      <p>Situação: {{ acervo.situacao.situacao }}</p>
-      <p>Estado: {{ acervo.estado.estado }}</p>
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <img
+            class="acervo-img"
+            src="{{ bibliotecaUrl }}/getCapa/{{ acervo.capa }}"
+            alt="Not Found"
+          />
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <p><strong>Autor:</strong> {{ acervo.autor.nome }}</p>
+          <p><strong>Editora:</strong> {{ acervo.editora.nome }}</p>
+          <p><strong>Idioma:</strong> {{ acervo.idioma.idioma }}</p>
+          <p><strong>Tipo:</strong> {{ acervo.tipo.tipo }}</p>
+          <p><strong>Categoria:</strong> {{ acervo.categoria.categoria }}</p>
+          <p><strong>Resumo:</strong> {{ acervo.resumo }}</p>
+          <p><strong>Situação:</strong> {{ acervo.situacao.situacao }}</p>
+          <p><strong>Estado:</strong> {{ acervo.estado.estado }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

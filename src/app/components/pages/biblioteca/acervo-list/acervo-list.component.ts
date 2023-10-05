@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { environment } from 'src/environments/environment';
-// import { MatPaginatorIntl } from '@angular/material/paginator';
-// import { CustomMatPaginatorIntl } from 'src/app/helper/custom-mat-paginator-intl';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { MatPaginator, PageEvent } from '@angular/material/paginator';

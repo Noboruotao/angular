@@ -58,6 +58,8 @@ import { AtivExtraListComponent } from './components/pages/ativExtra/ativ-extra-
 import { AtivExtraTableComponent } from './components/pages/ativExtra/ativ-extra-table/ativ-extra-table.component';
 import { AtivExtraSugeridosTableComponent } from './components/pages/ativExtra/ativ-extra-sugeridos-table/ativ-extra-sugeridos-table.component';
 import { AtivExtraDetailComponent } from './components/pages/ativExtra/ativ-extra-detail/ativ-extra-detail.component';
+import { EmprestimoListComponent } from './components/pages/biblioteca/emprestimo/emprestimo-list/emprestimo-list.component';
+import { EmprestimoListTableComponent } from './components/pages/biblioteca/emprestimo/emprestimo-list-table/emprestimo-list-table.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +95,8 @@ import { AtivExtraDetailComponent } from './components/pages/ativExtra/ativ-extr
     AtivExtraTableComponent,
     AtivExtraSugeridosTableComponent,
     AtivExtraDetailComponent,
+    EmprestimoListComponent,
+    EmprestimoListTableComponent,
   ],
   imports: [
     BrowserModule,

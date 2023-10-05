@@ -46,4 +46,21 @@ export class BibliotecaService {
   getAcervo(id: number) {
     return this.httpClient.get(`${this.apiUrl}/getAcervo/${id}`);
   }
+
+  getEmprestimos(pendente: boolean, limit: number, page: number) {
+    let params = new HttpParams()
+      .set('limit', limit.toString())
+      .set('page', page.toString())
+      .set('pendente', pendente);
+
+    return this.httpClient
+      .get<any>(this.apiUrl + '/listEmprestimos', {
+        params: params,
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
 }

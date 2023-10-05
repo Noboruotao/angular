@@ -13,6 +13,8 @@ export class DisciplinaDetailComponent implements OnInit {
   classes: any;
   notas: any;
   nota_final: Number;
+  showCard: boolean = false;
+  showCardBody: boolean = false;
 
   constructor(
     private disciplinaService: DisciplinaService,
@@ -21,8 +23,17 @@ export class DisciplinaDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.disciplinaService.getDisciplina(id).subscribe((data: any) => {
-      this.disciplina = data.data;
+    this.disciplinaService.getDisciplina(id).subscribe({
+      next: (data) => {
+        this.disciplina = data.data;
+        this.showCard = true;
+        this.showCardBody = true;
+      },
+      error: (error) => {
+        this.disciplina = { nome: 'Não Encontrado' };
+        this.showCard = true;
+
+      },
     });
   }
 }

@@ -8,7 +8,7 @@
     </form>
   </div>
 
-  <div class="acervos" *ngIf="acervoList; else noAcervo">
+  <div class="acervos" *ngIf="totalItems != 0; else noAcervo">
     <div class="acervo-container">
       <div
         class="acervo card"
@@ -20,16 +20,18 @@
           alt="Not Found"
           [routerLink]="'/biblioteca/acervo/' + acervo.id"
         />
-        <a
-          class="acervo-link"
-          [routerLink]="'/biblioteca/acervo/' + acervo.id"
-          [title]="acervo.titulo"
-        >
-          {{ acervo.titulo }}
-        </a>
-        <p class="autor-nome" [title]="acervo.autor.nome">
-          {{ acervo.autor.nome }}
-        </p>
+        <div class="align-bottom">
+          <a
+            class="acervo-link"
+            [routerLink]="'/biblioteca/acervo/' + acervo.id"
+            [title]="acervo.titulo"
+          >
+            {{ acervo.titulo }}
+          </a>
+          <p class="autor-nome" [title]="acervo.autor.nome">
+            {{ acervo.autor.nome }}
+          </p>
+        </div>
 
         <div class="accordion-item">
           <h2 class="accordion-header" [id]="'heading' + acervo.id">
