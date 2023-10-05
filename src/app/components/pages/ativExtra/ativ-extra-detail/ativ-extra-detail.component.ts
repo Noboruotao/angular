@@ -9,6 +9,7 @@ import { AtivExtraService } from 'src/app/services/ativExtra/ativ-extra.service'
 })
 export class AtivExtraDetailComponent {
   ativExtraInfo: any;
+  showCard: boolean = false;
 
   constructor(
     private ativExtraService: AtivExtraService,
@@ -16,8 +17,18 @@ export class AtivExtraDetailComponent {
   ) {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.ativExtraService.getAtivExtraDetail(id).subscribe((data: any) => {
-      this.ativExtraInfo = data.data;
+    this.ativExtraService.getAtivExtraDetail(id).subscribe({
+      next: (data) => {
+        this.ativExtraInfo = data.data;
+        this.showCard = true;
+      },
+      error: () => {
+        this.ativExtraInfo = {
+          nome: 'ATIVIDADE EXTRACURRICULAR NÃO ENCONTRADO',
+          descricao: 'O Atividade Extracurricular não foi encontrado',
+        };
+        this.showCard = true;
+      },
     });
   }
 }

@@ -1,7 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { ClasseService } from 'src/app/services/classe/classe.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProfessorService } from 'src/app/services/professor/professor.service';
@@ -37,18 +42,19 @@ export class MakeNotaComponent {
     private classeService: ClasseService,
     private professorService: ProfessorService,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder
   ) {
     this.route.queryParams.subscribe((params) => {
       this.aluno_id = +params['aluno_id'];
       this.classe_id = +params['classe_id'];
     });
 
-    this.notaForm = new FormGroup({
-      nota: new FormControl('', [Validators.required]),
-      tipo_avaliacao_id: new FormControl('', [Validators.required]),
-      aluno_id: new FormControl(''),
-      classe_id: new FormControl(''),
+    this.notaForm = this.formBuilder.group({
+      nota: ['', Validators.required],
+      tipo_avaliacao_id: ['', Validators.required],
+      aluno_id: [''],
+      classe_id: [''],
     });
 
     this.getClasse();

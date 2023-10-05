@@ -76,10 +76,10 @@ export class CursosTableComponent {
     this.getCursos();
   }
 
-  ngAfterViewInit() {
-    this.cursos.paginator = this.paginator;
-    this.cursos.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.cursos.paginator = this.paginator;
+  //   this.cursos.sort = this.sort;
+  // }
 
   search(event: Event) {
     const target = event.target as HTMLInputElement;

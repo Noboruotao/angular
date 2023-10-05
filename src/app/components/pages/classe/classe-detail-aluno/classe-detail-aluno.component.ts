@@ -10,7 +10,6 @@ import { ClasseService } from 'src/app/services/classe/classe.service';
 })
 export class ClasseDetailAlunoComponent {
   classe: any;
-
   constructor(
     private classeService: ClasseService,
     private route: ActivatedRoute
@@ -19,6 +18,5 @@ export class ClasseDetailAlunoComponent {
     this.classeService.getClasseDetail(id).subscribe((data: any) => {
       this.classe = data.data;
     });
-
   }
 }

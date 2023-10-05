@@ -1,47 +1,55 @@
-<div class="card" *ngIf="classe">
+<!-- <div class="card" *ngIf="classe">
   <div class="card-header">{{ classe.disciplina.nome }}-{{ classe.ano }}</div>
   <div class="card-body">
-    <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="alunos" matSort>
-        <ng-container matColumnDef="nome">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
-          <td mat-cell *matCellDef="let row" [routerLink]="'/pessoa/' + row.id">
-            {{ row.nome }}
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="makeNota">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-          <td mat-cell *matCellDef="let row">
-            <button mat-raised-button color="accent" [disabled]="!classe.ativo">
-              <a
-                [routerLink]="'/classe/nota'"
-                [queryParams]="{ aluno_id: row.id, classe_id: classe_id }"
-                style="color: black"
-              >
-                Nova Nota
-              </a>
-            </button>
+    <div class="mat-elevation-z8"> -->
+<table mat-table [dataSource]="alunos" matSort>
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+    <td mat-cell *matCellDef="let row" [routerLink]="'/pessoa/' + row.id">
+      {{ row.nome }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="makeNota">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+    <td mat-cell *matCellDef="let row">
+      <button
+        mat-raised-button
+        color="accent"
+        [disabled]="!classe.ativo || classe.professor_id != user_id"
+      >
+        <a
+          [routerLink]="'/classe/nota'"
+          [queryParams]="{ aluno_id: row.id, classe_id: classe_id }"
+          style="color: black"
+        >
+          Nova Nota
+        </a>
+      </button>
 
-            <button mat-raised-button color="warn" [disabled]="!classe.ativo">
-              <a
-                [routerLink]="'/classe/notaFinal'"
-                [queryParams]="{ aluno_id: row.id, classe_id: classe_id }"
-                style="color: white"
-              >
-                Dar Nota Final
-              </a>
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <button
+        mat-raised-button
+        color="warn"
+        [disabled]="!classe.ativo || classe.professor_id != user_id"
+      >
+        <a
+          [routerLink]="'/classe/notaFinal'"
+          [queryParams]="{ aluno_id: row.id, classe_id: classe_id }"
+          style="color: white"
+        >
+          Dar Nota Final
+        </a>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="2">
-            <h4 style="text-align: center; padding: 1em">Sem Aluno</h4>
-          </td>
-        </tr>
-      </table>
-    </div>
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="2">
+      <h4 style="text-align: center; padding: 1em">Sem Aluno</h4>
+    </td>
+  </tr>
+</table>
+<!-- </div>
   </div>
-</div>
+</div> -->

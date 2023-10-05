@@ -1,23 +1,27 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
-<div class="content-wrapper">
-  <div class="card" *ngIf="ativExtraInfo; else noCurso">
+<div class="content-wrapper" style="background-color: gray">
+  <div class="card" *ngIf="showCard">
     <div class="card-header">
-      <h1>{{ ativExtraInfo.nome }}</h1>
+      <h1>
+        {{ ativExtraInfo.nome }}
+      </h1>
     </div>
     <div class="card-body">
       <div class="curso-detail">
-        <p>{{ ativExtraInfo.descricao }}</p>
+        <p>
+          {{ ativExtraInfo.descricao }}
+        </p>
       </div>
     </div>
   </div>
 </div>
-<ng-template #noCurso>
+<!-- <ng-template #noCurso>
   <div class="card">
     <div class="card-header">ATIVIDADE EXTRACURRICULAR NÃO ENCONTRADO</div>
     <div class="card-body">
       <p>O Atividade Extracurricular não foi encontrado</p>
     </div>
   </div>
-</ng-template>
+</ng-template> -->
 <app-footer></app-footer>

@@ -11,4 +11,5 @@ export class ClasseAlunoTableComponent {
   @Input() classe: any;
   @Input() classe_id: number;
   @Input() alunos: MatTableDataSource<any>;
+  @Input() user_id: number;
 }

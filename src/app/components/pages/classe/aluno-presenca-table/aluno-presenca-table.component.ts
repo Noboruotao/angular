@@ -13,6 +13,8 @@ export class AlunoPresencaTableComponent {
   @Input() classe_id: number;
   @Input() alunos: MatTableDataSource<any>;
 
+  @Input() user_id: number;
+
   showData() {
     console.log(this.alunos.data);
   }
