@@ -69,4 +69,20 @@ export class BibliotecaService {
         })
       );
   }
+
+  getEmprestimoDetail(id: number) {
+    return this.httpClient.get<any>(this.apiUrl + '/getEmprestimoDetail/' + id);
+  }
+
+  makeEmprestimo(acervo_id: number, leitor_id: number) {
+    const request_body = {
+      acervo_id: acervo_id,
+      leitor_id: leitor_id,
+    };
+
+    return this.httpClient.post(
+      this.apiUrl + '/createEmprestimo',
+      request_body
+    );
+  }
 }

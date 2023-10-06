@@ -1,5 +1,6 @@
-.card {
-    margin: 1em;
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
 }
 
 tr.mat-mdc-footer-row {

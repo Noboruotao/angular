@@ -1,10 +1,33 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
 <div class="content-wrapper" style="background-color: gray">
-  <div class="card m-3">
+  <div class="card m-3" *ngIf="showCard">
     <div class="card-header"><strong>Emprestimo</strong></div>
     <div class="card-body">
-      <p>emprestimo-detail works!</p>
+      <p>
+        <strong>Acervo:</strong>
+        <a [routerLink]="'biblioteca/acervo/' + emprestimo.acervo.id">{{
+          emprestimo.acervo.titulo
+        }}</a>
+      </p>
+
+      <p>
+        <strong>Leitor:</strong>
+        <a [routerLink]="'/pessoa/' + emprestimo.leitor.id">{{
+          emprestimo.leitor.nome
+        }}</a>
+      </p>
+      <p>
+        <strong>Bibliotecário: </strong
+        ><a [routerLink]="'/pessoa/' + emprestimo.bibliotecario.id">{{
+          emprestimo.bibliotecario.nome
+        }}</a>
+      </p>
+      <div class="multa" *ngIf="emprestimo.multa">
+        <h4 style="color: red">Multa</h4>
+        <p><strong>Motivo:</strong> {{ emprestimo.multa.mensagem }}</p>
+        <p><strong>Valor:</strong> {{ emprestimo.multa.valor }}</p>
+      </div>
     </div>
   </div>
 </div>

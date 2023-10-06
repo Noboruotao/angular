@@ -30,6 +30,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ListCursoComponent } from './components/pages/curso/list-curso/list-curso.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
@@ -62,6 +63,7 @@ import { AtivExtraDetailComponent } from './components/pages/ativExtra/ativ-extr
 import { EmprestimoListComponent } from './components/pages/biblioteca/emprestimo/emprestimo-list/emprestimo-list.component';
 import { EmprestimoListTableComponent } from './components/pages/biblioteca/emprestimo/emprestimo-list-table/emprestimo-list-table.component';
 import { EmprestimoDetailComponent } from './components/pages/biblioteca/emprestimo/emprestimo-detail/emprestimo-detail.component';
+import { MakeEmprestimoComponent } from './components/pages/biblioteca/emprestimo/make-emprestimo/make-emprestimo.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +102,7 @@ import { EmprestimoDetailComponent } from './components/pages/biblioteca/emprest
     EmprestimoListComponent,
     EmprestimoListTableComponent,
     EmprestimoDetailComponent,
+    MakeEmprestimoComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,6 +127,7 @@ import { EmprestimoDetailComponent } from './components/pages/biblioteca/emprest
     MatTooltipModule,
     MatSlideToggleModule,
     MatSnackBarModule,
+    MatAutocompleteModule,
   ],
   providers: [
     {

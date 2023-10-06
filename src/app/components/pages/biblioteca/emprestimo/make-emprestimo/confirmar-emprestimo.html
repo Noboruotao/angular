@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Confirmação do Cadastro de Nota</h1>
+<div mat-dialog-content>
+  <p>
+    Deseja confirmar o empréstimo do acervo {{ acervo.titulo }} para {{
+    leitor.nome }}?
+  </p>
+  <p>Data Atual: {{ formatDate(hoje) }}</p>
+  <p>Data de Devoluçao: {{ formatDate(date14DaysLater) }}</p>
+
+  <section>
+    <mat-checkbox (change)="isDisabled=!isDisabled">CONFIRMAR</mat-checkbox>
+  </section>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    mat-dialog-close
+    [disabled]="isDisabled"
+    (click)="fazerEmprestimo()"
+  >
+    Salvar
+  </button>
+  <button mat-button mat-dialog-close>Fechar</button>
+</div>

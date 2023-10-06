@@ -1,0 +1,85 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="content-wrapper" style="background-color: gray">
+  <div class="row" *ngIf="acervo">
+    <div class="card m-4 col-11 col-md-5">
+      <div class="card-header">Acervo</div>
+      <div class="card-body">
+        <div class="col-md-6 col-sm-12">
+          <img
+            class="acervo-img"
+            src="{{ bibliotecaUrl }}/getCapa/{{ acervo.capa }}"
+            alt="Not Found"
+            style="max-width: 100%"
+          />
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <p><strong>Autor:</strong> {{ acervo.autor.nome }}</p>
+          <p><strong>Editora:</strong> {{ acervo.editora.nome }}</p>
+          <p><strong>Idioma:</strong> {{ acervo.idioma.idioma }}</p>
+          <p><strong>Tipo:</strong> {{ acervo.tipo.tipo }}</p>
+          <p><strong>Categoria:</strong> {{ acervo.categoria.categoria }}</p>
+          <p><strong>Resumo:</strong> {{ acervo.resumo }}</p>
+          <p><strong>Situação:</strong> {{ acervo.situacao.situacao }}</p>
+          <p><strong>Estado:</strong> {{ acervo.estado.estado }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card m-4 col-11 col-md-5">
+      <div class="card-header">Leitor</div>
+      <div class="card-body">
+        <div class="search-container">
+          <mat-form-field>
+            <mat-label>Procurar</mat-label>
+            <input
+              matInput
+              (keyup)="search($event)"
+              placeholder="Nome ou CPF do leitor"
+              #input
+              style="padding-top: 12px"
+              [matAutocomplete]="auto"
+            />
+            <mat-autocomplete
+              #auto="matAutocomplete"
+              (optionSelected)="onOptionSelected($event)"
+            >
+              <mat-option
+                *ngFor="let option of filteredOptions | async"
+                [value]="option.id"
+              >
+                {{ option.nome }} - {{ option.cpf }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+        <div
+          class="leitor"
+          *ngIf="pessoa && pessoaFoto"
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <h3>{{ pessoa.nome }}</h3>
+          <img
+            [src]="pessoaFoto"
+            alt="foto"
+            id="pessoaFoto"
+            style="max-width: 50%"
+          />
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="fazerEmprestimo()"
+          >
+            Fazer Empréstimo
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
