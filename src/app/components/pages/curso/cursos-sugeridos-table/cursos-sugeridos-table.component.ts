@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { AlunoService } from 'src/app/services/aluno/aluno.service';
@@ -45,7 +46,8 @@ export class CursosSugeridosTableComponent {
 
   constructor(
     protected authService: AuthService,
-    private alunoService: AlunoService
+    private alunoService: AlunoService,
+    private _snackBar: MatSnackBar
   ) {
     this.sugeridos = new MatTableDataSource<any>([]);
 
@@ -63,11 +65,16 @@ export class CursosSugeridosTableComponent {
         this.sortColumn,
         this.sortOrder
       )
-      .subscribe((data: any) => {
-        this.sugeridos = new MatTableDataSource(data.data);
-        this.totalItems = data.count;
-        this.showTable =
-          this.searchTerm == '' && this.totalItems == 0 ? false : true;
+      .subscribe({
+        next: (data) => {
+          this.sugeridos = new MatTableDataSource(data.data);
+          this.totalItems = data.count;
+          this.showTable =
+            this.searchTerm == '' && this.totalItems == 0 ? false : true;
+        },
+        error: (error) => {
+          this.openSnackBar(error.error.message);
+        },
       });
   }
 
@@ -88,5 +95,9 @@ export class CursosSugeridosTableComponent {
     this.searchTerm = target.value;
     this.currentPage = 0;
     this.getSugeridos();
+  }
+
+  openSnackBar(message: string, action: string = 'Fechar') {
+    this._snackBar.open(message, action, { duration: 2000 });
   }
 }

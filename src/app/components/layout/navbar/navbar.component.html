@@ -123,24 +123,20 @@
             >
               <p>
                 <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
-                Biblioteca
+                {{
+                  this.authService.checkRoles(["Bibliotecário"])
+                    ? "Lista de Acervos"
+                    : "Biblioteca"
+                }}
               </p>
             </a>
           </li>
         </div>
-        <div class="navBarForBibliotecario">
-          <li class="nav-item">
-            <a
-              routerLink="/biblioteca/acervo/list"
-              class="nav-link"
-              [routerLinkActive]="'active'"
-            >
-              <p>
-                <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
-                Lista de Acervos
-              </p>
-            </a>
-          </li>
+
+        <div
+          class="navBarForBibliotecario"
+          *ngIf="this.authService.checkRoles(['Bibliotecário'])"
+        >
           <li class="nav-item">
             <a
               routerLink="/biblioteca/emprestimo/list"

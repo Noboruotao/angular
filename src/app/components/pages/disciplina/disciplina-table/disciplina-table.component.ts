@@ -4,6 +4,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Sort } from '@angular/material/sort';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { DisciplinaService } from 'src/app/services/disciplina/disciplina.service';
@@ -47,7 +48,8 @@ export class DisciplinaTableComponent {
 
   constructor(
     private authService: AuthService,
-    private disciplinaService: DisciplinaService
+    private disciplinaService: DisciplinaService,
+    private _snackBar: MatSnackBar
   ) {
     this.disciplinaList = new MatTableDataSource<any>([]);
     this.getDisciplinas();
@@ -62,10 +64,15 @@ export class DisciplinaTableComponent {
         this.sortColumn,
         this.sortOrder
       )
-      .subscribe((data: any) => {
-        this.disciplinaList = new MatTableDataSource<any>(data.data);
-        this.totalItems = data.count;
-        this.showCard = true;
+      .subscribe({
+        next: (data: any) => {
+          this.disciplinaList = new MatTableDataSource<any>(data.data);
+          this.totalItems = data.count;
+          this.showCard = true;
+        },
+        error: (error) => {
+          this.openSnackBar(error.error.message);
+        },
       });
   }
 
@@ -86,5 +93,9 @@ export class DisciplinaTableComponent {
     this.sortColumn = sort.active;
     this.sortOrder = sort.direction == 'desc' ? 'desc' : 'asc';
     this.getDisciplinas();
+  }
+
+  openSnackBar(message: string, action: string = 'Fechar') {
+    this._snackBar.open(message, action, { duration: 2000 });
   }
 }

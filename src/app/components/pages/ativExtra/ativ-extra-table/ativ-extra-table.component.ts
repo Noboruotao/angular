@@ -4,6 +4,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Sort } from '@angular/material/sort';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { AtivExtraService } from 'src/app/services/ativExtra/ativ-extra.service';
@@ -49,7 +50,8 @@ export class AtivExtraTableComponent {
 
   constructor(
     protected authService: AuthService,
-    private ativExtraService: AtivExtraService
+    private ativExtraService: AtivExtraService,
+    private _snackBar: MatSnackBar
   ) {
     this.ativExtras = new MatTableDataSource<any>([]);
     this.getAtivExtras();
@@ -65,10 +67,15 @@ export class AtivExtraTableComponent {
         this.sortOrder,
         this.tipo
       )
-      .subscribe((data: any) => {
-        this.ativExtras = new MatTableDataSource(data.data);
-        this.totalItems = data.count;
-        this.showCard = true;
+      .subscribe({
+        next: (data) => {
+          this.ativExtras = new MatTableDataSource(data.data);
+          this.totalItems = data.count;
+          this.showCard = true;
+        },
+        error: (error) => {
+          this.openSnackBar(error.error.message);
+        },
       });
   }
 
@@ -101,5 +108,9 @@ export class AtivExtraTableComponent {
     this.tipo = target.value;
     this.currentPage = 0;
     this.getAtivExtras();
+  }
+
+  openSnackBar(message: string, action: string = 'Fechar') {
+    this._snackBar.open(message, action, { duration: 2000 });
   }
 }

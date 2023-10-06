@@ -1,0 +1,8 @@
+tr:hover {
+    background: whitesmoke;
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}

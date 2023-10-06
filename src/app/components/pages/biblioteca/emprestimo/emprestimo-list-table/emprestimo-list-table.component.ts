@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Sort } from '@angular/material/sort';
-
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
 
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
@@ -19,21 +19,33 @@ export class EmprestimoListTableComponent {
   pageSize = 5;
   totalItems = 0;
   currentPage = 0;
+  durationInSeconds = 5;
+
+  searchTerm: string = '';
+
   faCheck = faCheck;
-  constructor(private bibliotecaService: BibliotecaService) {
+  constructor(
+    private bibliotecaService: BibliotecaService,
+    private _snackBar: MatSnackBar
+  ) {
     this.getEmprestimos();
   }
 
   getEmprestimos() {
     this.bibliotecaService
-      .getEmprestimos(this.pendente, this.pageSize, this.currentPage)
+      .getEmprestimos(
+        this.pendente,
+        this.pageSize,
+        this.currentPage,
+        this.searchTerm
+      )
       .subscribe({
         next: (data) => {
           this.emprestimos = data.data;
           this.totalItems = data.count;
         },
         error: (error) => {
-          console.log(error);
+          this.openSnackBar(error.error.message);
         },
       });
   }
@@ -48,5 +60,16 @@ export class EmprestimoListTableComponent {
     this.pendente = !this.pendente;
     this.currentPage = 0;
     this.getEmprestimos();
+  }
+
+  search(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.searchTerm = target.value;
+    this.currentPage = 0;
+    this.getEmprestimos();
+  }
+
+  openSnackBar(message: string, action: string = 'Fechar') {
+    this._snackBar.open(message, action, { duration: 2000 });
   }
 }

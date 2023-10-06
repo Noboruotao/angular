@@ -17,6 +17,7 @@ import { MakeNotaFinalComponent } from './components/pages/classe/make-nota-fina
 import { AtivExtraListComponent } from './components/pages/ativExtra/ativ-extra-list/ativ-extra-list.component';
 import { AtivExtraDetailComponent } from './components/pages/ativExtra/ativ-extra-detail/ativ-extra-detail.component';
 import { EmprestimoListComponent } from './components/pages/biblioteca/emprestimo/emprestimo-list/emprestimo-list.component';
+import { EmprestimoDetailComponent } from './components/pages/biblioteca/emprestimo/emprestimo-detail/emprestimo-detail.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -88,6 +89,10 @@ const routes: Routes = [
       {
         path: 'biblioteca/emprestimo/list',
         component: EmprestimoListComponent,
+      },
+      {
+        path: 'biblioteca/emprestimo/:id',
+        component: EmprestimoDetailComponent,
       },
     ],
   },

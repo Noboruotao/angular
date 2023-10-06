@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { PreloaderComponent } from './components/layout/preloader/preloader.component';
 
 import { AuthInterceptor } from './interceptors/Auth/auth.interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -60,6 +61,7 @@ import { AtivExtraSugeridosTableComponent } from './components/pages/ativExtra/a
 import { AtivExtraDetailComponent } from './components/pages/ativExtra/ativ-extra-detail/ativ-extra-detail.component';
 import { EmprestimoListComponent } from './components/pages/biblioteca/emprestimo/emprestimo-list/emprestimo-list.component';
 import { EmprestimoListTableComponent } from './components/pages/biblioteca/emprestimo/emprestimo-list-table/emprestimo-list-table.component';
+import { EmprestimoDetailComponent } from './components/pages/biblioteca/emprestimo/emprestimo-detail/emprestimo-detail.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +99,7 @@ import { EmprestimoListTableComponent } from './components/pages/biblioteca/empr
     AtivExtraDetailComponent,
     EmprestimoListComponent,
     EmprestimoListTableComponent,
+    EmprestimoDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,6 +123,7 @@ import { EmprestimoListTableComponent } from './components/pages/biblioteca/empr
     MatTabsModule,
     MatTooltipModule,
     MatSlideToggleModule,
+    MatSnackBarModule,
   ],
   providers: [
     {

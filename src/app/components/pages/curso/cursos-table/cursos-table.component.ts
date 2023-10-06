@@ -4,6 +4,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Sort } from '@angular/material/sort';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { CursoService } from 'src/app/services/curso/curso.service';
@@ -48,7 +49,8 @@ export class CursosTableComponent {
 
   constructor(
     protected authService: AuthService,
-    private cursoService: CursoService
+    private cursoService: CursoService,
+    private _snackBar: MatSnackBar
   ) {
     this.cursos = new MatTableDataSource<any>([]);
     this.getCursos();
@@ -63,10 +65,15 @@ export class CursosTableComponent {
         this.sortColumn,
         this.sortOrder
       )
-      .subscribe((data: any) => {
-        this.cursos = new MatTableDataSource(data.data);
-        this.totalItems = data.count;
-        this.showCard = true;
+      .subscribe({
+        next: (data) => {
+          this.cursos = new MatTableDataSource(data.data);
+          this.totalItems = data.count;
+          this.showCard = true;
+        },
+        error: (error) => {
+          this.openSnackBar(error.error.message);
+        },
       });
   }
 
@@ -92,5 +99,9 @@ export class CursosTableComponent {
     this.sortColumn = sort.active;
     this.sortOrder = sort.direction == 'desc' ? 'desc' : 'asc';
     this.getCursos();
+  }
+
+  openSnackBar(message: string, action: string = 'Fechar') {
+    this._snackBar.open(message, action, { duration: 2000 });
   }
 }

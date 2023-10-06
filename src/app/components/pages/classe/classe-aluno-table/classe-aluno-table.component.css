@@ -20,3 +20,7 @@ th {
 button {
     margin: 0px 5px
 }
+
+tr:hover {
+    background: whitesmoke;
+}

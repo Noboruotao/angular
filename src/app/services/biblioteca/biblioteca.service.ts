@@ -47,10 +47,16 @@ export class BibliotecaService {
     return this.httpClient.get(`${this.apiUrl}/getAcervo/${id}`);
   }
 
-  getEmprestimos(pendente: boolean, limit: number, page: number) {
+  getEmprestimos(
+    pendente: boolean,
+    limit: number,
+    page: number,
+    search: string
+  ) {
     let params = new HttpParams()
       .set('limit', limit.toString())
       .set('page', page.toString())
+      .set('search', search.toString())
       .set('pendente', pendente);
 
     return this.httpClient
