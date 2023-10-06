@@ -160,7 +160,6 @@ export class ConfirmEmprestimoDialog {
     return this.data.leitor;
   }
 
-  // Custom method to format the date as 'dd/MM/yyyy'
   formatDate(data: Date): string {
     const day = data.getDate();
     const month = data.getMonth() + 1;

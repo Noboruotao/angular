@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,6 +14,7 @@ export class EmprestimoDetailComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private bibliotecaService: BibliotecaService
   ) {
     const id: number = Number(this.route.snapshot.paramMap.get('id'));
@@ -23,6 +25,18 @@ export class EmprestimoDetailComponent {
       },
       error: (error) => {
         console.log(error.error);
+      },
+    });
+  }
+
+  devolver() {
+    this.bibliotecaService.fazerDevolucao(this.emprestimo.id).subscribe({
+      next: (data: any) => {
+        console.log(data.data);
+        this.router.navigate(['biblioteca/emprestimo/list']);
+      },
+      error: (error) => {
+        console.log(error.error.message);
       },
     });
   }

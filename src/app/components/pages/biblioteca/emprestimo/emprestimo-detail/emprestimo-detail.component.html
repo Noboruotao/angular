@@ -28,6 +28,10 @@
         <p><strong>Motivo:</strong> {{ emprestimo.multa.mensagem }}</p>
         <p><strong>Valor:</strong> {{ emprestimo.multa.valor }}</p>
       </div>
+
+      <button role="button" class="btn btn-primary" (click)="devolver()">
+        Devolver
+      </button>
     </div>
   </div>
 </div>

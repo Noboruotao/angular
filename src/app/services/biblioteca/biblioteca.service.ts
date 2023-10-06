@@ -85,4 +85,12 @@ export class BibliotecaService {
       request_body
     );
   }
+
+  fazerDevolucao(id: number) {
+    const request_body = {
+      emprestimo_id: id,
+    };
+
+    return this.httpClient.post(this.apiUrl + '/makeDevolucao', request_body);
+  }
 }
