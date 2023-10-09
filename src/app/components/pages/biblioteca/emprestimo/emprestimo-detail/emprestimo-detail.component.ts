@@ -6,11 +6,7 @@ import {
   MatDialog,
   MAT_DIALOG_DATA,
   MatDialogRef,
-  MatDialogModule,
 } from '@angular/material/dialog';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatButtonModule } from '@angular/material/button';
-import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-emprestimo-detail',
@@ -43,28 +39,12 @@ export class EmprestimoDetailComponent {
     this.dialog.open(ConfirmDevolucaoDialog, {
       data: this.emprestimo,
     });
-    // this.bibliotecaService.fazerDevolucao(this.emprestimo.id).subscribe({
-    //   next: (data: any) => {
-    // this.router.navigate(['biblioteca/emprestimo/list']);
-    //   },
-    //   error: (error) => {
-    //     console.log(error.error.message);
-    //   },
-    // });
   }
 }
 
 @Component({
   selector: 'confirm-make-devolucao-modal',
   templateUrl: './confirmar-devolucao.html',
-  standalone: true,
-  imports: [
-    CommonModule,
-    // NgIf,
-    MatDialogModule,
-    MatButtonModule,
-    MatCheckboxModule,
-  ],
 })
 export class ConfirmDevolucaoDialog {
   isDisabled = true;
@@ -75,13 +55,7 @@ export class ConfirmDevolucaoDialog {
     private bibliotecaService: BibliotecaService,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public emprestimo: any
-  ) {
-    console.log(this.emprestimo);
-    console.log(this.acervo);
-    console.log(this.bibliotecario);
-    console.log(this.leitor);
-    console.log(this.multa);
-  }
+  ) {}
 
   get leitor() {
     return this.emprestimo.leitor;
@@ -97,9 +71,14 @@ export class ConfirmDevolucaoDialog {
   }
 
   devolver() {
+    console.log(this.pagarMulta);
     this.bibliotecaService.fazerDevolucao(this.emprestimo.id).subscribe({
       next: (data: any) => {
-        this.router.navigate(['biblioteca/emprestimo/list']);
+        if (this.pagarMulta) {
+          this.router.navigate([`secretaria/multa/${this.multa.id}`]);
+        } else {
+          this.router.navigate(['biblioteca/emprestimo/list']);
+        }
       },
       error: (error) => {
         console.log(error.error.message);

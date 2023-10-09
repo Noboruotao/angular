@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Confirmação do Pagamento de Multa</h1>
+<div *ngIf="!pago">
+  <div mat-dialog-content>
+    <form [formGroup]="pagamentoForm">
+      <mat-form-field floatLabel="always">
+        <mat-label>Valor sendo Pago</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="0"
+          formControlName="valor"
+          min="0"
+        />
+        <span matTextPrefix>R$&nbsp;</span>
+      </mat-form-field>
+    </form>
+    <section>
+      <mat-checkbox (change)="isDisabled=!isDisabled">CONFIRMAR</mat-checkbox>
+    </section>
+  </div>
+  <div mat-dialog-actions>
+    <button
+      mat-button
+      mat-dialog-close
+      [disabled]="isDisabled"
+      (click)="pagar()"
+    >
+      Salvar
+    </button>
+    <button mat-button mat-dialog-close>Fechar</button>
+  </div>
+</div>

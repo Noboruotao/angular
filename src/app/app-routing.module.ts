@@ -20,6 +20,7 @@ import { EmprestimoListComponent } from './components/pages/biblioteca/emprestim
 import { EmprestimoDetailComponent } from './components/pages/biblioteca/emprestimo/emprestimo-detail/emprestimo-detail.component';
 import { MakeEmprestimoComponent } from './components/pages/biblioteca/emprestimo/make-emprestimo/make-emprestimo.component';
 import { ListMultasComponent } from './components/pages/secretaria/list-multas/list-multas.component';
+import { MultaDetailComponent } from './components/pages/secretaria/multa-detail/multa-detail.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -103,6 +104,10 @@ const routes: Routes = [
       {
         path: 'secretaria/multa/list',
         component: ListMultasComponent,
+      },
+      {
+        path: 'secretaria/multa/:id',
+        component: MultaDetailComponent,
       },
     ],
   },

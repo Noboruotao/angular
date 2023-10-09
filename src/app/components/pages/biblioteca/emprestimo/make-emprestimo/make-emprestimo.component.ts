@@ -130,6 +130,7 @@ export class MakeEmprestimoComponent {
     });
   }
 }
+
 @Component({
   selector: 'confirm-make-emprestimo-modal',
   templateUrl: './confirmar-emprestimo.html',

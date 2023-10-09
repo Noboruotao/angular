@@ -16,6 +16,13 @@
   </section>
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close [disabled]="isDisabled">Salvar</button>
+  <button
+    mat-button
+    mat-dialog-close
+    [disabled]="isDisabled"
+    (click)="devolver()"
+  >
+    Salvar
+  </button>
   <button mat-button mat-dialog-close>Fechar</button>
 </div>

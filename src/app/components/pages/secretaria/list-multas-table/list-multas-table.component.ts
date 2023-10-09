@@ -3,6 +3,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SecretariaService } from 'src/app/services/secretaria/secretaria.service';
+import { faX } from '@fortawesome/free-solid-svg-icons';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-list-multas-table',
@@ -11,7 +13,15 @@ import { SecretariaService } from 'src/app/services/secretaria/secretaria.servic
 })
 export class ListMultasTableComponent {
   multas: MatTableDataSource<any>;
-  displayedColumns: string[] = ['nome', 'mensagem', 'valor'];
+  displayedColumns: string[] = [
+    'nome',
+    'mensagem',
+    'dias_atrasados',
+    'valor',
+    'pago',
+  ];
+
+  faX = faX;
 
   pago = false;
   pageSize = 5;
@@ -62,5 +72,13 @@ export class ListMultasTableComponent {
 
   openSnackBar(message: string, action: string = 'Fechar') {
     this._snackBar.open(message, action, { duration: 2000 });
+  }
+
+  formatDate(inputDate: string): string {
+    const dateObj = new Date(inputDate);
+    const day = dateObj.getDate();
+    const month = dateObj.getMonth() + 1;
+    const year = dateObj.getFullYear();
+    return `${day}/${month}/${year}`;
   }
 }

@@ -27,4 +27,12 @@ export class SecretariaService {
         })
       );
   }
+
+  getMulta(id: number) {
+    return this.httpClient.get(`${this.apiUrl}/getMulta/${id}`).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
 }

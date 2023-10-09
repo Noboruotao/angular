@@ -13,6 +13,7 @@ import {
   faGraduationCap,
   faUserGroup,
   faBaseball,
+  faWalking,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -32,6 +33,7 @@ export class NavbarComponent implements OnInit {
   faGraduationCap = faGraduationCap;
   faUserGroup = faUserGroup;
   faBaseball = faBaseball;
+  faWalking = faWalking;
 
   constructor(
     private pessoaService: PessoaService,

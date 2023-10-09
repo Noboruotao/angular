@@ -1,1 +1,60 @@
-<p>multa-detail works!</p>
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="content-wrapper" style="background-color: gray">
+  <div class="card m-3" *ngIf="showCard">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-6"><strong>Multa</strong></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <table style="min-width: 100%">
+        <tr>
+          <th rowspan="6">
+            <img
+              [src]="pessoaFoto"
+              alt="foto"
+              id="pessoaFoto"
+              style="max-width: 50%"
+            />
+          </th>
+          <th colspan="2">
+            <h3>Nome: {{ multa.pessoa.nome }}</h3>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <strong>{{ multa.mensagem }}</strong>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">Email: {{ multa.pessoa.email }}</td>
+        </tr>
+        <tr>
+          <td>Telefone: {{ multa.pessoa.telefone_1 }}</td>
+          <td>Telefone: {{ multa.pessoa.telefone_2 }}</td>
+        </tr>
+        <tr>
+          <td>Valor: R${{ multa.valor | number : "1.2-2" }}</td>
+          <td>
+            Dias Atrasados:
+            {{ multa.dias_atrasados }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button
+              role="button"
+              class="btn btn-primary"
+              [disabled]="disable"
+              (click)="pagarMulta()"
+            >
+              Pagar
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

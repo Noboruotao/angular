@@ -22,9 +22,26 @@
     <td mat-cell *matCellDef="let row">{{ row.mensagem }}</td>
   </ng-container>
 
+  <ng-container matColumnDef="dias_atrasados">
+    <th mat-header-cell *matHeaderCellDef>Dias Atrasados</th>
+    <td mat-cell *matCellDef="let row">{{ row.dias_atrasados }}</td>
+  </ng-container>
+
   <ng-container matColumnDef="valor">
     <th mat-header-cell *matHeaderCellDef>Valor</th>
     <td mat-cell *matCellDef="let row">{{ row.valor }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="pago">
+    <th mat-header-cell *matHeaderCellDef>Pago?</th>
+    <td mat-cell *matCellDef="let row">
+      <ng-container *ngIf="row.pago; else showXIcon">
+        {{ formatDate(row.pago) }}
+      </ng-container>
+      <ng-template #showXIcon>
+        <fa-icon [icon]="faX" style="color: red"></fa-icon>
+      </ng-template>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
