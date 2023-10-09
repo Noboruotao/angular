@@ -64,6 +64,9 @@ import { EmprestimoListComponent } from './components/pages/biblioteca/emprestim
 import { EmprestimoListTableComponent } from './components/pages/biblioteca/emprestimo/emprestimo-list-table/emprestimo-list-table.component';
 import { EmprestimoDetailComponent } from './components/pages/biblioteca/emprestimo/emprestimo-detail/emprestimo-detail.component';
 import { MakeEmprestimoComponent } from './components/pages/biblioteca/emprestimo/make-emprestimo/make-emprestimo.component';
+import { ListMultasComponent } from './components/pages/secretaria/list-multas/list-multas.component';
+import { ListMultasTableComponent } from './components/pages/secretaria/list-multas-table/list-multas-table.component';
+import { MultaDetailComponent } from './components/pages/secretaria/multa-detail/multa-detail.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +106,9 @@ import { MakeEmprestimoComponent } from './components/pages/biblioteca/emprestim
     EmprestimoListTableComponent,
     EmprestimoDetailComponent,
     MakeEmprestimoComponent,
+    ListMultasComponent,
+    ListMultasTableComponent,
+    MultaDetailComponent,
   ],
   imports: [
     BrowserModule,

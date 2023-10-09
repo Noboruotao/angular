@@ -19,6 +19,7 @@ import { AtivExtraDetailComponent } from './components/pages/ativExtra/ativ-extr
 import { EmprestimoListComponent } from './components/pages/biblioteca/emprestimo/emprestimo-list/emprestimo-list.component';
 import { EmprestimoDetailComponent } from './components/pages/biblioteca/emprestimo/emprestimo-detail/emprestimo-detail.component';
 import { MakeEmprestimoComponent } from './components/pages/biblioteca/emprestimo/make-emprestimo/make-emprestimo.component';
+import { ListMultasComponent } from './components/pages/secretaria/list-multas/list-multas.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -98,6 +99,10 @@ const routes: Routes = [
       {
         path: 'biblioteca/emprestimo/:id',
         component: EmprestimoDetailComponent,
+      },
+      {
+        path: 'secretaria/multa/list',
+        component: ListMultasComponent,
       },
     ],
   },

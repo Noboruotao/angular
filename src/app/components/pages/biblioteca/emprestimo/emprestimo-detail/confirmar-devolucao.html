@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Confirmação Devolução de Acervo</h1>
+<div mat-dialog-content>
+  <p>
+    Deseja Confirmar a Devolução do Acervo
+    <strong>{{ acervo.titulo }}</strong> por <strong>{{ leitor.nome }}?</strong>
+  </p>
+
+  <section *ngIf="multa">
+    <mat-checkbox color="warn" (change)="pagarMulta=!pagarMulta"
+      >PAGAR MULTA</mat-checkbox
+    >
+  </section>
+
+  <section>
+    <mat-checkbox (change)="isDisabled=!isDisabled">CONFIRMAR</mat-checkbox>
+  </section>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close [disabled]="isDisabled">Salvar</button>
+  <button mat-button mat-dialog-close>Fechar</button>
+</div>

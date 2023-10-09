@@ -2,45 +2,37 @@ import { Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
+import { SecretariaService } from 'src/app/services/secretaria/secretaria.service';
 
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 @Component({
-  selector: 'app-emprestimo-list-table',
-  templateUrl: './emprestimo-list-table.component.html',
-  styleUrls: ['./emprestimo-list-table.component.css'],
+  selector: 'app-list-multas-table',
+  templateUrl: './list-multas-table.component.html',
+  styleUrls: ['./list-multas-table.component.css'],
 })
-export class EmprestimoListTableComponent {
-  emprestimos: MatTableDataSource<any>;
-  displayedColumns: string[] = ['leitor', 'titulo', 'multa'];
+export class ListMultasTableComponent {
+  multas: MatTableDataSource<any>;
+  displayedColumns: string[] = ['nome', 'mensagem', 'valor'];
 
-  pendente: boolean = true;
+  pago = false;
   pageSize = 5;
   totalItems = 0;
   currentPage = 0;
   durationInSeconds = 5;
-
   searchTerm: string = '';
 
-  faCheck = faCheck;
   constructor(
-    private bibliotecaService: BibliotecaService,
+    private secretariaService: SecretariaService,
     private _snackBar: MatSnackBar
   ) {
-    this.getEmprestimos();
+    this.getMultas();
   }
 
-  getEmprestimos() {
-    this.bibliotecaService
-      .getEmprestimos(
-        this.pendente,
-        this.pageSize,
-        this.currentPage,
-        this.searchTerm
-      )
+  getMultas() {
+    this.secretariaService
+      .getMultas(this.pago, this.currentPage, this.pageSize, this.searchTerm)
       .subscribe({
-        next: (data) => {
-          this.emprestimos = data.data;
+        next: (data: any) => {
+          this.multas = data.data;
           this.totalItems = data.count;
         },
         error: (error) => {
@@ -52,20 +44,20 @@ export class EmprestimoListTableComponent {
   onPageChange(event: PageEvent) {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.getEmprestimos();
+    this.getMultas();
   }
 
   onSelectChange() {
-    this.pendente = !this.pendente;
+    this.pago = !this.pago;
     this.currentPage = 0;
-    this.getEmprestimos();
+    this.getMultas();
   }
 
   search(event: Event) {
     const target = event.target as HTMLInputElement;
     this.searchTerm = target.value;
     this.currentPage = 0;
-    this.getEmprestimos();
+    this.getMultas();
   }
 
   openSnackBar(message: string, action: string = 'Fechar') {

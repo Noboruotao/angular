@@ -4,17 +4,15 @@
   <div class="card m-3">
     <div class="card-header">
       <div class="row">
-        <div class="col-6"><strong>EMPRÉSTIMOS</strong></div>
+        <div class="col-6"><strong>Multas</strong></div>
         <div class="col-6 text-end">
-          <mat-slide-toggle [(ngModel)]="checked" (change)="onSlideChange()"
-            >Pendente</mat-slide-toggle
-          >
+          <mat-slide-toggle [(ngModel)]="pago" (change)="onSlideChange()"
+            >Pago
+          </mat-slide-toggle>
         </div>
       </div>
     </div>
-    <div class="card-body">
-      <app-emprestimo-list-table #childRef></app-emprestimo-list-table>
-    </div>
+    <div class="card-body"><app-list-multas-table #childRef></app-list-multas-table></div>
   </div>
 </div>
 <app-footer></app-footer>

@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import {
   MatDialog,
