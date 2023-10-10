@@ -30,7 +30,6 @@ export class PessoaDetailComponent {
         this.pessoa.data_nascimento,
         'dd/MM/yyyy'
       );
-      console.log(this.authService.userData.id);
     });
     this.getFoto(id);
   }

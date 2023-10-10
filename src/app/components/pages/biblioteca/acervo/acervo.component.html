@@ -25,8 +25,9 @@
           <p><strong>Estado:</strong> {{ acervo.estado.estado }}</p>
           <p *ngIf="acervo.situacao.situacao == 'Disponível'">
             <button
-              mat-button
-              [routerLink]="'/biblioteca/emprestimo/fazer/'+acervo.id"
+              role="button"
+              class="btn btn-primary"
+              [routerLink]="'/biblioteca/emprestimo/fazer/' + acervo.id"
             >
               Fazer Empréstimo
             </button>

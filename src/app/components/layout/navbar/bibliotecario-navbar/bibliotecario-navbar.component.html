@@ -1,0 +1,43 @@
+<div
+  class="navBarForBibliotecario"
+  *ngIf="this.authService.checkRoles(['Bibliotecário'])"
+>
+  <li class="nav-item">
+    <a
+      routerLink="/biblioteca/acervo/list"
+      class="nav-link"
+      [routerLinkActive]="'active'"
+    >
+      <p>
+        <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
+        Lista Acervos
+      </p>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a
+      routerLink="/biblioteca/emprestimo/list"
+      class="nav-link"
+      [routerLinkActive]="'active'"
+    >
+      <p>
+        <fa-icon class="navbar_icon" [icon]="faWalking"></fa-icon>
+        Lista de Empréstimos
+      </p>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a
+      routerLink="/secretaria/multa/list"
+      class="nav-link"
+      [routerLinkActive]="'active'"
+    >
+      <p>
+        <fa-icon class="navbar_icon" [icon]="faMoneyBill1Wave"></fa-icon>
+        Lista de Multas
+      </p>
+    </a>
+  </li>
+</div>

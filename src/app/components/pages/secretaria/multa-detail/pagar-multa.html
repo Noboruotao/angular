@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Confirmação do Pagamento de Multa</h1>
-<div *ngIf="!pago">
-  <div mat-dialog-content>
+<div mat-dialog-content>
+  <div *ngIf="!pago">
     <form [formGroup]="pagamentoForm">
       <mat-form-field floatLabel="always">
         <mat-label>Valor sendo Pago</mat-label>
@@ -17,16 +17,20 @@
     <section>
       <mat-checkbox (change)="isDisabled=!isDisabled">CONFIRMAR</mat-checkbox>
     </section>
+    <div mat-dialog-actions>
+      <button mat-button [disabled]="isDisabled" (click)="pagar()">
+        Salvar
+      </button>
+      <button mat-button mat-dialog-close>Fechar</button>
+    </div>
   </div>
-  <div mat-dialog-actions>
-    <button
-      mat-button
-      mat-dialog-close
-      [disabled]="isDisabled"
-      (click)="pagar()"
-    >
-      Salvar
-    </button>
-    <button mat-button mat-dialog-close>Fechar</button>
+
+  <div class="" *ngIf="pago">
+    <p>Valor a Pagar: R${{ multa.valor|number:"1.2" }}</p>
+    <p>Valor Pago: R${{ pagamentoForm.value.valor|number:"1.2" }}</p>
+    <p>Troco: R${{pagamentoForm.value.valor-multa.valor|number:"1.2"}}</p>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close>Fechar</button>
+    </div>
   </div>
 </div>

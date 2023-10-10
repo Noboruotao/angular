@@ -78,6 +78,7 @@ export class PagarMultaDialog {
 
   constructor(
     public dialogRef: MatDialogRef<any>,
+    private secretariaService: SecretariaService,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public multa: any
   ) {
@@ -99,9 +100,17 @@ export class PagarMultaDialog {
 
   pagar() {
     if (this.pagamentoForm.invalid) {
-      console.log('Barrou');
       return;
     }
-    console.log('Passou');
+
+    this.secretariaService.pagerMulta(this.multa.id).subscribe({
+      next: (data: any) => {
+        this.pago = true;
+        this.router.navigate(['secretaria/multa/list']);
+      },
+      error: (error) => {
+        console.log(error.error.message);
+      },
+    });
   }
 }

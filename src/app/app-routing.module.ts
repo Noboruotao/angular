@@ -21,6 +21,7 @@ import { EmprestimoDetailComponent } from './components/pages/biblioteca/emprest
 import { MakeEmprestimoComponent } from './components/pages/biblioteca/emprestimo/make-emprestimo/make-emprestimo.component';
 import { ListMultasComponent } from './components/pages/secretaria/list-multas/list-multas.component';
 import { MultaDetailComponent } from './components/pages/secretaria/multa-detail/multa-detail.component';
+import { MakeAcervoComponent } from './components/pages/biblioteca/make-acervo/make-acervo.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path: 'biblioteca/acervo/list',
         component: AcervoListComponent,
+      },
+      {
+        path: 'biblioteca/acervo/new',
+        component: MakeAcervoComponent,
       },
       {
         path: 'biblioteca/acervo/:id',

@@ -6,3 +6,7 @@ input.example-right-align::-webkit-inner-spin-button {
 mat-form-field {
     min-width: 100%;
 }
+
+.tag {
+    font-weight: bold;
+}

@@ -1,0 +1,82 @@
+<div
+  class="navBarForAlunoProfessor"
+  *ngIf="authService.checkRoles(['Aluno', 'Professor'])"
+>
+  <li class="nav-item" *ngIf="authService.checkRoles(['Aluno'])">
+    <a id="layoutOptionsLink" class="nav-link">
+      <p>
+        <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
+        Aluno
+        <fa-icon class="navbar_icon float-right"></fa-icon>
+      </p>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a routerLink="/classe/list" class="nav-link" [routerLinkActive]="'active'">
+      <p>
+        <fa-icon class="navbar_icon" [icon]="faUserGroup"></fa-icon>
+        Classe
+        <fa-icon class="navbar_icon float-right"></fa-icon>
+      </p>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a
+      routerLink="/disciplina/list"
+      class="nav-link"
+      [routerLinkActive]="'active'"
+    >
+      <p>
+        <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
+        Disciplina
+        <fa-icon class="navbar_icon float-right"></fa-icon>
+      </p>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a routerLink="/curso/list" class="nav-link" [routerLinkActive]="'active'">
+      <p>
+        <fa-icon class="navbar_icon" [icon]="faGraduationCap"></fa-icon>
+        Curso
+      </p>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a
+      routerLink="/ativExtra/list"
+      class="nav-link"
+      [routerLinkActive]="'active'"
+    >
+      <p>
+        <fa-icon class="navbar_icon" [icon]="faBaseball"></fa-icon>
+        Atividade Extracurricular
+      </p>
+    </a>
+  </li>
+
+  <li
+    class="nav-item"
+    *ngIf="
+      authService.checkPermission([
+        'acervo.create',
+        'acervo.read',
+        'acervo.update',
+        'acervo.delete'
+      ])
+    "
+  >
+    <a
+      routerLink="/biblioteca/acervo/list"
+      class="nav-link"
+      [routerLinkActive]="'active'"
+    >
+      <p>
+        <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
+        Biblioteca
+      </p>
+    </a>
+  </li>
+</div>

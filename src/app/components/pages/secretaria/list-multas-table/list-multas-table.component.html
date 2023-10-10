@@ -24,12 +24,12 @@
 
   <ng-container matColumnDef="dias_atrasados">
     <th mat-header-cell *matHeaderCellDef>Dias Atrasados</th>
-    <td mat-cell *matCellDef="let row">{{ row.dias_atrasados }}</td>
+    <td mat-cell *matCellDef="let row">{{ row.dias_atrasados }} Dias</td>
   </ng-container>
 
   <ng-container matColumnDef="valor">
     <th mat-header-cell *matHeaderCellDef>Valor</th>
-    <td mat-cell *matCellDef="let row">{{ row.valor }}</td>
+    <td mat-cell *matCellDef="let row">R$ {{ row.valor | number : "1.2" }}</td>
   </ng-container>
 
   <ng-container matColumnDef="pago">
@@ -48,7 +48,7 @@
   <tr
     mat-row
     *matRowDef="let row; columns: displayedColumns"
-    [routerLink]="'/biblioteca/emprestimo/' + row.id"
+    [routerLink]="'/secretaria/multa/' + row.id"
   ></tr>
 </table>
 

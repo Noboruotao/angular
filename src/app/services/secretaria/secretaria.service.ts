@@ -35,4 +35,12 @@ export class SecretariaService {
       })
     );
   }
+
+  pagerMulta(id: number) {
+    return this.httpClient.get(`${this.apiUrl}/pagarMulta/${id}`).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
 }

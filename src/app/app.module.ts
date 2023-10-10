@@ -11,7 +11,6 @@ import { HeaderComponent } from './components/layout/header/header.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { PreloaderComponent } from './components/layout/preloader/preloader.component';
 
-import { AuthInterceptor } from './interceptors/Auth/auth.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -73,6 +72,9 @@ import {
   MultaDetailComponent,
   PagarMultaDialog,
 } from './components/pages/secretaria/multa-detail/multa-detail.component';
+import { MakeAcervoComponent } from './components/pages/biblioteca/make-acervo/make-acervo.component';
+import { AlunoProfessorNavbarComponent } from './components/layout/navbar/aluno-professor-navbar/aluno-professor-navbar.component';
+import { BibliotecarioNavbarComponent } from './components/layout/navbar/bibliotecario-navbar/bibliotecario-navbar.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +119,9 @@ import {
     MultaDetailComponent,
     PagarMultaDialog,
     ConfirmDevolucaoDialog,
+    MakeAcervoComponent,
+    AlunoProfessorNavbarComponent,
+    BibliotecarioNavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -149,11 +154,6 @@ import {
       useClass: JwtInterceptor,
       multi: true,
     },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi: true,
-    // },
     {
       provide: MatPaginatorIntl,
       useClass: CustomMatPaginatorIntl,

@@ -4,17 +4,7 @@ import { AuthService } from 'src/app/services/authService/auth.service';
 import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 import 'bootstrap';
 
-import {
-  faHome,
-  faBookOpen,
-  faAngleRight,
-  faAngleDown,
-  faUser,
-  faGraduationCap,
-  faUserGroup,
-  faBaseball,
-  faWalking,
-} from '@fortawesome/free-solid-svg-icons';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -26,14 +16,6 @@ export class NavbarComponent implements OnInit {
   userFoto!: any;
 
   faHome = faHome;
-  faBookOpen = faBookOpen;
-  faAngleRight = faAngleRight;
-  faAngleDown = faAngleDown;
-  faUser = faUser;
-  faGraduationCap = faGraduationCap;
-  faUserGroup = faUserGroup;
-  faBaseball = faBaseball;
-  faWalking = faWalking;
 
   constructor(
     private pessoaService: PessoaService,

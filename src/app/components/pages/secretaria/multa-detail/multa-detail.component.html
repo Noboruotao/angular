@@ -4,56 +4,79 @@
   <div class="card m-3" *ngIf="showCard">
     <div class="card-header">
       <div class="row">
-        <div class="col-6"><strong>Multa</strong></div>
+        <div class="col-6"><h3>Multa</h3></div>
       </div>
     </div>
     <div class="card-body">
-      <table style="min-width: 100%">
-        <tr>
-          <th rowspan="6">
-            <img
-              [src]="pessoaFoto"
-              alt="foto"
-              id="pessoaFoto"
-              style="max-width: 50%"
-            />
-          </th>
-          <th colspan="2">
-            <h3>Nome: {{ multa.pessoa.nome }}</h3>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <strong>{{ multa.mensagem }}</strong>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">Email: {{ multa.pessoa.email }}</td>
-        </tr>
-        <tr>
-          <td>Telefone: {{ multa.pessoa.telefone_1 }}</td>
-          <td>Telefone: {{ multa.pessoa.telefone_2 }}</td>
-        </tr>
-        <tr>
-          <td>Valor: R${{ multa.valor | number : "1.2-2" }}</td>
-          <td>
-            Dias Atrasados:
-            {{ multa.dias_atrasados }}
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button
-              role="button"
-              class="btn btn-primary"
-              [disabled]="disable"
-              (click)="pagarMulta()"
-            >
-              Pagar
-            </button>
-          </td>
-        </tr>
-      </table>
+      <div class="row">
+        <div class="col-sm-12 col-md-6" style="width: 100%">
+          <img
+            [src]="pessoaFoto"
+            alt="foto"
+            id="pessoaFoto"
+            style="max-width: 50%"
+          />
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <table style="min-width: 100%">
+            <tr>
+              <th colspan="3">
+                <h3>
+                  <p>
+                    <strong>Nome:</strong>
+                    {{ multa.pessoa.nome }}
+                  </p>
+                </h3>
+              </th>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <h4 style="color: red">{{ multa.mensagem }}</h4>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <p>
+                  <strong>Email:</strong>
+                  {{ multa.pessoa.email }}
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="tag">Telefone :</div>
+                {{ multa.pessoa.telefone_1 }}
+              </td>
+              <td>
+                <div class="tag">Telefone:</div>
+                {{ multa.pessoa.telefone_2 }}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Valor:</strong>
+                R${{ multa.valor | number : "1.2-2" }}
+              </td>
+              <td>
+                <strong>Dias Atrasados:</strong>
+                {{ multa.dias_atrasados }}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <button
+                  role="button"
+                  class="btn btn-primary"
+                  [disabled]="disable"
+                  (click)="pagarMulta()"
+                >
+                  {{ disable ? "Pago" : "Pagar" }}
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

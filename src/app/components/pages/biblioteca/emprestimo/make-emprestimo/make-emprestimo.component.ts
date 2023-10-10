@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
 import { Router } from '@angular/router';
@@ -40,6 +40,7 @@ export class MakeEmprestimoComponent {
   selectedOption: any;
   pessoa: any;
   pessoaFoto: any;
+
 
   constructor(
     private route: ActivatedRoute,

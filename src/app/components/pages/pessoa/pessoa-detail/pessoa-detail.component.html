@@ -1,7 +1,7 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
-<div class="content-wrapper">
-  <div class="card" *ngIf="pessoa">
+<div class="content-wrapper" style="background-color: gray">
+  <div class="card" *ngIf="pessoa && pessoaFoto">
     <div class="card-header">
       <h4>{{ pessoa.nome }}</h4>
     </div>
@@ -11,6 +11,9 @@
           <img [src]="pessoaFoto" alt="foto" id="pessoaFoto" />
         </div>
         <div class="col-12 col-sm-7">
+          <div class="rolePessoa">
+            <h4 *ngFor="let role of pessoa.roles">{{ role.name }}</h4>
+          </div>
           <div
             class="pessoal-info"
             *ngIf="
