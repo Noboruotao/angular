@@ -31,12 +31,13 @@
           <p class="autor-nome" [title]="acervo.autor.nome">
             {{ acervo.autor.nome }}
           </p>
+          <p color="red">{{ acervo.situacao.situacao }}</p>
         </div>
 
         <div class="accordion-item stick-bottom">
           <h2 class="accordion-header" [id]="'heading' + acervo.id">
             <button
-              class="accordion-button btn btn-primary"
+              class="accordion-button btn btn-primary mt-auto"
               type="button"
               [attr.data-bs-toggle]="'collapse'"
               [attr.data-bs-target]="'#collapse' + acervo.id"

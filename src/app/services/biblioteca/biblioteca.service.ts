@@ -93,4 +93,111 @@ export class BibliotecaService {
 
     return this.httpClient.post(this.apiUrl + '/makeDevolucao', request_body);
   }
+
+  listAutors(page: number, pageSize: number, search: string) {
+    const params = new HttpParams()
+      .set('limit', pageSize.toString())
+      .set('page', page.toString())
+      .set('search', search || '');
+
+    return this.httpClient
+      .get(this.apiUrl + '/listAutors', { params: params })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
+  listCategorias(page: number, pageSize: number, search: string) {
+    const params = new HttpParams()
+      .set('limit', pageSize.toString())
+      .set('offset', page.toString())
+      .set('search', search || '');
+
+    return this.httpClient
+      .get(this.apiUrl + '/listCategorias', { params: params })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
+  listEditora(page: number, pageSize: number, search: string) {
+    const params = new HttpParams()
+      .set('limit', pageSize.toString())
+      .set('page', page.toString())
+      .set('search', search || '');
+
+    return this.httpClient
+      .get(this.apiUrl + '/listEditora', { params: params })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
+  listIdiomas(page: number, pageSize: number, search: string) {
+    const params = new HttpParams()
+      .set('limit', pageSize.toString())
+      .set('page', page.toString())
+      .set('search', search || '');
+
+    return this.httpClient
+      .get(this.apiUrl + '/listIdiomas', { params: params })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  
+    }
+
+
+  listAcervoTipo(page: number, pageSize: number, search: string) {
+    const params = new HttpParams()
+      .set('limit', pageSize.toString())
+      .set('page', page.toString())
+      .set('search', search || '');
+
+    return this.httpClient
+      .get(this.apiUrl + '/listAcervoTipo', { params: params })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
+  listSituacao(page: number, pageSize: number, search: string) {
+    const params = new HttpParams()
+      .set('limit', pageSize.toString())
+      .set('page', page.toString())
+      .set('search', search || '');
+
+    return this.httpClient
+      .get(this.apiUrl + '/listSituacao', { params: params })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  
+    }
+    listEstado(page: number, pageSize: number, search: string) {
+    const params = new HttpParams()
+      .set('limit', pageSize.toString())
+      .set('page', page.toString())
+      .set('search', search || '');
+
+    return this.httpClient
+      .get(this.apiUrl + '/listEstado', { params: params })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
 }

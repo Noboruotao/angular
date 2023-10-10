@@ -17,11 +17,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
 import { MatTabsModule } from '@angular/material/tabs';
-import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/acervo-list.component';
+import { AcervoListComponent } from './components/pages/biblioteca/acervo/acervo-list/acervo-list.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { AcervoComponent } from './components/pages/biblioteca/acervo/acervo.component';
+import { AcervoComponent } from './components/pages/biblioteca/acervo/acervo-detail/acervo.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -72,9 +72,10 @@ import {
   MultaDetailComponent,
   PagarMultaDialog,
 } from './components/pages/secretaria/multa-detail/multa-detail.component';
-import { MakeAcervoComponent } from './components/pages/biblioteca/make-acervo/make-acervo.component';
+import { MakeAcervoComponent } from './components/pages/biblioteca/acervo/make-acervo/make-acervo.component';
 import { AlunoProfessorNavbarComponent } from './components/layout/navbar/aluno-professor-navbar/aluno-professor-navbar.component';
 import { BibliotecarioNavbarComponent } from './components/layout/navbar/bibliotecario-navbar/bibliotecario-navbar.component';
+import { AcervoFormComponent } from './components/pages/biblioteca/acervo/acervo-form/acervo-form.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +123,7 @@ import { BibliotecarioNavbarComponent } from './components/layout/navbar/bibliot
     MakeAcervoComponent,
     AlunoProfessorNavbarComponent,
     BibliotecarioNavbarComponent,
+    AcervoFormComponent,
   ],
   imports: [
     BrowserModule,

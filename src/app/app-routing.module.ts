@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/pages/login/login.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { AuthGuardService } from './services/authGuard/auth-guard.service';
-import { AcervoListComponent } from './components/pages/biblioteca/acervo-list/acervo-list.component';
-import { AcervoComponent } from './components/pages/biblioteca/acervo/acervo.component';
+import { AcervoListComponent } from './components/pages/biblioteca/acervo/acervo-list/acervo-list.component';
+import { AcervoComponent } from './components/pages/biblioteca/acervo/acervo-detail/acervo.component';
 import { ListCursoComponent } from './components/pages/curso/list-curso/list-curso.component';
 import { DetalhesCursoComponent } from './components/pages/curso/detalhes-curso/detalhes-curso.component';
 import { ListDisciplinaComponent } from './components/pages/disciplina/list-disciplina/list-disciplina.component';
@@ -21,7 +21,7 @@ import { EmprestimoDetailComponent } from './components/pages/biblioteca/emprest
 import { MakeEmprestimoComponent } from './components/pages/biblioteca/emprestimo/make-emprestimo/make-emprestimo.component';
 import { ListMultasComponent } from './components/pages/secretaria/list-multas/list-multas.component';
 import { MultaDetailComponent } from './components/pages/secretaria/multa-detail/multa-detail.component';
-import { MakeAcervoComponent } from './components/pages/biblioteca/make-acervo/make-acervo.component';
+import { MakeAcervoComponent } from './components/pages/biblioteca/acervo/make-acervo/make-acervo.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
