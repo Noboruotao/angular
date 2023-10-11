@@ -19,7 +19,7 @@
           <p><strong>Idioma:</strong> {{ acervo.idioma.idioma }}</p>
           <p><strong>Tipo:</strong> {{ acervo.tipo.tipo }}</p>
           <p><strong>Categoria:</strong> {{ acervo.categoria.categoria }}</p>
-          <p><strong>Resumo:</strong> {{ acervo.resumo }}</p>
+          <!-- <p><strong>Resumo:</strong> {{ acervo.resumo }}</p> -->
           <p><strong>Situação:</strong> {{ acervo.situacao.situacao }}</p>
           <p><strong>Estado:</strong> {{ acervo.estado.estado }}</p>
         </div>
@@ -28,6 +28,8 @@
     <div class="card m-4 col-11 col-md-5">
       <div class="card-header">Leitor</div>
       <div class="card-body">
+        
+        
         <div class="search-container">
           <mat-form-field>
             <mat-label>Procurar</mat-label>
@@ -45,13 +47,15 @@
             >
               <mat-option
                 *ngFor="let option of filteredOptions | async"
-                [value]="option.id"
+                [value]="option"
               >
                 {{ option.nome }} - {{ option.cpf }}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
         </div>
+
+
         <div
           class="leitor"
           *ngIf="pessoa && pessoaFoto"

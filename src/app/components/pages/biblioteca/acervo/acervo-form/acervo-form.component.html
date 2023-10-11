@@ -1,1 +1,183 @@
-<p>acervo-form works!</p>
+<form [formGroup]="acervoForm">
+  <mat-tab-group>
+    <mat-tab label="Titulo">
+      <div class="row">
+        <div class="titulo col-12">
+          <mat-form-field>
+            <mat-label>Titulo</mat-label>
+            <input
+              matInput
+              #input
+              formControlName="titulo"
+              placeholder="Coloque o Titulo"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="titulo col-12">
+          <mat-form-field>
+            <mat-label>SubTitulo</mat-label>
+            <input
+              matInput
+              #input
+              formControlName="subtitulo"
+              placeholder="Coloque o Sub-Titulo"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Parametros">
+      <div class="row">
+        <div class="categorias col-12">
+          <mat-form-field>
+            <mat-label>Categoria</mat-label>
+            <mat-select
+              formControlName="categoria"
+              [errorStateMatcher]="matcher"
+            >
+              <mat-option *ngFor="let cat of categorias" [value]="cat.id">{{
+                cat.categoria
+              }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="acervoForm.get('categoria')?.hasError('required')"
+              >Selecione uma Categoria</mat-error
+            >
+            <mat-error
+              *ngIf="
+                acervoForm.get('categoria')?.hasError('pattern') &&
+                !acervoForm.get('categoria')?.hasError('required')
+              "
+              >Escolha Inválida</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="idiomas col-12 col-md-6">
+          <mat-form-field>
+            <mat-label>Idioma</mat-label>
+            <mat-select formControlName="idioma" [errorStateMatcher]="matcher">
+              <mat-option *ngFor="let idioma of idiomas" [value]="idioma.id">{{
+                idioma.idioma
+              }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="acervoForm.get('idioma')?.hasError('required')"
+              >Selecione um idioma</mat-error
+            >
+            <mat-error
+              *ngIf="
+                acervoForm.get('idioma')?.hasError('pattern') &&
+                !acervoForm.get('idioma')?.hasError('required')
+              "
+              >Escolha Inválida</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="tipos col-12 col-md-6">
+          <mat-form-field>
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="tipo" [errorStateMatcher]="matcher">
+              <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">{{
+                tipo.tipo
+              }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="acervoForm.get('tipo')?.hasError('required')"
+              >Selecione um tipo</mat-error
+            >
+            <mat-error
+              *ngIf="
+                acervoForm.get('tipo')?.hasError('pattern') &&
+                !acervoForm.get('tipo')?.hasError('required')
+              "
+              >Escolha Inválida</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="situacoes col-12 col-md-6">
+          <mat-form-field>
+            <mat-label>Situação</mat-label>
+            <mat-select
+              formControlName="situacao"
+              [errorStateMatcher]="matcher"
+            >
+              <mat-option
+                *ngFor="let situacao of situacoes"
+                [value]="situacao.id"
+                >{{ situacao.situacao }}</mat-option
+              >
+            </mat-select>
+            <mat-error *ngIf="acervoForm.get('situacao')?.hasError('required')"
+              >Selecione um situacao</mat-error
+            >
+            <mat-error
+              *ngIf="
+                acervoForm.get('situacao')?.hasError('pattern') &&
+                !acervoForm.get('situacao')?.hasError('required')
+              "
+              >Escolha Inválida</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="estados col-12 col-md-6">
+          <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="estado" [errorStateMatcher]="matcher">
+              <mat-option *ngFor="let estado of estados" [value]="estado.id">{{
+                estado.estado
+              }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="acervoForm.get('estado')?.hasError('required')"
+              >Selecione um estado</mat-error
+            >
+            <mat-error
+              *ngIf="
+                acervoForm.get('estado')?.hasError('pattern') &&
+                !acervoForm.get('estado')?.hasError('required')
+              "
+              >Escolha Inválida</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- <div class="row" *ngIf="number(this.acervoForm.get('tipo')?.value) === 1">
+        <div class="titulo col-12">
+          <mat-form-field>
+            <mat-label>IBNS</mat-label>
+            <input
+              matInput
+              #input
+              formControlName="IBNS"
+              placeholder="Coloque o IBNS"
+            />
+          </mat-form-field>
+        </div>
+      </div> -->
+    </mat-tab>
+
+    <mat-tab label="Resumo">
+      <div class="rol">
+        <div class="col-12">
+          <mat-form-field>
+            <mat-label>Resumo</mat-label>
+            <textarea matInput formControlName="resumo"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <div class="submit">
+    <button class="btn btn-primary" (click)="submit()">
+      Criar Novo Acervo
+    </button>
+  </div>
+</form>

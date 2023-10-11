@@ -94,7 +94,7 @@ export class BibliotecaService {
     return this.httpClient.post(this.apiUrl + '/makeDevolucao', request_body);
   }
 
-  listAutors(page: number, pageSize: number, search: string) {
+  listAutors = (page: number, pageSize: number, search: string) => {
     const params = new HttpParams()
       .set('limit', pageSize.toString())
       .set('page', page.toString())
@@ -107,9 +107,9 @@ export class BibliotecaService {
           return response;
         })
       );
-  }
+  };
 
-  listCategorias(page: number, pageSize: number, search: string) {
+  listCategorias = (page: number, pageSize: number, search: string) => {
     const params = new HttpParams()
       .set('limit', pageSize.toString())
       .set('offset', page.toString())
@@ -122,9 +122,9 @@ export class BibliotecaService {
           return response;
         })
       );
-  }
+  };
 
-  listEditora(page: number, pageSize: number, search: string) {
+  listEditora = (page: number, pageSize: number, search: string) => {
     const params = new HttpParams()
       .set('limit', pageSize.toString())
       .set('page', page.toString())
@@ -137,9 +137,9 @@ export class BibliotecaService {
           return response;
         })
       );
-  }
+  };
 
-  listIdiomas(page: number, pageSize: number, search: string) {
+  listIdiomas = (page: number, pageSize: number, search: string) => {
     const params = new HttpParams()
       .set('limit', pageSize.toString())
       .set('page', page.toString())
@@ -152,11 +152,9 @@ export class BibliotecaService {
           return response;
         })
       );
-  
-    }
+  };
 
-
-  listAcervoTipo(page: number, pageSize: number, search: string) {
+  listAcervoTipo = (page: number, pageSize: number, search: string) => {
     const params = new HttpParams()
       .set('limit', pageSize.toString())
       .set('page', page.toString())
@@ -169,9 +167,9 @@ export class BibliotecaService {
           return response;
         })
       );
-  }
+  };
 
-  listSituacao(page: number, pageSize: number, search: string) {
+  listSituacao = (page: number, pageSize: number, search: string) => {
     const params = new HttpParams()
       .set('limit', pageSize.toString())
       .set('page', page.toString())
@@ -184,9 +182,9 @@ export class BibliotecaService {
           return response;
         })
       );
+  };
   
-    }
-    listEstado(page: number, pageSize: number, search: string) {
+  listEstado = (page: number, pageSize: number, search: string) => {
     const params = new HttpParams()
       .set('limit', pageSize.toString())
       .set('page', page.toString())
@@ -199,5 +197,5 @@ export class BibliotecaService {
           return response;
         })
       );
-  }
+  };
 }

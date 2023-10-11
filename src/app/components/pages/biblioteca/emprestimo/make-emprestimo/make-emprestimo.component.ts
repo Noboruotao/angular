@@ -30,17 +30,20 @@ import {
   styleUrls: ['./make-emprestimo.component.css'],
 })
 export class MakeEmprestimoComponent {
+  faSearch = faSearch;
+  
   acervo: any;
   pessoas: Observable<any>;
+  
   filteredOptions: Observable<any>;
   bibliotecaUrl: string;
-  faSearch = faSearch;
+  
   searchTerm: string = '';
   searchControl = new FormControl();
   selectedOption: any;
+
   pessoa: any;
   pessoaFoto: any;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -109,7 +112,6 @@ export class MakeEmprestimoComponent {
       next: (data: any) => {
         this.pessoa = data.data;
         this.getFoto(this.pessoa.id);
-        console.log(this.pessoa);
       },
       error: (error) => {
         console.log(error.error.message);
@@ -119,7 +121,8 @@ export class MakeEmprestimoComponent {
 
   onOptionSelected(event: any): void {
     this.selectedOption = event.option.value;
-    this.getPessoa(this.selectedOption);
+    this.getPessoa(this.selectedOption.id);
+
   }
 
   fazerEmprestimo() {
