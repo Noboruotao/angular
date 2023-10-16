@@ -28,8 +28,6 @@
     <div class="card m-4 col-11 col-md-5">
       <div class="card-header">Leitor</div>
       <div class="card-body">
-        
-        
         <div class="search-container">
           <mat-form-field>
             <mat-label>Procurar</mat-label>
@@ -47,14 +45,14 @@
             >
               <mat-option
                 *ngFor="let option of filteredOptions | async"
-                [value]="option"
+                [value]="option.nome + ' - ' + option.cpf"
+                (click)="getPessoa(option.id)"
               >
                 {{ option.nome }} - {{ option.cpf }}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
         </div>
-
 
         <div
           class="leitor"

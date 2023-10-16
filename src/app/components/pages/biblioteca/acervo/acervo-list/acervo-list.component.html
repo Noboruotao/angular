@@ -31,7 +31,13 @@
           <p class="autor-nome" [title]="acervo.autor.nome">
             {{ acervo.autor.nome }}
           </p>
-          <p color="red">{{ acervo.situacao.situacao }}</p>
+          <p
+            [style.color]="
+              acervo.situacao.situacao === 'Disponível' ? 'green' : 'red'
+            "
+          >
+            {{ acervo.situacao.situacao }}
+          </p>
         </div>
 
         <div class="accordion-item stick-bottom">

@@ -19,6 +19,7 @@
           <p><strong>Editora:</strong> {{ acervo.editora.nome }}</p>
           <p><strong>Idioma:</strong> {{ acervo.idioma.idioma }}</p>
           <p><strong>Tipo:</strong> {{ acervo.tipo.tipo }}</p>
+          <p *ngIf="acervo.IBNS"><strong>IBNS:</strong> {{ acervo.IBNS }}</p>
           <p><strong>Categoria:</strong> {{ acervo.categoria.categoria }}</p>
           <p><strong>Resumo:</strong> {{ acervo.resumo }}</p>
           <p><strong>Situação:</strong> {{ acervo.situacao.situacao }}</p>

@@ -109,6 +109,14 @@ export class BibliotecaService {
       );
   };
 
+  getAutor(id: number) {
+    return this.httpClient.get(this.apiUrl + '/getAutor/' + id).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
+
   listCategorias = (page: number, pageSize: number, search: string) => {
     const params = new HttpParams()
       .set('limit', pageSize.toString())
@@ -138,6 +146,14 @@ export class BibliotecaService {
         })
       );
   };
+
+  getEditora(id: number) {
+    return this.httpClient.get((this.apiUrl = '/getEditora/' + id)).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
 
   listIdiomas = (page: number, pageSize: number, search: string) => {
     const params = new HttpParams()
@@ -183,7 +199,7 @@ export class BibliotecaService {
         })
       );
   };
-  
+
   listEstado = (page: number, pageSize: number, search: string) => {
     const params = new HttpParams()
       .set('limit', pageSize.toString())

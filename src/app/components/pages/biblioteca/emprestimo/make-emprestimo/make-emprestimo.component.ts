@@ -31,13 +31,13 @@ import {
 })
 export class MakeEmprestimoComponent {
   faSearch = faSearch;
-  
+
   acervo: any;
   pessoas: Observable<any>;
-  
+
   filteredOptions: Observable<any>;
   bibliotecaUrl: string;
-  
+
   searchTerm: string = '';
   searchControl = new FormControl();
   selectedOption: any;
@@ -94,12 +94,12 @@ export class MakeEmprestimoComponent {
     );
   }
 
-  displayFn() {
-    let innerHtml = this.pessoa
-      ? `${this.pessoa.nome} - ${this.pessoa.cpf}`
-      : '';
-    return innerHtml;
-  }
+  // displayFn() {
+  //   let innerHtml = this.pessoa
+  //     ? `${this.pessoa.nome} - ${this.pessoa.cpf}`
+  //     : '';
+  //   return innerHtml;
+  // }
 
   search(e: Event) {
     const target = e.target as HTMLInputElement;
@@ -121,9 +121,11 @@ export class MakeEmprestimoComponent {
 
   onOptionSelected(event: any): void {
     this.selectedOption = event.option.value;
-    this.getPessoa(this.selectedOption.id);
-
+    // this.getPessoa(this.selectedOption.id);
   }
+
+  
+
 
   fazerEmprestimo() {
     this.dialog.open(ConfirmEmprestimoDialog, {

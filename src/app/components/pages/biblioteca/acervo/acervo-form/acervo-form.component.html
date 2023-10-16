@@ -1,6 +1,7 @@
-<form [formGroup]="acervoForm">
-  <mat-tab-group>
-    <mat-tab label="Titulo">
+<mat-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="firstForm">
+    <form [formGroup]="firstForm">
+      <ng-template matStepLabel>Título</ng-template>
       <div class="row">
         <div class="titulo col-12">
           <mat-form-field>
@@ -16,7 +17,7 @@
       </div>
 
       <div class="row">
-        <div class="titulo col-12">
+        <div class="subtitulo col-12">
           <mat-form-field>
             <mat-label>SubTitulo</mat-label>
             <input
@@ -28,8 +29,126 @@
           </mat-form-field>
         </div>
       </div>
-    </mat-tab>
-    <mat-tab label="Parametros">
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondForm">
+    <form [formGroup]="secondForm">
+      <ng-template matStepLabel>Resumo/Capa</ng-template>
+
+      <mat-form-field>
+        <mat-label>Resumo</mat-label>
+        <textarea matInput formControlName="resumo"></textarea>
+      </mat-form-field>
+
+      <div class="form-group">
+        <label>Capa</label>
+        <input
+          type="file"
+          formControlName="capa"
+          placeholder="Selecione a Capa"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+
+      <!-- <mat-form-field>
+        <mat-label>Capa</mat-label>
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          #fileInput
+          hidden
+        />
+        <button (click)="fileInput.click()" color="primary">Choose File</button>
+      </mat-form-field> -->
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="thirdForm">
+    <form [formGroup]="thirdForm">
+      <ng-template matStepLabel>Autor/Resumo</ng-template>
+
+      <div class="autor-search-container">
+        <mat-form-field>
+          <mat-label>Autor</mat-label>
+          <input
+            matInput
+            (keyup)="searchAutor($event)"
+            placeholder="Nome do Autor"
+            #inputAutor
+            style="padding-top: 12px"
+            formControlName="autor"
+            [matAutocomplete]="autoAutor"
+          />
+          <mat-autocomplete #autoAutor="matAutocomplete">
+            <mat-option
+              *ngFor="let autorOption of filteredAutorOptions | async"
+              [value]="autorOption.nome"
+            >
+              {{ autorOption.nome }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <div class="tradutor-container">
+        <mat-form-field>
+          <mat-label>Tradutor</mat-label>
+          <input
+            matInput
+            #input
+            formControlName="tradutor"
+            placeholder="Coloque o Tradutor"
+          />
+          <mat-error *ngIf="thirdForm.hasError('autorAndEditoraNotSelected')">
+            Clique no item da Lista
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="editora-search-container">
+        <mat-form-field>
+          <mat-label>Editora</mat-label>
+          <input
+            matInput
+            (keyup)="searchEditora($event)"
+            placeholder="Nome da Editora"
+            #inputEditora
+            style="padding-top: 12px"
+            formControlName="editora"
+            [matAutocomplete]="autoEditora"
+          />
+          <mat-autocomplete #autoEditora="matAutocomplete">
+            <mat-option
+              *ngFor="let editoraOption of filteredEditoraOptions | async"
+              [value]="editoraOption.nome"
+            >
+              {{ editoraOption.nome }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error *ngIf="thirdForm.hasError('autorAndEditoraNotSelected')">
+            Clique no item da Lista
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="fourthForm">
+    <form [formGroup]="fourthForm">
+      <ng-template matStepLabel>Parâmetros</ng-template>
+
       <div class="row">
         <div class="categorias col-12">
           <mat-form-field>
@@ -55,6 +174,7 @@
           </mat-form-field>
         </div>
       </div>
+
       <div class="row">
         <div class="idiomas col-12 col-md-6">
           <mat-form-field>
@@ -147,37 +267,10 @@
           </mat-form-field>
         </div>
       </div>
-
-      <!-- <div class="row" *ngIf="number(this.acervoForm.get('tipo')?.value) === 1">
-        <div class="titulo col-12">
-          <mat-form-field>
-            <mat-label>IBNS</mat-label>
-            <input
-              matInput
-              #input
-              formControlName="IBNS"
-              placeholder="Coloque o IBNS"
-            />
-          </mat-form-field>
-        </div>
-      </div> -->
-    </mat-tab>
-
-    <mat-tab label="Resumo">
-      <div class="rol">
-        <div class="col-12">
-          <mat-form-field>
-            <mat-label>Resumo</mat-label>
-            <textarea matInput formControlName="resumo"></textarea>
-          </mat-form-field>
-        </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
       </div>
-    </mat-tab>
-  </mat-tab-group>
-
-  <div class="submit">
-    <button class="btn btn-primary" (click)="submit()">
-      Criar Novo Acervo
-    </button>
-  </div>
-</form>
+    </form>
+  </mat-step>
+</mat-stepper>
