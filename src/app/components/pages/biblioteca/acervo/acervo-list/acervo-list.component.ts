@@ -14,7 +14,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 export class AcervoListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  pageSize = 24;
+  pageSize = 12;
   totalItems = 0;
   currentPage = 0;
 
@@ -26,8 +26,9 @@ export class AcervoListComponent implements OnInit {
   faSearch = faSearch;
   searchTerm: string = '';
 
-  baseUrl = environment.baseApiUrl;
-  bibliotecaUrl = `${this.baseUrl}api/biblioteca`;
+  bibliotecaUrl = `${environment.baseApiUrl}api/biblioteca`;
+
+  expandedIndex: number | null = null;
 
   constructor(
     public bibliotecaService: BibliotecaService,
@@ -78,5 +79,9 @@ export class AcervoListComponent implements OnInit {
         URL.createObjectURL(data)
       );
     });
+  }
+
+  showDetail(index: number) {
+    this.expandedIndex = this.expandedIndex == index ? null : index;
   }
 }

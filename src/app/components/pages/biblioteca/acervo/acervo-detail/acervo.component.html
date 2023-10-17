@@ -24,7 +24,12 @@
           <p><strong>Resumo:</strong> {{ acervo.resumo }}</p>
           <p><strong>Situação:</strong> {{ acervo.situacao.situacao }}</p>
           <p><strong>Estado:</strong> {{ acervo.estado.estado }}</p>
-          <p *ngIf="acervo.situacao.situacao == 'Disponível'">
+          <p
+            *ngIf="
+              acervo.situacao.situacao == 'Disponível' &&
+              authService.checkRoles(['Bibliotecário'])
+            "
+          >
             <button
               role="button"
               class="btn btn-primary"

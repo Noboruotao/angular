@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/authService/auth.service';
 import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
 import { environment } from 'src/environments/environment';
 
@@ -14,7 +15,8 @@ export class AcervoComponent implements OnInit {
   acervo: any;
   constructor(
     private bibliotecaService: BibliotecaService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public authService: AuthService
   ) {}
 
   ngOnInit() {

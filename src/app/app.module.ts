@@ -23,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
 
 import { LoginComponent } from './components/pages/login/login.component';
 import { HomeComponent } from './components/pages/home/home.component';
@@ -159,6 +160,7 @@ import {
     MatSnackBarModule,
     MatAutocompleteModule,
     MatStepperModule,
+    MatCardModule,
   ],
   providers: [
     {

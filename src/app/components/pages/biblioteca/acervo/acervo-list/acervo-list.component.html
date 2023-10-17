@@ -1,36 +1,49 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
 <div class="content-wrapper" style="background-color: gray">
-  <div class="search-container">
+  <div class="search-container m-3">
     <form>
       <fa-icon [icon]="faSearch"></fa-icon>
       <input type="text" placeholder="Pesquisa..." (input)="search($event)" />
     </form>
   </div>
 
-  <div class="acervos" *ngIf="totalItems != 0; else noAcervo">
-    <div class="acervo-container">
-      <div
-        class="acervo card"
-        id="card-{{ acervo.id }}"
-        *ngFor="let acervo of acervoList"
+  <div class="acervos m-3" *ngIf="totalItems != 0">
+    <div class="card-container">
+      <mat-card
+        class="acervo-card"
+        *ngFor="let acervo of acervoList; let index = index"
+        tabindex="0"
       >
-        <img
-          [src]="bibliotecaUrl + '/getCapa/' + acervo.capa"
-          alt="Not Found"
-          [routerLink]="'/biblioteca/acervo/' + acervo.id"
-        />
-        <div class="align-bottom">
-          <a
-            class="acervo-link"
-            [routerLink]="'/biblioteca/acervo/' + acervo.id"
-            [title]="acervo.titulo"
-          >
-            {{ acervo.titulo }}
-          </a>
-          <p class="autor-nome" [title]="acervo.autor.nome">
-            {{ acervo.autor.nome }}
-          </p>
+        <mat-card-header
+          class="card-header"
+          routerLink="/biblioteca/acervo/{{ acervo.id }}"
+        >
+          <div class="header-content">
+            <strong title="{{ acervo.titulo }}">{{ acervo.titulo }}</strong>
+          </div>
+        </mat-card-header>
+
+        <div
+          class="card-image-container"
+          routerLink="/biblioteca/acervo/{{ acervo.id }}"
+        >
+          <img
+            mat-card-image
+            class="card-image"
+            [src]="bibliotecaUrl + '/getCapa/' + acervo.capa"
+            alt="Not Found"
+          />
+        </div>
+
+        <mat-card-content class="card-content">
+          <div class="author-container">
+            <a
+              routerLink="/biblioteca/autor/{{ acervo.autor.id }}"
+              title="{{ acervo.autor.nome }}"
+              >{{ acervo.autor.nome }}</a
+            >
+          </div>
           <p
             [style.color]="
               acervo.situacao.situacao === 'Disponível' ? 'green' : 'red'
@@ -38,40 +51,18 @@
           >
             {{ acervo.situacao.situacao }}
           </p>
-        </div>
+        </mat-card-content>
 
-        <div class="accordion-item stick-bottom">
-          <h2 class="accordion-header" [id]="'heading' + acervo.id">
-            <button
-              class="accordion-button btn btn-primary mt-auto"
-              type="button"
-              [attr.data-bs-toggle]="'collapse'"
-              [attr.data-bs-target]="'#collapse' + acervo.id"
-              [attr.aria-expanded]="'false'"
-              [attr.aria-controls]="'collapse' + acervo.id"
-            >
-              Ver Resumo
-            </button>
-          </h2>
-          <div
-            [id]="'collapse' + acervo.id"
-            class="accordion-collapse collapse"
-            [attr.aria-labelledby]="'heading' + acervo.id"
-            [attr.data-bs-parent]="'#card-' + acervo.id"
-          >
-            <div class="accordion-body">
-              <p>
-                <strong>{{ acervo.subtitulo }}</strong>
-              </p>
-              {{ acervo.resumo }}
-            </div>
-          </div>
-        </div>
-      </div>
+        <mat-card-footer class="card-footer">
+          <button mat-button (click)="showDetail(index)">
+            {{ expandedIndex == index ? "Ver Resumo" : "Fechar Resumo" }}
+          </button>
+          <p *ngIf="expandedIndex == index">{{ acervo.resumo }}</p>
+        </mat-card-footer>
+      </mat-card>
     </div>
 
     <mat-paginator
-      [pageSizeOptions]="[24]"
       [length]="totalItems"
       [pageIndex]="currentPage"
       (page)="onPageChange($event)"
@@ -79,10 +70,6 @@
     >
     </mat-paginator>
   </div>
-
-  <ng-template #noAcervo>
-    <h1>ACERVO NÃO ENCONTRADO</h1>
-  </ng-template>
 </div>
 
 <app-footer></app-footer>
