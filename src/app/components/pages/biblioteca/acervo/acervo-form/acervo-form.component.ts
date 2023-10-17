@@ -25,19 +25,19 @@ import {
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+// export class MyErrorStateMatcher implements ErrorStateMatcher {
+//   isErrorState(
+//     control: FormControl | null,
+//     form: FormGroupDirective | NgForm | null
+//   ): boolean {
+//     const isSubmitted = form && form.submitted;
+//     return !!(
+//       control &&
+//       control.invalid &&
+//       (control.dirty || control.touched || isSubmitted)
+//     );
+//   }
+// }
 
 @Component({
   selector: 'app-acervo-form',
@@ -46,35 +46,25 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class AcervoFormComponent {
   @Input() AcervoData: any | null = null;
-
   autors: any;
-  // AutorSearch: string;
   selectedAutor: number;
-
   categorias: any;
   categoriaSearch: string;
-
   editoras: any;
-  // editoraSearch: string;
   selectedEditora: number;
-
   idiomas: any;
   idiomaSearch: string;
-
   tipos: any;
   tipoSearch: string;
-
   situacoes: any;
   situacaoSearch: string;
-
   estados: any;
   estadoSearch: string;
-
   filteredAutorOptions: Observable<any>;
   AutorSearch = new FormControl();
-
   filteredEditoraOptions: Observable<any>;
   editoraSearch = new FormControl();
+  acervoFormData = new FormData();
 
   firstForm = this._formBuilder.group({
     titulo: new FormControl(this.AcervoData ? this.AcervoData.titulo : '', [
@@ -131,23 +121,7 @@ export class AcervoFormComponent {
       switchMap((term) => this.getAutors(term))
     );
 
-    this.listCategorias();
-    this.listIdiomas();
-    this.listAcervoTipo();
-    this.listSituacao();
-    this.listEstado();
-
-    this.thirdForm.setValidators(this.autorAndEditoraSelectedValidator());
-  }
-
-  autorAndEditoraSelectedValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      if (this.selectedAutor && this.selectedEditora) {
-        return null; // No error, validation passes
-      } else {
-        return { autorAndEditoraNotSelected: true };
-      }
-    };
+    this.getAcervoParametros();
   }
 
   searchAutor(e: Event) {
@@ -160,55 +134,39 @@ export class AcervoFormComponent {
     this.editoraSearch.setValue(target.value);
   }
 
-  onOptionSelected(event: any): void {
-    // this.selectedOption = event.option.value;
-    // this.getPessoa(this.selectedOption.id);
-  }
-
-  acervoForm = new FormGroup({
-    titulo: new FormControl('', [Validators.required]),
-    subtitulo: new FormControl('', [Validators.required]),
-    categoria: new FormControl('', [Validators.required]),
-    idioma: new FormControl('', [Validators.required]),
-    tipo: new FormControl('', [Validators.required]),
-    situacao: new FormControl('', [Validators.required]),
-    estado: new FormControl('', [Validators.required]),
-    resumo: new FormControl('', [Validators.required]),
-    tradutor: new FormControl('', [Validators.required]),
-    IBNS: new FormControl(''),
-
-    ano_publicacao: new FormControl('', [Validators.required]),
-    autor: new FormControl('', [Validators.required]),
-    editora: new FormControl('', [Validators.required]),
-    edicao: new FormControl('', [Validators.required]),
-    capa: new FormControl(''),
-  });
-
-  matcher = new MyErrorStateMatcher();
+  // matcher = new MyErrorStateMatcher();
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
+    console.log(file);
+    if (this.acervoFormData.has('capa')) {
+      this.acervoFormData.delete('capa');
+    }
+    this.acervoFormData.append('capa', file);
+    // this.secondForm.patchValue({
+    //   capa: file,
+    // });
   }
 
-  fetchData<T>(
-    serviceMethod: (
-      page: number,
-      pageSize: number,
-      search: string
-    ) => Observable<T>,
-    assignData: (data: T) => void,
-    search: string,
-    limit: number = 20
-  ) {
-    serviceMethod(0, limit, search).subscribe({
-      next: (data) => {
-        assignData(data);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-  }
+  // fetchData<T>(
+  //   serviceMethod: (
+  //     page: number,
+  //     pageSize: number,
+  //     search: string
+  //   ) => Observable<T>,
+  //   assignData: (data: T) => void,
+  //   search: string,
+  //   limit: number = 20
+  // ) {
+  //   serviceMethod(0, limit, search).subscribe({
+  //     next: (data) => {
+  //       assignData(data);
+  //     },
+  //     error: (error) => {
+  //       console.log(error);
+  //     },
+  //   });
+  // }
 
   getAutors(searchTerm: string) {
     return this.bibliotecaService.listAutors(0, 20, searchTerm).pipe(
@@ -228,59 +186,71 @@ export class AcervoFormComponent {
     );
   }
 
-  listCategorias() {
-    this.fetchData(
-      this.bibliotecaService.listCategorias,
-      (data: any) => {
-        this.categorias = data.data;
+  getAcervoParametros() {
+    this.bibliotecaService.getAcervoParametros().subscribe({
+      next: (data: any) => {
+        this.categorias = data.categorias;
+        this.idiomas = data.idiomas;
+        this.estados = data.estados;
+        this.tipos = data.tipos;
+        this.situacoes = data.situacoes;
       },
-      this.categoriaSearch,
-      0
-    );
+    });
   }
 
-  listAcervoTipo() {
-    this.fetchData(
-      this.bibliotecaService.listAcervoTipo,
-      (data: any) => {
-        this.tipos = data.data;
-      },
-      this.tipoSearch,
-      0
-    );
-  }
+  // listCategorias() {
+  //   this.fetchData(
+  //     this.bibliotecaService.listCategorias,
+  //     (data: any) => {
+  //       this.categorias = data.data;
+  //     },
+  //     this.categoriaSearch,
+  //     0
+  //   );
+  // }
 
-  listIdiomas() {
-    this.fetchData(
-      this.bibliotecaService.listIdiomas,
-      (data: any) => {
-        this.idiomas = data.data;
-      },
-      this.idiomaSearch,
-      0
-    );
-  }
+  // listAcervoTipo() {
+  //   this.fetchData(
+  //     this.bibliotecaService.listAcervoTipo,
+  //     (data: any) => {
+  //       this.tipos = data.data;
+  //     },
+  //     this.tipoSearch,
+  //     0
+  //   );
+  // }
 
-  listSituacao() {
-    this.fetchData(
-      this.bibliotecaService.listSituacao,
-      (data: any) => {
-        this.situacoes = data.data;
-      },
-      this.situacaoSearch,
-      0
-    );
-  }
+  // listIdiomas() {
+  //   this.fetchData(
+  //     this.bibliotecaService.listIdiomas,
+  //     (data: any) => {
+  //       this.idiomas = data.data;
+  //     },
+  //     this.idiomaSearch,
+  //     0
+  //   );
+  // }
 
-  listEstado() {
-    this.fetchData(
-      this.bibliotecaService.listEstado,
-      (data: any) => {
-        this.estados = data.data;
-      },
-      this.estadoSearch
-    );
-  }
+  // listSituacao() {
+  //   this.fetchData(
+  //     this.bibliotecaService.listSituacao,
+  //     (data: any) => {
+  //       this.situacoes = data.data;
+  //     },
+  //     this.situacaoSearch,
+  //     0
+  //   );
+  // }
+
+  // listEstado() {
+  //   this.fetchData(
+  //     this.bibliotecaService.listEstado,
+  //     (data: any) => {
+  //       this.estados = data.data;
+  //     },
+  //     this.estadoSearch
+  //   );
+  // }
 
   getAutor(id: number) {
     this.bibliotecaService.getAutor(id).subscribe({
@@ -305,27 +275,73 @@ export class AcervoFormComponent {
   }
 
   submit() {
-    if (this.acervoForm.invalid) {
-      const invalidControls = Object.keys(this.acervoForm.controls).filter(
-        (controlName) => this.acervoForm.get(controlName)?.invalid
-      );
+    this.acervoFormData.append(
+      'titulo',
+      this.firstForm.get('titulo')?.value ?? ''
+    );
+    this.acervoFormData.append(
+      'subtitulo',
+      this.firstForm.get('subtitulo')?.value ?? ''
+    );
 
-      if (invalidControls.length > 0) {
-        const invalidControlNames = invalidControls.join(', ');
-        alert(`The following fields are invalid: ${invalidControlNames}`);
-      }
-      return;
-    }
-    const formData = new FormData();
-    formData.append('titulo', this.acervoForm.get('titulo')?.value ?? '');
-    formData.append('subtitulo', this.acervoForm.get('subtitulo')?.value ?? '');
-    formData.append('categoria', this.acervoForm.get('categoria')?.value ?? '');
-    formData.append('idioma', this.acervoForm.get('idioma')?.value ?? '');
-    formData.append('tipo', this.acervoForm.get('tipo')?.value ?? '');
-    formData.append('situacao', this.acervoForm.get('situacao')?.value ?? '');
-    formData.append('estado', this.acervoForm.get('estado')?.value ?? '');
-    formData.append('resumo', this.acervoForm.get('resumo')?.value ?? '');
+    this.acervoFormData.append(
+      'resumo',
+      this.secondForm.get('resumo')?.value ?? ''
+    );
 
-    console.log(formData);
+    this.acervoFormData.append(
+      'autor_id',
+      this.selectedAutor ? String(this.selectedAutor) : ''
+    );
+    this.acervoFormData.append(
+      'tradutor',
+      this.thirdForm.get('tradutor')?.value ?? ''
+    );
+    this.acervoFormData.append(
+      'editora_id',
+      this.selectedEditora ? String(this.selectedEditora) : ''
+    );
+
+    this.acervoFormData.append(
+      'categoria_id',
+      this.fourthForm.get('categoria')?.value ?? ''
+    );
+    this.acervoFormData.append(
+      'idioma_id',
+      this.fourthForm.get('idioma')?.value ?? ''
+    );
+    this.acervoFormData.append(
+      'tipo_id',
+      this.fourthForm.get('tipo')?.value ?? ''
+    );
+    this.acervoFormData.append(
+      'situacao_id',
+      this.fourthForm.get('situacao')?.value ?? ''
+    );
+    this.acervoFormData.append(
+      'estado_id',
+      this.fourthForm.get('estado')?.value ?? ''
+    );
+
+    this.acervoFormData.append(
+      'ano_publicacao',
+      this.fifthForm.get('ano_publicacao')?.value ?? ''
+    );
+    this.acervoFormData.append(
+      'edicao',
+      this.fifthForm.get('edicao')?.value ?? ''
+    );
+    this.acervoFormData.append('IBNS', this.fifthForm.get('ibns')?.value ?? '');
+
+    console.log(this.acervoFormData);
+
+    this.bibliotecaService.createAcervo(this.acervoFormData).subscribe({
+      next: (data: any) => {
+        alert('Success');
+      },
+      error: (error) => {
+        alert('Unsuccess');
+      },
+    });
   }
 }

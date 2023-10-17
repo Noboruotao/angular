@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,8 @@ import { map } from 'rxjs/operators';
 export class BibliotecaService {
   private baseApiUrl = environment.baseApiUrl;
   private apiUrl = `${this.baseApiUrl}api/biblioteca`;
+
+  public acervoParametors: any;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -148,7 +151,7 @@ export class BibliotecaService {
   };
 
   getEditora(id: number) {
-    return this.httpClient.get((this.apiUrl = '/getEditora/' + id)).pipe(
+    return this.httpClient.get(this.apiUrl + '/getEditora/' + id).pipe(
       map((response) => {
         return response;
       })
@@ -214,4 +217,16 @@ export class BibliotecaService {
         })
       );
   };
+
+  getAcervoParametros() {
+    return this.httpClient.get(this.apiUrl + '/getAcervoParametros').pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
+
+  createAcervo(formData: FormData) {
+    return this.httpClient.post(this.apiUrl + '/createAcervo', formData);
+  }
 }
