@@ -15,6 +15,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 import { SecretariaService } from 'src/app/services/secretaria/secretaria.service';
+import { AuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
   selector: 'app-multa-detail',
@@ -32,7 +33,8 @@ export class MultaDetailComponent {
     private pessoaService: PessoaService,
     private domSanitizer: DomSanitizer,
     public dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public authService: AuthService
   ) {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.SecretariaService.getMulta(id).subscribe({

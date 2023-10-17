@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { PessoaService } from '../pessoa/pessoa.service';
 import { Pessoa } from 'src/app/interfaces/Pessoa/pessoa';
 import { Check } from 'src/app/interfaces/login/login';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,8 @@ export class AuthService {
 
   constructor(
     private pessoaService: PessoaService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private router: Router
   ) {
     const storedUser = localStorage.getItem('user');
     const decodedUser = storedUser ? jwtDecode(storedUser) : null;
@@ -95,21 +97,40 @@ export class AuthService {
     );
   }
 
-  checkPermission(permissions: String[]) {
-    for (var permission of permissions) {
-      if (Object.values(this.permissions).indexOf(permission) > -1) {
+  private hasAnyMatch(source: string[], target: string[]): boolean {
+    for (const item of source) {
+      if (target.includes(item)) {
         return true;
       }
     }
     return false;
   }
 
-  checkRoles(roles: String[]) {
-    for (var role of roles) {
-      if (Object.values(this.roles).indexOf(role) > -1) {
-        return true;
-      }
+  checkPermission(permissions: string[]): boolean {
+    return this.hasAnyMatch(permissions, this.permissions);
+  }
+
+  checkRoles(roles: string[]): boolean {
+    return this.hasAnyMatch(roles, this.roles);
+  }
+
+  can(items: string[]): boolean {
+    return this.checkRoles(items) || this.checkPermission(items);
+  }
+
+  canAll(items: string[]): boolean {
+    return this.checkRoles(items) && this.checkPermission(items);
+  }
+
+  permitPage(items: string[]) {
+    if (!this.can(items)) {
+      this.router.navigate(['/home']);
     }
-    return false;
+  }
+
+  blockPage(items: string[]) {
+    if (this.can(items)) {
+      this.router.navigate(['/home']);
+    }
   }
 }

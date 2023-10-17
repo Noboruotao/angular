@@ -23,6 +23,7 @@ import {
   distinctUntilChanged,
   switchMap,
 } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
   selector: 'app-make-emprestimo',
@@ -50,8 +51,11 @@ export class MakeEmprestimoComponent {
     private domSanitizer: DomSanitizer,
     public dialog: MatDialog,
     private bibliotecaService: BibliotecaService,
-    private pessoaService: PessoaService
+    private pessoaService: PessoaService,
+    private authService: AuthService
   ) {
+    this.authService.permitPage(['Bibliotecário']);
+
     this.filteredOptions = this.searchControl.valueChanges.pipe(
       startWith(''),
       debounceTime(300),
@@ -123,9 +127,6 @@ export class MakeEmprestimoComponent {
     this.selectedOption = event.option.value;
     // this.getPessoa(this.selectedOption.id);
   }
-
-  
-
 
   fazerEmprestimo() {
     this.dialog.open(ConfirmEmprestimoDialog, {
