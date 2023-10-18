@@ -38,7 +38,7 @@ export class DisciplinaTableComponent {
   totalItems = 0;
   currentPage = 0;
   showCard: boolean = false;
-  showCardBody: boolean = true;
+  showCardBody: boolean = false;
 
   sortColumn: string = '';
   sortOrder: string = 'desc';

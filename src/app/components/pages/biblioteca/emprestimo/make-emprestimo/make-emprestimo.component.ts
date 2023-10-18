@@ -168,8 +168,8 @@ export class ConfirmEmprestimoDialog {
   }
 
   formatDate(data: Date): string {
-    const day = data.getDate();
-    const month = data.getMonth() + 1;
+    const day = String(data.getDate()).padStart(2, '0');
+    const month = String(data.getMonth() + 1).padStart(2, '0');
     const year = data.getFullYear();
     return `${day}/${month}/${year}`;
   }
@@ -180,7 +180,7 @@ export class ConfirmEmprestimoDialog {
       .subscribe({
         next: (data: any) => {
           console.log(data.data);
-          this.router.navigate(['biblioteca/emprestimo/', data.data.id]);
+          this.router.navigate(['biblioteca/acervo/list']);
         },
         error: (error) => {
           console.log(error.error.message);

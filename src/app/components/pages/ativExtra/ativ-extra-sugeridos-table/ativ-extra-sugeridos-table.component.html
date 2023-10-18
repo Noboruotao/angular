@@ -36,6 +36,7 @@
               (change)="onSelectChange($event)"
               style="padding-top: 12px"
             >
+              <option value="">Todos</option>
               <option *ngFor="let tipo of tipos" [value]="tipo.id">
                 {{ tipo.nome }}
               </option>

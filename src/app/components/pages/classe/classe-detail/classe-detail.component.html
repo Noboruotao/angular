@@ -36,10 +36,13 @@
       </div>
     </div>
   </div>
-</div>
 
-<div class="forAluno" *ngIf="authService.checkRoles(['Aluno'])">
-  <app-classe-detail-aluno></app-classe-detail-aluno>
+
+  <div class="forAluno" *ngIf="authService.checkRoles(['Aluno'])">
+    <app-classe-detail-aluno></app-classe-detail-aluno>
+  </div>
+
+  
 </div>
 
 <app-footer></app-footer>

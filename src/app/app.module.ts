@@ -86,6 +86,7 @@ import {
   MultaDetailComponent,
   PagarMultaDialog,
 } from './components/pages/secretaria/multa-detail/multa-detail.component';
+import { UserEmprestimoComponent } from './components/pages/biblioteca/emprestimo/user-emprestimo/user-emprestimo.component';
 
 @NgModule({
   declarations: [
@@ -134,6 +135,7 @@ import {
     AlunoProfessorNavbarComponent,
     BibliotecarioNavbarComponent,
     AcervoFormComponent,
+    UserEmprestimoComponent,
   ],
   imports: [
     BrowserModule,

@@ -55,7 +55,7 @@
 
         <mat-card-footer class="card-footer">
           <button mat-button (click)="showDetail(index)">
-            {{ expandedIndex == index ? "Ver Resumo" : "Fechar Resumo" }}
+            {{ expandedIndex == index ? "Fechar Resumo" : "Ver Resumo" }}
           </button>
           <p *ngIf="expandedIndex == index">{{ acervo.resumo }}</p>
         </mat-card-footer>
@@ -64,6 +64,7 @@
 
     <mat-paginator
       [length]="totalItems"
+      [pageSize]="pageSize"
       [pageIndex]="currentPage"
       (page)="onPageChange($event)"
       showFirstLastButtons

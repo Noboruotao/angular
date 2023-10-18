@@ -5,5 +5,8 @@
     <div class="card-header">HOME</div>
     <div class="card-body">Home Works</div>
   </div>
+  <app-user-emprestimo
+    *ngIf="!authService.checkRoles(['Bibliotecário'])"
+  ></app-user-emprestimo>
 </div>
 <app-footer></app-footer>

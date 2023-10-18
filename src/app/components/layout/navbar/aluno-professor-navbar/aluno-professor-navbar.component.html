@@ -4,21 +4,17 @@
 >
   <li class="nav-item" *ngIf="authService.checkRoles(['Aluno'])">
     <a id="layoutOptionsLink" class="nav-link">
-      <p>
-        <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
-        Aluno
-        <fa-icon class="navbar_icon float-right"></fa-icon>
-      </p>
+      <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
+      <p>Aluno</p>
+      <fa-icon class="navbar_icon float-right"></fa-icon>
     </a>
   </li>
 
   <li class="nav-item">
     <a routerLink="/classe/list" class="nav-link" [routerLinkActive]="'active'">
-      <p>
-        <fa-icon class="navbar_icon" [icon]="faUserGroup"></fa-icon>
-        Classe
-        <fa-icon class="navbar_icon float-right"></fa-icon>
-      </p>
+      <fa-icon class="navbar_icon" [icon]="faUserGroup"></fa-icon>
+      <p>Classe</p>
+      <fa-icon class="navbar_icon float-right"></fa-icon>
     </a>
   </li>
 
@@ -28,20 +24,16 @@
       class="nav-link"
       [routerLinkActive]="'active'"
     >
-      <p>
-        <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
-        Disciplina
-        <fa-icon class="navbar_icon float-right"></fa-icon>
-      </p>
+      <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
+      <p>Disciplina</p>
+      <fa-icon class="navbar_icon float-right"></fa-icon>
     </a>
   </li>
 
   <li class="nav-item">
     <a routerLink="/curso/list" class="nav-link" [routerLinkActive]="'active'">
-      <p>
-        <fa-icon class="navbar_icon" [icon]="faGraduationCap"></fa-icon>
-        Curso
-      </p>
+      <fa-icon class="navbar_icon" [icon]="faGraduationCap"></fa-icon>
+      <p>Curso</p>
     </a>
   </li>
   <li class="nav-item">
@@ -50,10 +42,8 @@
       class="nav-link"
       [routerLinkActive]="'active'"
     >
-      <p>
-        <fa-icon class="navbar_icon" [icon]="faBaseball"></fa-icon>
-        Atividade Extracurricular
-      </p>
+      <fa-icon class="navbar_icon" [icon]="faBaseball"></fa-icon>
+      <p>Atividade Extracurricular</p>
     </a>
   </li>
 
@@ -73,10 +63,8 @@
       class="nav-link"
       [routerLinkActive]="'active'"
     >
-      <p>
-        <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
-        Biblioteca
-      </p>
+      <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
+      <p>Biblioteca</p>
     </a>
   </li>
 </div>

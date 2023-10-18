@@ -89,6 +89,10 @@ export class BibliotecaService {
     );
   }
 
+  getUserEmprestimos() {
+    return this.httpClient.get(this.apiUrl + '/getUserEmprestimos');
+  }
+
   fazerDevolucao(id: number) {
     const request_body = {
       emprestimo_id: id,

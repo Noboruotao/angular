@@ -2,12 +2,14 @@
 <div mat-dialog-content>
   <div *ngIf="!pago">
     <form [formGroup]="pagamentoForm">
+      <p>Valor a Pagar: R${{ multa.valor }}</p>
       <mat-form-field floatLabel="always">
         <mat-label>Valor sendo Pago</mat-label>
         <input
           matInput
           type="number"
           placeholder="0"
+          name="valor"
           formControlName="valor"
           min="0"
         />

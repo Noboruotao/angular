@@ -62,7 +62,7 @@
                 {{ multa.dias_atrasados }}
               </td>
             </tr>
-            <tr *ngIf="authService.can(['Secretaria'])">
+            <tr *ngIf="authService.can(['multa.update'])">
               <td colspan="2">
                 <button
                   role="button"
