@@ -13,6 +13,8 @@ export class BibliotecaService {
 
   public acervoParametors: any;
 
+  public multasQnt: Number = 0;
+
   constructor(private httpClient: HttpClient) {}
 
   getAcervoslist(
@@ -90,7 +92,14 @@ export class BibliotecaService {
   }
 
   getUserEmprestimos() {
-    return this.httpClient.get(this.apiUrl + '/getUserEmprestimos');
+    return this.httpClient.get(this.apiUrl + '/getUserEmprestimos').pipe(
+      map((response: any) => {
+        this.multasQnt = response.data.filter(
+          (items: any) => items.color === 'red'
+        ).length;
+        return response;
+      })
+    );
   }
 
   fazerDevolucao(id: number) {

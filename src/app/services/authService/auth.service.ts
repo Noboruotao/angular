@@ -19,6 +19,7 @@ export class AuthService {
   public userData!: Pessoa;
   public roles!: any;
   public permissions!: any;
+  public notificacaoQnt: Number;
 
   storage!: Storage;
 
@@ -72,7 +73,7 @@ export class AuthService {
         this.userData = response.data;
         this.roles = response.roles;
         this.permissions = response.permissions;
-
+        this.notificacaoQnt = response.emprestimos_atrasados;
         return response;
       })
     );

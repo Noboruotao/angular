@@ -10,4 +10,5 @@ export interface Check {
   data: Pessoa;
   roles?: [string];
   permissions?: [string];
+  emprestimos_atrasados: Number;
 }

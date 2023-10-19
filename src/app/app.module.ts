@@ -24,6 +24,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { LoginComponent } from './components/pages/login/login.component';
 import { HomeComponent } from './components/pages/home/home.component';
@@ -163,6 +164,7 @@ import { UserEmprestimoComponent } from './components/pages/biblioteca/emprestim
     MatAutocompleteModule,
     MatStepperModule,
     MatCardModule,
+    MatMenuModule,
   ],
   providers: [
     {

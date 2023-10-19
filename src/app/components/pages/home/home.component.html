@@ -1,10 +1,10 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
 <div class="content-wrapper" style="background-color: gray">
-  <div class="card m-3">
+  <!-- <div class="card m-3">
     <div class="card-header">HOME</div>
     <div class="card-body">Home Works</div>
-  </div>
+  </div> -->
   <app-user-emprestimo
     *ngIf="!authService.checkRoles(['Bibliotecário'])"
   ></app-user-emprestimo>

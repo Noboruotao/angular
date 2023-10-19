@@ -10,6 +10,7 @@ import {
   faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/authService/auth.service';
+import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +25,18 @@ export class HeaderComponent {
   faThLarge = faThLarge;
   faRightFromBracket = faRightFromBracket;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  notificacaoQnt: Number;
+
+  constructor(private authService: AuthService, private router: Router) {
+    this.atualizarNotificacao();
+    setInterval(() => {
+      this.atualizarNotificacao();
+    }, 3000);
+  }
+
+  atualizarNotificacao() {
+    this.notificacaoQnt = this.authService.notificacaoQnt;
+  }
 
   logout() {
     this.authService.logout().subscribe({

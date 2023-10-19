@@ -2,13 +2,13 @@
   class="navBarForAlunoProfessor"
   *ngIf="authService.checkRoles(['Aluno', 'Professor'])"
 >
-  <li class="nav-item" *ngIf="authService.checkRoles(['Aluno'])">
+  <!-- <li class="nav-item" *ngIf="authService.checkRoles(['Aluno'])">
     <a id="layoutOptionsLink" class="nav-link">
       <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
       <p>Aluno</p>
       <fa-icon class="navbar_icon float-right"></fa-icon>
     </a>
-  </li>
+  </li> -->
 
   <li class="nav-item">
     <a routerLink="/classe/list" class="nav-link" [routerLinkActive]="'active'">

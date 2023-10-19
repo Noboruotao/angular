@@ -7,6 +7,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
   selector: 'app-emprestimo-detail',
@@ -21,7 +22,8 @@ export class EmprestimoDetailComponent {
     private route: ActivatedRoute,
     private router: Router,
     public dialog: MatDialog,
-    private bibliotecaService: BibliotecaService
+    private bibliotecaService: BibliotecaService,
+    public authService: AuthService
   ) {
     const id: number = Number(this.route.snapshot.paramMap.get('id'));
     this.bibliotecaService.getEmprestimoDetail(id).subscribe({

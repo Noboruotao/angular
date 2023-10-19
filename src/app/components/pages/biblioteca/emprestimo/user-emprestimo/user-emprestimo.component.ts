@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
+import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-emprestimo',
@@ -9,6 +10,8 @@ import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.servic
 export class UserEmprestimoComponent {
   emprestimos: any;
   displayedColumns: string[] = ['titulo', 'data_devolucao'];
+
+  faArrowsRotate = faArrowsRotate;
 
   showCard: boolean = false;
 
@@ -20,7 +23,6 @@ export class UserEmprestimoComponent {
     this.bibliotecaService.getUserEmprestimos().subscribe({
       next: (data: any) => {
         this.emprestimos = data.data;
-        console.log(this.emprestimos);
         this.showCard = true;
       },
     });
