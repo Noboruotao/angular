@@ -16,14 +16,19 @@ export class UserEmprestimoComponent {
   showCard: boolean = false;
 
   constructor(private bibliotecaService: BibliotecaService) {
-    this.getEmpestimos();
+    this.getEmprestimos();
   }
 
-  getEmpestimos() {
+  getEmprestimos() {
     this.bibliotecaService.getUserEmprestimos().subscribe({
       next: (data: any) => {
-        this.emprestimos = data.data;
-        this.showCard = true;
+        if (data.success) {
+          this.emprestimos = data.data;
+          this.showCard = true;
+        }
+      },
+      error: (error) => {
+        console.log(error.error.message);
       },
     });
   }

@@ -94,9 +94,11 @@ export class BibliotecaService {
   getUserEmprestimos() {
     return this.httpClient.get(this.apiUrl + '/getUserEmprestimos').pipe(
       map((response: any) => {
-        this.multasQnt = response.data.filter(
-          (items: any) => items.color === 'red'
-        ).length;
+        if (response.success) {
+          this.multasQnt = response.data.filter(
+            (items: any) => items.color === 'red'
+          ).length;
+        }
         return response;
       })
     );

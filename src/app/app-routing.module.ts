@@ -22,6 +22,7 @@ import { MakeEmprestimoComponent } from './components/pages/biblioteca/emprestim
 import { ListMultasComponent } from './components/pages/secretaria/list-multas/list-multas.component';
 import { MultaDetailComponent } from './components/pages/secretaria/multa-detail/multa-detail.component';
 import { MakeAcervoComponent } from './components/pages/biblioteca/acervo/make-acervo/make-acervo.component';
+import { AlunoEscolhaComponent } from './components/pages/area/aluno-escolha/aluno-escolha.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -113,6 +114,10 @@ const routes: Routes = [
       {
         path: 'secretaria/multa/:id',
         component: MultaDetailComponent,
+      },
+      {
+        path: 'area/alunoEscolha',
+        component: AlunoEscolhaComponent,
       },
     ],
   },

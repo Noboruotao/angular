@@ -88,6 +88,7 @@ import {
   PagarMultaDialog,
 } from './components/pages/secretaria/multa-detail/multa-detail.component';
 import { UserEmprestimoComponent } from './components/pages/biblioteca/emprestimo/user-emprestimo/user-emprestimo.component';
+import { AlunoEscolhaComponent } from './components/pages/area/aluno-escolha/aluno-escolha.component';
 
 @NgModule({
   declarations: [
@@ -137,6 +138,7 @@ import { UserEmprestimoComponent } from './components/pages/biblioteca/emprestim
     BibliotecarioNavbarComponent,
     AcervoFormComponent,
     UserEmprestimoComponent,
+    AlunoEscolhaComponent,
   ],
   imports: [
     BrowserModule,

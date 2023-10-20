@@ -1,7 +1,7 @@
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 
@@ -90,7 +90,6 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 100%;
-    /* You can adjust this width as needed */
 }
 
 
@@ -119,14 +118,13 @@
     text-align: center;
 }
 
-@media (max-width: 1565px) {
+@media (max-width: 965px) {
     .search-container form {
         width: 100%;
     }
 
     .acervo-card {
-        width: 48%;
-        /* min-width: 350px; */
+        width: 400px;
         height: 600px;
         margin-bottom: 1em;
     }

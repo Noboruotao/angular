@@ -8,10 +8,10 @@
     </form>
   </div>
 
-  <div class="acervos m-3" *ngIf="totalItems != 0">
+  <div class="acervos" *ngIf="totalItems != 0">
     <div class="card-container">
       <mat-card
-        class="acervo-card"
+        class="acervo-card m-3"
         *ngFor="let acervo of acervoList; let index = index"
         tabindex="0"
       >

@@ -1,0 +1,46 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="content-wrapper" style="background-color: gray">
+  <mat-card class="m-3">
+    <mat-card-header
+      >Quais Assuntos você tem interesse?
+      <small class="small text-muted align-top"
+        >(Máximo:5)</small
+      ></mat-card-header
+    >
+    <mat-card-content>
+      <mat-tab-group *ngIf="isLoading == false; else spinner">
+        <mat-tab *ngFor="let area of areas" label="{{ area.codigo }}">
+          <h4>{{ area.nome }}</h4>
+
+          <ul>
+            <li
+              *ngFor="let subClasse of area.sub_classes"
+              style="list-style: none"
+            >
+              <mat-checkbox
+                [checked]="isChecked(subClasse.codigo)"
+                (change)="escolher(subClasse.codigo)"
+                >{{ subClasse.nome }}</mat-checkbox
+              >
+            </li>
+          </ul>
+        </mat-tab>
+      </mat-tab-group>
+
+      <button class="btn btn-primary" (click)="enviar()">Enviar</button>
+    </mat-card-content>
+
+    <ng-template #spinner>
+      <div
+        class="container-fluid d-flex justify-content-center align-items-center"
+      >
+        <div class="text-center">
+          <mat-spinner></mat-spinner>
+          <p>Carregando...</p>
+        </div>
+      </div>
+    </ng-template>
+  </mat-card>
+</div>
+<app-footer></app-footer>
