@@ -9,6 +9,7 @@ import {
   faBaseball,
   faWalking,
   faMoneyBill1Wave,
+  faBook,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -24,5 +25,6 @@ export class BibliotecarioNavbarComponent {
   faBaseball = faBaseball;
   faWalking = faWalking;
   faMoneyBill1Wave = faMoneyBill1Wave;
+  faBook = faBook;
   constructor(protected authService: AuthService) {}
 }

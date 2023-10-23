@@ -23,6 +23,14 @@
           emprestimo.bibliotecario.nome
         }}</a>
       </p>
+      <p>
+        <strong>Data do Emprestimo:</strong>
+        {{ formatDate(emprestimo.data_emprestimo) }}
+      </p>
+      <p *ngIf="emprestimo.data_devolucao">
+        <strong>Data de Devolução:</strong>
+        {{ formatDate(emprestimo.data_devolucao) }}
+      </p>
       <div class="multa" *ngIf="emprestimo.multa">
         <h4 style="color: red">Multa</h4>
         <p><strong>Motivo:</strong> {{ emprestimo.multa.mensagem }}</p>
@@ -35,7 +43,10 @@
       <button
         role="button"
         class="btn btn-primary"
-        *ngIf="authService.checkRoles(['Bibliotecário'])"
+        *ngIf="
+          authService.checkRoles(['Bibliotecário']) &&
+          emprestimo.data_devolucao == null
+        "
         (click)="devolver()"
       >
         Devolver

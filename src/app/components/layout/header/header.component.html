@@ -20,7 +20,11 @@
       </span>
     </button>
     <mat-menu #notificacao="matMenu">
-      <button mat-menu-item *ngIf="emprestimos_atrasados">
+      <button
+        mat-menu-item
+        *ngIf="emprestimos_atrasados"
+        routerLink="/biblioteca/emprestimo/list"
+      >
         Empréstimos Atrasados
         <div class="badge badge-danger navbar">{{ emprestimos_atrasados }}</div>
       </button>

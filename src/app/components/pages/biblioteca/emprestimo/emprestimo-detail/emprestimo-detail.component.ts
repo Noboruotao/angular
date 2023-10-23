@@ -42,6 +42,18 @@ export class EmprestimoDetailComponent {
       data: this.emprestimo,
     });
   }
+
+  formatDate(inputDate: string): string {
+    const dateParts = inputDate.split('-');
+    if (dateParts.length === 3) {
+      const year = dateParts[0];
+      const month = dateParts[1];
+      const day = dateParts[2];
+
+      return `${day}/${month}/${year}`;
+    }
+    return inputDate;
+  }
 }
 
 @Component({
