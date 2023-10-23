@@ -89,4 +89,20 @@ export class AlunoService {
         })
       );
   }
+
+  naoMostrarMaisSugeridos(model_id: Number, model_type: String) {
+    let params = new HttpParams()
+      .set('model_id', model_id.toString())
+      .set('model_type', model_type.toString());
+
+    return this.httpClient
+      .get(this.apiUrl + '/disaparecerSugerido', {
+        params: params,
+      })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
 }

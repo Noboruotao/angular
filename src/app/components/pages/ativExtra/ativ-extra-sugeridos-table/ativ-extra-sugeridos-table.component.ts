@@ -29,7 +29,7 @@ import {
 })
 export class AtivExtraSugeridosTableComponent {
   sugeridos: MatTableDataSource<any>;
-  displayedColumns: string[] = ['nome', 'descricao', 'tipo'];
+  displayedColumns: string[] = ['nome', 'descricao', 'tipo', 'action'];
 
   showcard = false;
   showCardBody: boolean = true;
@@ -41,6 +41,7 @@ export class AtivExtraSugeridosTableComponent {
   sortColumn: string = 'nome';
   sortOrder: string = 'asc';
   tipo: string = '';
+  no_sugeridos: boolean = true;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -72,8 +73,10 @@ export class AtivExtraSugeridosTableComponent {
         next: (data) => {
           this.sugeridos = new MatTableDataSource(data.data);
           this.totalItems = data.count;
-          this.showcard =
-            this.searchTerm == '' && this.totalItems == 0 ? false : true;
+          if (this.totalItems > 0 && this.no_sugeridos == false) {
+            this.no_sugeridos = true;
+          }
+          this.showcard = this.no_sugeridos ? true : false;
         },
         error: (error) => {
           this.openSnackBar(error.error.message);
@@ -109,5 +112,13 @@ export class AtivExtraSugeridosTableComponent {
 
   openSnackBar(message: string, action: string = 'Fechar') {
     this._snackBar.open(message, action, { duration: 2000 });
+  }
+
+  naoMostrarMaisSugeridos(model_id: Number, model_type: String) {
+    this.alunoService.naoMostrarMaisSugeridos(model_id, model_type).subscribe({
+      next: (data: any) => {
+        this.getSugeridos();
+      },
+    });
   }
 }

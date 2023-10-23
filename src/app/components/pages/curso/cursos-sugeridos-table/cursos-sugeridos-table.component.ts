@@ -29,7 +29,7 @@ import {
 })
 export class CursosSugeridosTableComponent {
   sugeridos: MatTableDataSource<any>;
-  displayedColumns: string[] = ['nome', 'descricao'];
+  displayedColumns: string[] = ['nome', 'descricao', 'action'];
 
   searchTerm: string = '';
   showTable: boolean = false;
@@ -99,5 +99,13 @@ export class CursosSugeridosTableComponent {
 
   openSnackBar(message: string, action: string = 'Fechar') {
     this._snackBar.open(message, action, { duration: 2000 });
+  }
+
+  naoMostrarMaisSugeridos(model_id: Number, model_type: String) {
+    this.alunoService.naoMostrarMaisSugeridos(model_id, model_type).subscribe({
+      next: (data: any) => {
+        this.getSugeridos();
+      },
+    });
   }
 }

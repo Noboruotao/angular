@@ -25,6 +25,7 @@ export class HeaderComponent {
   faThLarge = faThLarge;
   faRightFromBracket = faRightFromBracket;
 
+  emprestimos_atrasados: Number;
   notificacaoQnt: Number;
 
   constructor(private authService: AuthService, private router: Router) {
@@ -35,6 +36,7 @@ export class HeaderComponent {
   }
 
   atualizarNotificacao() {
+    this.emprestimos_atrasados = this.authService.emprestimos_atrasados;
     this.notificacaoQnt = this.authService.notificacaoQnt;
   }
 

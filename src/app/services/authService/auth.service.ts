@@ -20,6 +20,7 @@ export class AuthService {
   public roles!: any;
   public permissions!: any;
   public notificacaoQnt: Number;
+  public emprestimos_atrasados: Number;
 
   storage!: Storage;
 
@@ -73,7 +74,10 @@ export class AuthService {
         this.userData = response.data;
         this.roles = response.roles;
         this.permissions = response.permissions;
-        this.notificacaoQnt = response.emprestimos_atrasados;
+        this.emprestimos_atrasados = response.emprestimos_atrasados;
+
+        this.notificacaoQnt = this.emprestimos_atrasados;
+
         return response;
       })
     );
