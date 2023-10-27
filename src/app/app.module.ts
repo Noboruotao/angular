@@ -89,6 +89,8 @@ import {
 } from './components/pages/secretaria/multa-detail/multa-detail.component';
 import { UserEmprestimoComponent } from './components/pages/biblioteca/emprestimo/user-emprestimo/user-emprestimo.component';
 import { AlunoEscolhaComponent } from './components/pages/area/aluno-escolha/aluno-escolha.component';
+import { SecretariaNavbarComponent } from './components/layout/navbar/secretaria-navbar/secretaria-navbar.component';
+import { AtivExtraAlunoTableComponent } from './components/pages/ativExtra/ativ-extra-aluno-table/ativ-extra-aluno-table.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +141,8 @@ import { AlunoEscolhaComponent } from './components/pages/area/aluno-escolha/alu
     AcervoFormComponent,
     UserEmprestimoComponent,
     AlunoEscolhaComponent,
+    SecretariaNavbarComponent,
+    AtivExtraAlunoTableComponent,
   ],
   imports: [
     BrowserModule,

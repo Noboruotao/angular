@@ -73,7 +73,7 @@ export class CursosSugeridosTableComponent {
             this.searchTerm == '' && this.totalItems == 0 ? false : true;
         },
         error: (error) => {
-          this.openSnackBar(error.error.message);
+          // this.openSnackBar(error.error.message);
         },
       });
   }

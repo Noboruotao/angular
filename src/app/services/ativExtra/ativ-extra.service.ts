@@ -54,4 +54,9 @@ export class AtivExtraService {
       })
     );
   }
+
+  getAlunos(id: number) {
+    let params = new HttpParams().set('id', id);
+    return this.httpClient.get(this.apiUrl + '/getAlunos', { params: params });
+  }
 }

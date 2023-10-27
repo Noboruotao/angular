@@ -7,21 +7,17 @@
         {{ ativExtraInfo.nome }}
       </h1>
     </div>
+
     <div class="card-body">
       <div class="curso-detail">
         <p>
           {{ ativExtraInfo.descricao }}
         </p>
       </div>
+      <app-ativ-extra-aluno-table
+        [ativExtra_id]="ativExtraInfo.id"
+      ></app-ativ-extra-aluno-table>
     </div>
   </div>
 </div>
-<!-- <ng-template #noCurso>
-  <div class="card">
-    <div class="card-header">ATIVIDADE EXTRACURRICULAR NÃO ENCONTRADO</div>
-    <div class="card-body">
-      <p>O Atividade Extracurricular não foi encontrado</p>
-    </div>
-  </div>
-</ng-template> -->
 <app-footer></app-footer>

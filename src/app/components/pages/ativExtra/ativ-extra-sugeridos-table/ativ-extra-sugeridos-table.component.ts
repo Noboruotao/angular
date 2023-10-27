@@ -79,7 +79,7 @@ export class AtivExtraSugeridosTableComponent {
           this.showcard = this.no_sugeridos ? true : false;
         },
         error: (error) => {
-          this.openSnackBar(error.error.message);
+          // this.openSnackBar(error.error.message);
         },
       });
   }
