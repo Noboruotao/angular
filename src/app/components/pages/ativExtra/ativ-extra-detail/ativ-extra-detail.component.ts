@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   MatDialog,
@@ -20,14 +20,13 @@ import { Router } from '@angular/router';
 import { AtivExtraService } from 'src/app/services/ativExtra/ativ-extra.service';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
-import {
-  MatFormFieldControl,
-  MatFormFieldModule,
-} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { AtivExtraAlunoTableComponent } from '../ativ-extra-aluno-table/ativ-extra-aluno-table.component';
 
 @Component({
   selector: 'app-ativ-extra-detail',
@@ -38,12 +37,14 @@ export class AtivExtraDetailComponent {
   ativExtraInfo: any;
   showCard: boolean = false;
 
+  @ViewChild(AtivExtraAlunoTableComponent)
+  ativExtraAlunoTable: AtivExtraAlunoTableComponent;
+
   constructor(
     private ativExtraService: AtivExtraService,
     public authService: AuthService,
-
+    private router: Router,
     public dialog: MatDialog,
-
     private route: ActivatedRoute
   ) {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -52,7 +53,6 @@ export class AtivExtraDetailComponent {
       next: (data) => {
         this.ativExtraInfo = data.data;
         this.showCard = true;
-        this.atribuirAlunoAtivExtra();
       },
       error: () => {
         this.ativExtraInfo = {
@@ -63,10 +63,17 @@ export class AtivExtraDetailComponent {
       },
     });
   }
+
   atribuirAlunoAtivExtra() {
-    this.dialog.open(AttributeAlunoAtivExtraDialog, {
+    const dialogRef = this.dialog.open(AttributeAlunoAtivExtraDialog, {
       data: { ativExtra: this.ativExtraInfo },
       width: '600px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.ativExtraAlunoTable.getAlunos();
+      }
     });
   }
 }
@@ -80,6 +87,7 @@ export class AtivExtraDetailComponent {
     MatFormFieldModule,
     MatAutocompleteModule,
     MatInputModule,
+    MatSnackBarModule,
     CommonModule,
   ],
 })
@@ -103,6 +111,7 @@ export class AttributeAlunoAtivExtraDialog {
     private pessoaService: PessoaService,
     private ativExtraService: AtivExtraService,
     private domSanitizer: DomSanitizer,
+    private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.filteredOptions = this.searchControl.valueChanges.pipe(
@@ -120,7 +129,6 @@ export class AttributeAlunoAtivExtraDialog {
   }
 
   getPessoas(term: string): Observable<any[]> {
-    console.log(term);
     return this.pessoaService
       .getPessoasWithCpf(term)
       .pipe(map((data) => data.data));
@@ -146,7 +154,7 @@ export class AttributeAlunoAtivExtraDialog {
         this.getFoto(this.pessoa.id);
       },
       error: (error) => {
-        console.log(error.error.message);
+        this.openSnackBar(error.error.message);
       },
     });
   }
@@ -160,12 +168,21 @@ export class AttributeAlunoAtivExtraDialog {
       .attributeAlunoAtivExtra(this.pessoa.id, this.data.ativExtra.id)
       .subscribe({
         next: (data: any) => {
-          console.log(data.data);
-          window.location.reload();
+          this.openSnackBar('Aluno Atribuido com Sucesso.');
+          this.closeDialog();
         },
         error: (error) => {
-          console.log(error.error.message);
+          this.openSnackBar(error.error.message);
+          this.closeDialog(false);
         },
       });
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, 'Fechar');
+  }
+
+  closeDialog(reload: boolean = true) {
+    this.dialogRef.close(reload);
   }
 }

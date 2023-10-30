@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Title</h1>
+<div mat-dialog-content>
+  <p>Têm certeza em remover {{ data.aluno.nome }}?</p>
+  <section>
+    <mat-checkbox (change)="isDisabled=!isDisabled">CONFIRMAR</mat-checkbox>
+  </section>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    mat-dialog-close
+    class="btn btn-warning"
+    [disabled]="isDisabled"
+    (click)="removeAlunoFromAtivExtra()"
+  >
+    Salvar
+  </button>
+  <button mat-button mat-dialog-close>Fechar</button>
+</div>
