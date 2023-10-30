@@ -133,7 +133,7 @@ export class MakeEmprestimoComponent {
       data: {
         leitor: this.pessoa,
         acervo: this.acervo,
-      },
+      },width: '600px',
     });
   }
 }

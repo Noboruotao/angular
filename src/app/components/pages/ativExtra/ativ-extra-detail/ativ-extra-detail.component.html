@@ -3,9 +3,21 @@
 <div class="content-wrapper" style="background-color: gray">
   <div class="card" *ngIf="showCard">
     <div class="card-header">
-      <h1>
-        {{ ativExtraInfo.nome }}
-      </h1>
+      <div class="row">
+        <div class="col">
+          <h1>
+            {{ ativExtraInfo.nome }}
+          </h1>
+        </div>
+        <div
+          class="col text-end"
+          *ngIf="authService.checkRoles(['Secretaria'])"
+        >
+          <button class="btn btn-primary" (click)="atribuirAlunoAtivExtra()">
+            Adicionar Aluno
+          </button>
+        </div>
+      </div>
     </div>
 
     <div class="card-body">

@@ -8,15 +8,18 @@ import { AuthService } from 'src/app/services/authService/auth.service';
   styleUrls: ['./ativ-extra-aluno-table.component.css'],
 })
 export class AtivExtraAlunoTableComponent implements OnChanges {
-  alunos: any;
+  alunos: MatTableDataSource<any>;
   @Input() ativExtra_id: number;
+  error_message: string = '';
 
   displayedColumns: string[] = ['nome', 'action'];
 
   constructor(
     private ativExtraService: AtivExtraService,
     public authService: AuthService
-  ) {}
+  ) {
+    this.alunos = new MatTableDataSource<any>([]);
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.ativExtra_id = changes['ativExtra_id'].currentValue;
@@ -26,11 +29,11 @@ export class AtivExtraAlunoTableComponent implements OnChanges {
   getAlunos(id: number) {
     this.ativExtraService.getAlunos(id).subscribe({
       next: (data: any) => {
-        this.alunos = data.data;
-        console.log(this.ativExtra_id);
+        this.alunos = new MatTableDataSource(data.data);
       },
       error: (error) => {
-        console.log(error.error.message);
+        // console.log(error.error.message);
+        this.error_message = error.error.message;
       },
     });
   }

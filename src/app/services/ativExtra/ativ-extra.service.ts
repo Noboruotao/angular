@@ -59,4 +59,11 @@ export class AtivExtraService {
     let params = new HttpParams().set('id', id);
     return this.httpClient.get(this.apiUrl + '/getAlunos', { params: params });
   }
+
+  attributeAlunoAtivExtra(aluno_id: number, ativExtra_id: number) {
+    return this.httpClient.post(this.apiUrl + '/attributeAtivExtraToAluno', {
+      aluno_id: aluno_id,
+      ativExtra_id: ativExtra_id,
+    });
+  }
 }

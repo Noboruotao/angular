@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Atribuir Aluno à {{ data.ativExtra.nome }}</h1>
+<div mat-dialog-content>
+  <mat-form-field style="width: 100%">
+    <mat-label>Procurar</mat-label>
+    <input
+      matInput
+      (keyup)="search($event)"
+      placeholder="Nome ou CPF do leitor"
+      #input
+      style="padding-top: 12px"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="onOptionSelected($event)"
+    >
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option.nome + ' - ' + option.cpf"
+        (click)="getPessoa(option.id)"
+      >
+        {{ option.nome }} - {{ option.cpf }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div
+    *ngIf="pessoa && pessoaFoto"
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <h3>{{ pessoa.nome }}</h3>
+    <img
+      [src]="pessoaFoto"
+      alt="foto"
+      id="pessoaFoto"
+      style="max-width: 200px; max-height: 200px"
+    />
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="attributeAlunoAtivExtra()"
+    [disabled]="!pessoa"
+  >
+    Atribuir Aluno
+  </button>
+</div>

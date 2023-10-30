@@ -1,6 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogModule,
+} from '@angular/material/dialog';
+import { FormControl } from '@angular/forms';
+import {
+  startWith,
+  map,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { Router } from '@angular/router';
 import { AtivExtraService } from 'src/app/services/ativExtra/ativ-extra.service';
+import { AuthService } from 'src/app/services/authService/auth.service';
+import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
+import {
+  MatFormFieldControl,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatInputModule } from '@angular/material/input';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ativ-extra-detail',
@@ -13,6 +40,10 @@ export class AtivExtraDetailComponent {
 
   constructor(
     private ativExtraService: AtivExtraService,
+    public authService: AuthService,
+
+    public dialog: MatDialog,
+
     private route: ActivatedRoute
   ) {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -21,6 +52,7 @@ export class AtivExtraDetailComponent {
       next: (data) => {
         this.ativExtraInfo = data.data;
         this.showCard = true;
+        this.atribuirAlunoAtivExtra();
       },
       error: () => {
         this.ativExtraInfo = {
@@ -30,5 +62,110 @@ export class AtivExtraDetailComponent {
         this.showCard = true;
       },
     });
+  }
+  atribuirAlunoAtivExtra() {
+    this.dialog.open(AttributeAlunoAtivExtraDialog, {
+      data: { ativExtra: this.ativExtraInfo },
+      width: '600px',
+    });
+  }
+}
+
+@Component({
+  selector: 'attribute-aluno_ativExtra-dialog',
+  templateUrl: './attribute-aluno-to-ativExtra.html',
+  standalone: true,
+  imports: [
+    MatDialogModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    CommonModule,
+  ],
+})
+export class AttributeAlunoAtivExtraDialog {
+  isDisabled = true;
+
+  searchTerm: string = '';
+  filteredOptions: Observable<any>;
+  searchControl = new FormControl();
+
+  selectedOption: any;
+
+  pessoas: Observable<any>;
+
+  pessoa: any;
+  pessoaFoto: any;
+
+  constructor(
+    public dialogRef: MatDialogRef<any>,
+    private router: Router,
+    private pessoaService: PessoaService,
+    private ativExtraService: AtivExtraService,
+    private domSanitizer: DomSanitizer,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.filteredOptions = this.searchControl.valueChanges.pipe(
+      startWith(''),
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term) => this.getPessoas(term))
+    );
+  }
+
+  search(e: Event) {
+    const target = e.target as HTMLInputElement;
+    this.searchTerm = target.value;
+    this.searchControl.setValue(this.searchTerm);
+  }
+
+  getPessoas(term: string): Observable<any[]> {
+    console.log(term);
+    return this.pessoaService
+      .getPessoasWithCpf(term)
+      .pipe(map((data) => data.data));
+  }
+
+  getFoto(id: number) {
+    this.pessoaService.getFotoPessoa(id).subscribe(
+      (resFoto) => {
+        this.pessoaFoto = this.domSanitizer.bypassSecurityTrustUrl(
+          URL.createObjectURL(resFoto)
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getPessoa(id: number) {
+    this.pessoaService.getPessoa(id).subscribe({
+      next: (data: any) => {
+        this.pessoa = data.data;
+        this.getFoto(this.pessoa.id);
+      },
+      error: (error) => {
+        console.log(error.error.message);
+      },
+    });
+  }
+
+  onOptionSelected(event: any): void {
+    this.selectedOption = event.option.value;
+  }
+
+  attributeAlunoAtivExtra() {
+    this.ativExtraService
+      .attributeAlunoAtivExtra(this.pessoa.id, this.data.ativExtra.id)
+      .subscribe({
+        next: (data: any) => {
+          console.log(data.data);
+          window.location.reload();
+        },
+        error: (error) => {
+          console.log(error.error.message);
+        },
+      });
   }
 }
