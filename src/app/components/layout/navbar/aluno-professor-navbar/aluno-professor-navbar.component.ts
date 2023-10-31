@@ -8,6 +8,9 @@ import {
   faUserGroup,
   faBaseball,
   faWalking,
+  faAtom,
+  faChalkboardUser,
+  faMoneyBill1Wave,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/authService/auth.service';
 
@@ -25,6 +28,9 @@ export class AlunoProfessorNavbarComponent {
   faUserGroup = faUserGroup;
   faBaseball = faBaseball;
   faWalking = faWalking;
+  faAtom = faAtom;
+  faChalkboardUser = faChalkboardUser;
+  faMoneyBill1Wave = faMoneyBill1Wave;
 
   constructor(protected authService: AuthService) {}
 }

@@ -2,14 +2,6 @@
   class="navBarForAlunoProfessor"
   *ngIf="authService.checkRoles(['Aluno', 'Professor'])"
 >
-  <!-- <li class="nav-item" *ngIf="authService.checkRoles(['Aluno'])">
-    <a id="layoutOptionsLink" class="nav-link">
-      <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
-      <p>Aluno</p>
-      <fa-icon class="navbar_icon float-right"></fa-icon>
-    </a>
-  </li> -->
-
   <li class="nav-item">
     <a routerLink="/classe/list" class="nav-link" [routerLinkActive]="'active'">
       <fa-icon class="navbar_icon" [icon]="faUserGroup"></fa-icon>
@@ -24,7 +16,7 @@
       class="nav-link"
       [routerLinkActive]="'active'"
     >
-      <fa-icon class="navbar_icon" [icon]="faUser"></fa-icon>
+      <fa-icon class="navbar_icon" [icon]="faChalkboardUser"></fa-icon>
       <p>&nbsp;Disciplina</p>
       <fa-icon class="navbar_icon float-right"></fa-icon>
     </a>
@@ -36,7 +28,7 @@
       <p>&nbsp;Curso</p>
     </a>
   </li>
-  
+
   <li class="nav-item">
     <a
       routerLink="/ativExtra/list"
@@ -66,6 +58,24 @@
     >
       <fa-icon class="navbar_icon" [icon]="faBookOpen"></fa-icon>
       <p>&nbsp;Biblioteca</p>
+    </a>
+  </li>
+
+  <li class="nav-item" *ngIf="authService.checkRoles(['Aluno'])">
+    <a
+      routerLink="/area/alunoEscolha"
+      class="nav-link"
+      [routerLinkActive]="'active'"
+    >
+      <fa-icon class="navbar_icon" [icon]="faAtom"></fa-icon>
+      <p>&nbsp;Areas de Conhecimento</p>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" [routerLinkActive]="'active'">
+      <fa-icon class="navbar_icon" [icon]="faMoneyBill1Wave"></fa-icon>
+      <p>&nbsp;Finanças</p>
     </a>
   </li>
 </div>
