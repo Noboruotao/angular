@@ -1,0 +1,39 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="content-wrapper" style="background-color: gray">
+  <div class="card m-3" *ngIf="showCard">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-6">
+          <h3>Lista dos Autores</h3>
+        </div>
+        <div class="col-6 text-end">
+          <fa-icon
+            class="navbar_icon"
+            [icon]="faPlus"
+            title="Cadastra Novo Autor"
+          ></fa-icon>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li *ngFor="let autor of autors">
+          <a routerLink="/biblioteca/autor/{{ autor.id }}">
+            {{ autor.nome }}
+          </a>
+        </li>
+      </ul>
+      <mat-paginator
+        [length]="totalItems"
+        [pageSize]="pageSize"
+        [pageIndex]="currentPage"
+        (page)="onPageChange($event)"
+        showFirstLastButtons
+        [pageSizeOptions]="[10, 20, 50]"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

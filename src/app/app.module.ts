@@ -91,6 +91,8 @@ import { UserEmprestimoComponent } from './components/pages/biblioteca/emprestim
 import { AlunoEscolhaComponent } from './components/pages/area/aluno-escolha/aluno-escolha.component';
 import { SecretariaNavbarComponent } from './components/layout/navbar/secretaria-navbar/secretaria-navbar.component';
 import { AtivExtraAlunoTableComponent } from './components/pages/ativExtra/ativ-extra-aluno-table/ativ-extra-aluno-table.component';
+import { AutorDetailComponent } from './components/pages/biblioteca/autor/autor-detail/autor-detail.component';
+import { AutorListComponent } from './components/pages/biblioteca/autor/autor-list/autor-list.component';
 
 @NgModule({
   declarations: [
@@ -143,6 +145,8 @@ import { AtivExtraAlunoTableComponent } from './components/pages/ativExtra/ativ-
     AlunoEscolhaComponent,
     SecretariaNavbarComponent,
     AtivExtraAlunoTableComponent,
+    AutorDetailComponent,
+    AutorListComponent,
   ],
   imports: [
     BrowserModule,

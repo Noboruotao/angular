@@ -21,6 +21,7 @@ export class EmprestimoListTableComponent {
   durationInSeconds = 5;
 
   searchTerm: string = '';
+  error_message = ';';
 
   faCheck = faCheck;
   constructor(
@@ -38,14 +39,12 @@ export class EmprestimoListTableComponent {
         this.currentPage,
         this.searchTerm
       )
-      .subscribe({
-        next: (data) => {
-          this.emprestimos = data.data;
-          this.totalItems = data.count;
-        },
-        error: (error) => {
-          this.openSnackBar(error.error.message);
-        },
+      .subscribe((data) => {
+        this.emprestimos = data.data;
+        this.totalItems = data.count;
+        if (data.success == false) {
+          this.openSnackBar(data.message);
+        }
       });
   }
 

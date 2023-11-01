@@ -23,6 +23,8 @@ import { ListMultasComponent } from './components/pages/secretaria/list-multas/l
 import { MultaDetailComponent } from './components/pages/secretaria/multa-detail/multa-detail.component';
 import { MakeAcervoComponent } from './components/pages/biblioteca/acervo/make-acervo/make-acervo.component';
 import { AlunoEscolhaComponent } from './components/pages/area/aluno-escolha/aluno-escolha.component';
+import { AutorDetailComponent } from './components/pages/biblioteca/autor/autor-detail/autor-detail.component';
+import { AutorListComponent } from './components/pages/biblioteca/autor/autor-list/autor-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -40,6 +42,14 @@ const routes: Routes = [
       {
         path: 'biblioteca/acervo/list',
         component: AcervoListComponent,
+      },
+      {
+        path: 'biblioteca/autor/list',
+        component: AutorListComponent,
+      },
+      {
+        path: 'biblioteca/autor/:id',
+        component: AutorDetailComponent,
       },
       {
         path: 'biblioteca/acervo/new',

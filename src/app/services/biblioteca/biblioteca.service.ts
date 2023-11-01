@@ -127,12 +127,15 @@ export class BibliotecaService {
       );
   };
 
-  getAutor(id: number) {
-    return this.httpClient.get(this.apiUrl + '/getAutor/' + id).pipe(
-      map((response) => {
-        return response;
-      })
-    );
+  getAutor(id: number, comAcervo: boolean = true) {
+    const params = new HttpParams().set('comAcervos', comAcervo.toString());
+    return this.httpClient
+      .get(this.apiUrl + '/getAutor/' + id, { params: params })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
   }
 
   listCategorias = (page: number, pageSize: number, search: string) => {
