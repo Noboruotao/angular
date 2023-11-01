@@ -1,19 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { BibliotecaService } from 'src/app/services/biblioteca/biblioteca.service';
 import { Observable } from 'rxjs';
-import { ErrorStateMatcher } from '@angular/material/core';
-import {
-  FormControl,
-  FormGroupDirective,
-  FormGroup,
-  NgForm,
-  Validators,
-  FormsModule,
-  FormBuilder,
-  AbstractControl,
-  ValidationErrors,
-  ValidatorFn,
-} from '@angular/forms';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import {
   startWith,
   map,
@@ -21,23 +9,7 @@ import {
   distinctUntilChanged,
   switchMap,
 } from 'rxjs/operators';
-
-import { MatInput } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
-
-// export class MyErrorStateMatcher implements ErrorStateMatcher {
-//   isErrorState(
-//     control: FormControl | null,
-//     form: FormGroupDirective | NgForm | null
-//   ): boolean {
-//     const isSubmitted = form && form.submitted;
-//     return !!(
-//       control &&
-//       control.invalid &&
-//       (control.dirty || control.touched || isSubmitted)
-//     );
-//   }
-// }
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-acervo-form',
@@ -105,7 +77,8 @@ export class AcervoFormComponent {
 
   constructor(
     private bibliotecaService: BibliotecaService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.filteredEditoraOptions = this.editoraSearch.valueChanges.pipe(
       startWith(''),
@@ -134,39 +107,23 @@ export class AcervoFormComponent {
     this.editoraSearch.setValue(target.value);
   }
 
-  // matcher = new MyErrorStateMatcher();
-
   onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    console.log(file);
-    if (this.acervoFormData.has('capa')) {
-      this.acervoFormData.delete('capa');
-    }
-    this.acervoFormData.append('capa', file);
-    // this.secondForm.patchValue({
-    //   capa: file,
-    // });
-  }
+    const fileInput = event.target;
+    if (fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      const maxSize = 64 * 64; // 1MB (adjust as needed)
 
-  // fetchData<T>(
-  //   serviceMethod: (
-  //     page: number,
-  //     pageSize: number,
-  //     search: string
-  //   ) => Observable<T>,
-  //   assignData: (data: T) => void,
-  //   search: string,
-  //   limit: number = 20
-  // ) {
-  //   serviceMethod(0, limit, search).subscribe({
-  //     next: (data) => {
-  //       assignData(data);
-  //     },
-  //     error: (error) => {
-  //       console.log(error);
-  //     },
-  //   });
-  // }
+      if (file.size > maxSize) {
+        this.secondForm.get('capa')?.setErrors({ fileSize: true });
+      } else {
+        this.secondForm.get('capa')?.setErrors(null);
+      }
+      if (this.acervoFormData.has('capa')) {
+        this.acervoFormData.delete('capa');
+      }
+      this.acervoFormData.append('capa', file);
+    }
+  }
 
   getAutors(searchTerm: string) {
     return this.bibliotecaService.listAutors(0, 20, searchTerm).pipe(
@@ -197,60 +154,6 @@ export class AcervoFormComponent {
       },
     });
   }
-
-  // listCategorias() {
-  //   this.fetchData(
-  //     this.bibliotecaService.listCategorias,
-  //     (data: any) => {
-  //       this.categorias = data.data;
-  //     },
-  //     this.categoriaSearch,
-  //     0
-  //   );
-  // }
-
-  // listAcervoTipo() {
-  //   this.fetchData(
-  //     this.bibliotecaService.listAcervoTipo,
-  //     (data: any) => {
-  //       this.tipos = data.data;
-  //     },
-  //     this.tipoSearch,
-  //     0
-  //   );
-  // }
-
-  // listIdiomas() {
-  //   this.fetchData(
-  //     this.bibliotecaService.listIdiomas,
-  //     (data: any) => {
-  //       this.idiomas = data.data;
-  //     },
-  //     this.idiomaSearch,
-  //     0
-  //   );
-  // }
-
-  // listSituacao() {
-  //   this.fetchData(
-  //     this.bibliotecaService.listSituacao,
-  //     (data: any) => {
-  //       this.situacoes = data.data;
-  //     },
-  //     this.situacaoSearch,
-  //     0
-  //   );
-  // }
-
-  // listEstado() {
-  //   this.fetchData(
-  //     this.bibliotecaService.listEstado,
-  //     (data: any) => {
-  //       this.estados = data.data;
-  //     },
-  //     this.estadoSearch
-  //   );
-  // }
 
   getAutor(id: number) {
     this.bibliotecaService.getAutor(id).subscribe({
@@ -337,10 +240,10 @@ export class AcervoFormComponent {
 
     this.bibliotecaService.createAcervo(this.acervoFormData).subscribe({
       next: (data: any) => {
-        alert('Success');
+        this.router.navigate([`/biblioteca/acervo/${data.data.id}`]);
       },
       error: (error) => {
-        alert('Unsuccess');
+        alert(error.error.message);
       },
     });
   }

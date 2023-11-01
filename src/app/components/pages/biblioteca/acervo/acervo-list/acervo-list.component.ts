@@ -29,6 +29,7 @@ export class AcervoListComponent implements OnInit {
   bibliotecaUrl = `${environment.baseApiUrl}api/biblioteca`;
 
   expandedIndex: number | null = null;
+  maxResumoLength: number = 100;
 
   constructor(
     public bibliotecaService: BibliotecaService,

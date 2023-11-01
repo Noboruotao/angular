@@ -53,11 +53,23 @@
           </p>
         </mat-card-content>
 
-        <mat-card-footer class="card-footer">
-          <button mat-button (click)="showDetail(index)">
+        <mat-card-footer class="card-footer" (click)="showDetail(index)">
+          <strong>
             {{ expandedIndex == index ? "Fechar Resumo" : "Ver Resumo" }}
-          </button>
-          <p *ngIf="expandedIndex == index">{{ acervo.resumo }}</p>
+          </strong>
+          <p *ngIf="expandedIndex == index">
+            {{
+              acervo.resumo.length > maxResumoLength
+                ? (acervo.resumo | slice : 0 : maxResumoLength) + "..."
+                : acervo.resumo
+            }}
+            <a
+              *ngIf="acervo.resumo.length > maxResumoLength"
+              routerLink="/biblioteca/acervo/{{ acervo.id }}"
+            >
+              Ler mais
+            </a>
+          </p>
         </mat-card-footer>
       </mat-card>
     </div>
@@ -68,7 +80,7 @@
       [pageIndex]="currentPage"
       (page)="onPageChange($event)"
       showFirstLastButtons
-      [pageSizeOptions]="[12, 18, 24,]"
+      [pageSizeOptions]="[12, 18, 24]"
     >
     </mat-paginator>
   </div>
