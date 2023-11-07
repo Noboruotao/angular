@@ -68,8 +68,6 @@ export class ClasseTableComponent {
 
   onSlideChange() {
     this.ativo = this.checked ? 1 : 0;
-    console.log(this.ativo);
-    console.log(this.checked);
     this.getClasses();
   }
 }

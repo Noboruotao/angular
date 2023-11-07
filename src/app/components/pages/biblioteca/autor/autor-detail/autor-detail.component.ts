@@ -19,7 +19,6 @@ export class AutorDetailComponent {
 
     this.bibliotecaService.getAutor(id).subscribe({
       next: (data: any) => {
-        console.log(data.data);
         this.autor = data.data;
         this.showCard = true;
       },

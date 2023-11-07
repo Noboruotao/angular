@@ -236,8 +236,6 @@ export class AcervoFormComponent {
     );
     this.acervoFormData.append('IBNS', this.fifthForm.get('ibns')?.value ?? '');
 
-    console.log(this.acervoFormData);
-
     this.bibliotecaService.createAcervo(this.acervoFormData).subscribe({
       next: (data: any) => {
         this.router.navigate([`/biblioteca/acervo/${data.data.id}`]);

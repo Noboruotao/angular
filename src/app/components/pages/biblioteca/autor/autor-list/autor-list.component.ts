@@ -28,7 +28,6 @@ export class AutorListComponent {
       .listAutors(this.currentPage, this.pageSize, this.searchTerm)
       .subscribe({
         next: (data: any) => {
-          // console.log(data.data);
           this.autors = data.data;
           this.totalItems = data.count;
           this.showCard = true;

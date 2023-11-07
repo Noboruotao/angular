@@ -12,12 +12,20 @@ export class ProfessorService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getTiposAvaliacao() {
-    return this.httpClient.get<any>(`${this.apiUrl}/getTipoAvaliacao`).pipe(
-      map((response) => {
-        return response;
-      })
-    );
+  getTiposAvaliacao(
+    aluno_id: number | string = '',
+    classe_id: number | string = ''
+  ) {
+    const params = new HttpParams()
+      .set('aluno_id', aluno_id)
+      .set('classe_id', classe_id);
+    return this.httpClient
+      .get<any>(`${this.apiUrl}/getTipoAvaliacao`, { params: params })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
   }
 
   attributeNota(formData: FormData) {

@@ -98,13 +98,6 @@ export class MakeEmprestimoComponent {
     );
   }
 
-  // displayFn() {
-  //   let innerHtml = this.pessoa
-  //     ? `${this.pessoa.nome} - ${this.pessoa.cpf}`
-  //     : '';
-  //   return innerHtml;
-  // }
-
   search(e: Event) {
     const target = e.target as HTMLInputElement;
     this.searchTerm = target.value;
@@ -179,7 +172,6 @@ export class ConfirmEmprestimoDialog {
       .makeEmprestimo(this.acervo.id, this.leitor.id)
       .subscribe({
         next: (data: any) => {
-          console.log(data.data);
           this.router.navigate(['biblioteca/acervo/list']);
         },
         error: (error) => {

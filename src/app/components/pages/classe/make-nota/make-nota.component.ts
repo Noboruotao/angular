@@ -77,9 +77,11 @@ export class MakeNotaComponent {
   }
 
   getTipoAvaliacao() {
-    this.professorService.getTiposAvaliacao().subscribe((data: any) => {
-      this.tiposAvaliacao = data;
-    });
+    this.professorService
+      .getTiposAvaliacao(this.aluno_id, this.classe_id)
+      .subscribe((data: any) => {
+        this.tiposAvaliacao = data.data;
+      });
   }
 
   restrictInputToNumbers(event: any) {

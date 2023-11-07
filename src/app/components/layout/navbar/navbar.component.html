@@ -1,6 +1,4 @@
-<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-  <!-- Brand Logo -->
   <a class="brand-link">
     <img
       src="assets/images/school.png"
@@ -11,9 +9,7 @@
     <span class="brand-text font-weight-light">Nome Escola</span>
   </a>
 
-  <!-- Sidebar -->
   <div class="sidebar">
-    <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         <img [src]="userFoto" alt="User Image" *ngIf="userFoto" />
@@ -23,7 +19,6 @@
       </div>
     </div>
 
-    <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul
         class="nav nav-pills nav-sidebar flex-column"
@@ -34,7 +29,7 @@
         <li class="nav-item">
           <a routerLink="/home" class="nav-link" [routerLinkActive]="'active'">
             <fa-icon class="navbar_icon" [icon]="faHome"></fa-icon>
-            <p>Home</p>
+            <p>&nbsp;Home</p>
           </a>
         </li>
 
@@ -45,7 +40,5 @@
         <app-secretaria-navbar></app-secretaria-navbar>
       </ul>
     </nav>
-    <!-- /.sidebar-menu -->
   </div>
-  <!-- /.sidebar -->
 </aside>

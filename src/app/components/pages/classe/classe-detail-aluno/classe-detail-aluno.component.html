@@ -6,6 +6,17 @@
     </p>
     <p>Professor: {{ classe.professor.pessoa.nome }}</p>
     <p>Ano: {{ classe.ano }}</p>
-    <app-notas-table></app-notas-table>
+
+    <br />
+    <h3>ALUNOS</h3>
+    <ol>
+      <li *ngFor="let aluno of alunos">
+        <a routerLink="/pessoa/{{ aluno.id }}">
+          {{ aluno.nome }}
+        </a>
+      </li>
+    </ol>
+
+    <!-- <app-notas-table></app-notas-table> -->
   </div>
 </div>

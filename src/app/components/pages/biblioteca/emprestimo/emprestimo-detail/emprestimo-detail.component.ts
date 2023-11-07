@@ -85,7 +85,6 @@ export class ConfirmDevolucaoDialog {
   }
 
   devolver() {
-    console.log(this.pagarMulta);
     this.bibliotecaService.fazerDevolucao(this.emprestimo.id).subscribe({
       next: (data: any) => {
         if (this.pagarMulta) {

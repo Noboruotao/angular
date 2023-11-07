@@ -29,7 +29,6 @@ export class UserEmprestimoComponent {
       },
       error: (error) => {
         this.emprestimos = [];
-
         console.log(error.error.message);
       },
     });
