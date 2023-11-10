@@ -34,6 +34,8 @@ export class CursosTableComponent {
 
   searchTerm: string = '';
 
+  maxDefinicaoLength = 100;
+
   pageSize = 5;
   totalItems = 0;
   currentPage = 0;

@@ -70,7 +70,11 @@
               *matCellDef="let row"
               [routerLink]="'/ativExtra/' + row.id"
             >
-              {{ row.descricao }}
+              {{
+                row.descricao.length > maxDefinicaoLength
+                  ? (row.descricao | slice : 0 : maxDefinicaoLength) + "..."
+                  : row.descricao
+              }}
             </td>
           </ng-container>
 

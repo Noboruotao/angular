@@ -30,6 +30,7 @@ import {
 export class CursosSugeridosTableComponent {
   sugeridos: MatTableDataSource<any>;
   displayedColumns: string[] = ['nome', 'descricao', 'action'];
+  maxDefinicaoLength = 100;
 
   searchTerm: string = '';
   showTable: boolean = false;

@@ -30,6 +30,7 @@ import {
 export class AtivExtraSugeridosTableComponent {
   sugeridos: MatTableDataSource<any>;
   displayedColumns: string[] = ['nome', 'descricao', 'tipo', 'action'];
+  maxDefinicaoLength = 100;
 
   showcard = false;
   showCardBody: boolean = true;
