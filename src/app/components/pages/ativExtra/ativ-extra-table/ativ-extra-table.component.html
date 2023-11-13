@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="mat-elevation-z8">
+    <div class="ativExtra-table mat-elevation-z8">
       <table
         mat-table
         [dataSource]="ativExtras"
@@ -60,11 +60,13 @@
 
         <ng-container matColumnDef="descricao">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</th>
-          <td mat-cell *matCellDef="let row">{{
-            row.descricao.length > maxDefinicaoLength
-              ? (row.descricao | slice : 0 : maxDefinicaoLength) + "..."
-              : row.descricao
-          }}</td>
+          <td mat-cell *matCellDef="let row">
+            {{
+              row.descricao.length > maxDefinicaoLength
+                ? (row.descricao | slice : 0 : maxDefinicaoLength) + "..."
+                : row.descricao
+            }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="tipo">
@@ -87,16 +89,15 @@
           </td>
         </tr>
       </table>
-
-      <mat-paginator
-        [length]="totalItems"
-        [pageSize]="pageSize"
-        [pageIndex]="currentPage"
-        (page)="onPageChange($event)"
-        showFirstLastButtons
-        [pageSizeOptions]="[10, 50, 100]"
-        aria-label="Select page of cursos"
-      ></mat-paginator>
     </div>
+    <mat-paginator
+      [length]="totalItems"
+      [pageSize]="pageSize"
+      [pageIndex]="currentPage"
+      (page)="onPageChange($event)"
+      showFirstLastButtons
+      [pageSizeOptions]="[10, 50, 100]"
+      aria-label="Select page of cursos"
+    ></mat-paginator>
   </div>
 </div>

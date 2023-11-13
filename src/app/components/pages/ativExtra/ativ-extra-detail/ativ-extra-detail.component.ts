@@ -179,7 +179,7 @@ export class AttributeAlunoAtivExtraDialog {
   }
 
   openSnackBar(message: string) {
-    this._snackBar.open(message, 'Fechar');
+    this._snackBar.open(message, 'Fechar', { duration: 2000 });
   }
 
   closeDialog(reload: boolean = true) {

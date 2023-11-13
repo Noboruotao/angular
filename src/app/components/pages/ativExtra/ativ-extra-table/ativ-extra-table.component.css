@@ -18,3 +18,11 @@ th {
 tr:hover {
     background: whitesmoke;
 }
+
+
+.ativExtra-table {
+    position: relative;
+    min-height: 200px;
+    max-height: 400px;
+    overflow: auto;
+}
