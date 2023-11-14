@@ -30,11 +30,11 @@ import {
 export class DisciplinaTableComponent {
   disciplinaList: MatTableDataSource<any>;
 
-  displayedColumns: string[] = ['nome', 'periodo.periodo', 'carga_horaria'];
+  displayedColumns: string[] = ['nome', 'periodo_id', 'carga_horaria'];
 
   searchTerm: string = '';
 
-  pageSize = 10;
+  pageSize = 5;
   totalItems = 0;
   currentPage = 0;
   showCard: boolean = false;

@@ -33,6 +33,10 @@ export class AlunoEscolhaComponent {
     return this.areas_escolhidas.includes(codigo);
   }
 
+  clearAll() {
+    this.areas_escolhidas = [];
+  }
+
   escolher(codigo: string) {
     if (this.areas_escolhidas.includes(codigo)) {
       this.areas_escolhidas = this.areas_escolhidas.filter(

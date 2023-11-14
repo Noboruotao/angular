@@ -13,14 +13,17 @@
       </p>
       <p><strong>Ano de Nascimento:</strong>{{ autor.ano_nascimento }}</p>
       <p *ngIf="autor.ano_nascimento">
-        <strong>Ano de Falecimento:</strong>{{ autor.ano_nascimento }}
+        <strong>Ano de Falecimento:</strong>{{ autor.ano_falecimento }}
       </p>
 
       <h3>Lista de Acervos deste Autor</h3>
       <ol>
         <li *ngFor="let acervo of autor.acervos">
-          <a routerLink="/biblioteca/acervo/{{ acervo.id }}">
-            {{ acervo.titulo }}
+          <a
+            routerLink="/biblioteca/acervo/{{ acervo.id }}"
+            title="{{ acervo.resumo }}"
+          >
+            {{ acervo.titulo }} ({{ acervo.ano_publicacao }})
           </a>
         </li>
       </ol>

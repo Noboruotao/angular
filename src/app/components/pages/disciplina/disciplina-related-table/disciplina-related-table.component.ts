@@ -33,7 +33,7 @@ import {
 export class DisciplinaRelatedTableComponent {
   relatedDisciplinaList: MatTableDataSource<any>;
 
-  displayedColumns: string[] = ['nome', 'periodo.periodo', 'carga_horaria'];
+  displayedColumns: string[] = ['nome', 'periodo_id', 'carga_horaria'];
 
   searchTerm: string = '';
 

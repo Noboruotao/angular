@@ -2,7 +2,12 @@
   <div class="card-header">Detalhes da Classe</div>
   <div class="card-body" *ngIf="classe">
     <p>
-      Disciplina: <strong>{{ classe.disciplina.nome }}</strong>
+      Disciplina:
+      <strong
+        title="Ver Detalhes da Disciplina"
+        routerLink="/disciplina/{{ classe.disciplina_id }}"
+        >{{ classe.disciplina.nome }}</strong
+      >
     </p>
     <p>Professor: {{ classe.professor.pessoa.nome }}</p>
     <p>Ano: {{ classe.ano }}</p>

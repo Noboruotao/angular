@@ -28,7 +28,10 @@
         </mat-tab>
       </mat-tab-group>
 
-      <button class="btn btn-primary" (click)="enviar()">Enviar</button>
+      <button class="btn btn-primary m-2" (click)="enviar()">Enviar</button>
+      <button class="btn btn-danger m-2" (click)="clearAll()">
+        Limpar Seleção
+      </button>
     </mat-card-content>
 
     <ng-template #spinner>
