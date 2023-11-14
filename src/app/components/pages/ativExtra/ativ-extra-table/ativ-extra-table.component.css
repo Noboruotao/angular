@@ -23,6 +23,6 @@ tr:hover {
 .ativExtra-table {
     position: relative;
     min-height: 200px;
-    max-height: 400px;
+    /* max-height: 400px; */
     overflow: auto;
 }

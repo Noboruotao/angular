@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Sort } from '@angular/material/sort';
 
 import { ClasseService } from 'src/app/services/classe/classe.service';
+import { AuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
   selector: 'app-classe-table',
@@ -16,8 +17,9 @@ export class ClasseTableComponent {
   classes: MatTableDataSource<any>;
 
   displayedColumns: string[] = ['nome', 'ano'];
+  displayedColumnsAluno: string[] = ['nome', 'p1', 'p2', 'sub', 'ano'];
 
-  pageSize = 5;
+  pageSize = 10;
   totalItems = 0;
   currentPage = 0;
   sortColumn: string = 'ano';
@@ -30,7 +32,10 @@ export class ClasseTableComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private classeService: ClasseService) {
+  constructor(
+    private classeService: ClasseService,
+    public authService: AuthService
+  ) {
     this.getClasses();
   }
 
@@ -69,5 +74,12 @@ export class ClasseTableComponent {
   onSlideChange() {
     this.ativo = this.checked ? 1 : 0;
     this.getClasses();
+  }
+
+  getdisplayedColumns() {
+    if (this.authService.checkRoles(['Aluno'])) {
+      return this.displayedColumnsAluno;
+    }
+    return this.displayedColumns;
   }
 }

@@ -20,3 +20,10 @@ th {
 tr:hover {
     background: whitesmoke;
 }
+
+.classe-table {
+    position: relative;
+    min-height: 200px;
+    /* max-height: 400px; */
+    overflow: auto;
+}
