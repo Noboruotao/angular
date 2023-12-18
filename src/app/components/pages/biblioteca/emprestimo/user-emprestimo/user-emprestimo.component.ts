@@ -22,7 +22,7 @@ export class UserEmprestimoComponent {
   getEmprestimos() {
     this.bibliotecaService.getUserEmprestimos().subscribe({
       next: (data: any) => {
-        if (data.success) {
+        if (data.count != 0) {
           this.emprestimos = data.data;
           this.showCard = true;
         }
